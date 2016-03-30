@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_package = "com.gg.gate.gRPC.proto";
+option optimize_for = SPEED;
+
+message Position {
+    float lat = 1;
+    float lng = 2;
+    int32 level = 3;
+}
+
+message Geohash {
+    string base32Str = 1;
+}
+
+service GeoX {
+    rpc calcGeohash (Position) returns (Geohash);
+}
