@@ -1,8 +1,8 @@
 {
   "1.0": {
-    "project_path": ":",
+    "project_path": ":GGGame-common",
     "project_dir": "F:\\workspace\\GGGame\\GGGame-common",
-    "connection_project_dir": "F:\\workspace\\GGGame\\GGGame-common",
+    "connection_project_dir": "F:\\workspace\\GGGame",
     "connection_gradle_user_home": "D:\\develop\\gradle-2.10",
     "connection_gradle_distribution": "GRADLE_DISTRIBUTION(LOCAL_INSTALLATION(D:\\develop\\gradle-2.10))",
     "connection_java_home": "D:\\develop\\Java\\jdk1.8.0_25",

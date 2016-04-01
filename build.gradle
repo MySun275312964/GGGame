@@ -35,6 +35,7 @@ subprojects {
 	    	'org.springframework.boot:spring-boot-starter:1.3.3.RELEASE',
 	    	'com.google.code.gson:gson:2.6.2',
 	    	'io.grpc:grpc-all:0.13.1',
+	    	'com.google.guava:guava:bundle:19.0',
 	    )
 	
 	    testCompile 'junit:junit:4.12'

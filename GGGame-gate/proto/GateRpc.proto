@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.gg.protocol.gate";
+
+message Message {
+	int32 type = 1; // msg type
+	int32 sid = 2; // session id
+	int32 rid = 3; // request id
+	string instance = 4;
+	string method = 5;
+	bytes payload = 6;
+}
+
+service GateTunnel {
+	rpc tunnel(stream Message) returns (stream Message);
+}

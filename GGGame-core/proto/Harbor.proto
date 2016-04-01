@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_package = "com.gg.core.harbor.protocol";
+
+enum MessageType {
+	Handshake = 0; // handshake
+	Request = 1; // request, need response
+	Response = 2; // response
+	Post = 3; // post, need not response
+}
+
+message Service {
+	string name = 1; // service name
+	string host = 2; // host addr
+	int32 port = 3; // port
+}
+
+message HandshakeMessage {
+	Service source = 1;
+}
+
+message HarborMessage {
+	MessageType type = 1; // msg type
+	int32 sid = 2; // session id
+	int32 rid = 3; // request id
+	Service source = 4;
+	string instance = 5;
+	string method = 6;
+	repeated string payload = 7;
+}
+
+service Harbor {
+	rpc post(stream HarborMessage) returns (stream HarborMessage);
+}

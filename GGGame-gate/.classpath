@@ -17,5 +17,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GGGame-common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GGGame-core"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
