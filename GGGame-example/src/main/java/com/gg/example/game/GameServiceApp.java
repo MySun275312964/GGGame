@@ -28,6 +28,7 @@ public class GameServiceApp {
 		
 		Game g = ctx.getBean(Game.class);
 		g.usertest();
+		g.usertestasync();
 
 		while (!server.isShutdown()) {
 			try {

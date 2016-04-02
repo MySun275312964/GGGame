@@ -23,7 +23,7 @@ import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
 public class HarborDispatch {
 	private AtomicInteger requestId = new AtomicInteger(0); // request id index
 	private Map<Integer, HarborFutureTask> rmap = new ConcurrentHashMap<>();
-	private Map<String, Object> instanceCacheMap = new ConcurrentHashMap<>();
+	private Map<String, Class<?>> instanceCacheMap = new ConcurrentHashMap<>();
 	private Map<String, MethodEntry> methodCacheMap = new ConcurrentHashMap<>();
 	private Map<String, HarborStreamTunnel> harborMap = new HashMap<>();
 	private Map<String, String> nameKeyMap = new HashMap<>();
@@ -43,25 +43,24 @@ public class HarborDispatch {
 		if (future != null) {
 			if (future.isAsync()) { // 异步调用，需要把逻辑引导到exepool中执行
 				exepool.execute(() -> {
-					future.finish(msg.getPayloadList());
+					future.finish(msg.getPayload(0));
 				});
 			} else { // 同步调用，直接设置完成状态
-				future.finish(msg.getPayloadList());
+				future.finish(msg.getPayload(0));
 			}
 		} else {
 			// TODO ... 响应对应的请求找不到，如何处理
 		}
 	}
-	
+
 	private MethodEntry getMethodWith(String instanceName, String methodName) {
 		String tag = StringUtil.join(":", instanceName, methodName);
 		MethodEntry methodEntry = methodCacheMap.get(tag);
 		if (methodEntry == null) { // cache miss
-			Object instance = instanceCacheMap.get(instanceName);
+			Class<?> instance = instanceCacheMap.get(instanceName);
 			if (instance == null) {
 				try {
-					Class<?> clazz = Class.forName(instanceName);
-					instance = GGHarbor.getCtx().getBean(clazz);
+					instance = Class.forName(instanceName);
 					if (instance != null) {
 						instanceCacheMap.put(instanceName, instance);
 					}
@@ -70,7 +69,7 @@ public class HarborDispatch {
 				}
 			}
 			if (instance != null) {
-				Method ms[] = ReflectionUtils.getAllDeclaredMethods(instance.getClass());
+				Method ms[] = ReflectionUtils.getAllDeclaredMethods(instance);
 				Method method = null;
 				if (ms != null) {
 					for (Method m : ms) {
@@ -81,16 +80,18 @@ public class HarborDispatch {
 					}
 				}
 				if (method != null) {
+					Object target = GGHarbor.getCtx().getBean(instance);
 					ReflectionUtils.makeAccessible(method);
-					methodEntry = new MethodEntry(method, instance);
+					methodEntry = new MethodEntry(method, target);
 					methodCacheMap.put(tag, methodEntry);
 				}
+
 			}
 		}
-		
+
 		return methodEntry;
 	}
-	
+
 	private void invokeMethodInExepoll(Runnable runnable) {
 		exepool.execute(runnable);
 	}
@@ -105,7 +106,7 @@ public class HarborDispatch {
 			Method method = methodEntry.method;
 			// 反序列化参数
 			List<String> payloads = msg.getPayloadList();
-			Class<?> []ptypes = method.getParameterTypes();
+			Class<?>[] ptypes = method.getParameterTypes();
 			List<Object> params = new ArrayList<Object>();
 			if (ptypes != null) {
 				for (int i = 0; i < ptypes.length; i++) {
@@ -115,18 +116,21 @@ public class HarborDispatch {
 					params.add(param);
 				}
 			}
-			invokeMethodInExepoll(()->{
+			invokeMethodInExepoll(() -> {
 				try {
 					Object result = method.invoke(methodEntry.target, params.toArray(new Object[0]));
 					if (msg.getType() == MessageType.Request) { // need response
 						Async asyncs[] = method.getAnnotationsByType(Async.class);
-						if (asyncs != null && asyncs.length > 0) { // async function
+						if (asyncs != null && asyncs.length > 0) { // async
+																	// function
 							HarborFutureTask future = (HarborFutureTask) result;
 							future.addCallback((obj) -> {
-								post(msg.getSource().getName(), HarborHelper.buildHarborResponse(msg.getSid(), msg.getRid(), result));
+								post(msg.getSource().getName(),
+										HarborHelper.buildHarborResponse(msg.getSid(), msg.getRid(), obj));
 							});
 						} else { // normal function
-							post(msg.getSource().getName(), HarborHelper.buildHarborResponse(msg.getSid(), msg.getRid(), result));
+							post(msg.getSource().getName(),
+									HarborHelper.buildHarborResponse(msg.getSid(), msg.getRid(), result));
 						}
 					}
 				} catch (Exception e) {
@@ -166,11 +170,11 @@ public class HarborDispatch {
 		rmap.put(reqid, future);
 		harborMap.get(nameKeyMap.get(service)).sendToRemote(msg);
 	}
-	
+
 	static class MethodEntry {
 		public Method method;
 		public Object target;
-		
+
 		public MethodEntry(Method method, Object target) {
 			this.method = method;
 			this.target = target;

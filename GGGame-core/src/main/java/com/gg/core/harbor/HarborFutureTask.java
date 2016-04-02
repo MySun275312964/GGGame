@@ -24,9 +24,12 @@ public class HarborFutureTask extends FutureTask<Object> {
 		this.async = async;
 	}
 
-	public void finish(List<String> value) {
-		Object obj = JsonHelper.fromJson(value.get(0), clazz);
-
+	public void finish(String value) {
+		Object obj = JsonHelper.fromJson(value, clazz);
+		doFinish(obj);
+	}
+	
+	private void doFinish(Object obj) {
 		// 同步调用, 直接finish
 		if (!async) {
 			future.finish(obj);
@@ -40,9 +43,13 @@ public class HarborFutureTask extends FutureTask<Object> {
 		}
 		// 异步调用，没有设置callback，可能会有资源竞争，加锁
 		synchronized (Lock) {
-			future.finish(value);
+			future.finish(obj);
 			run();
 		}
+	}
+	
+	public void finish(Object obj) {
+		doFinish(obj);
 	}
 
 	public void addCallback(Consumer<Object> call) {
@@ -66,6 +73,10 @@ public class HarborFutureTask extends FutureTask<Object> {
 
 	public static HarborFutureTask buildTask(Class<?> clazz, boolean async) {
 		return new HarborFutureTask(clazz, new HarborFutureCallable(), async);
+	}
+	
+	public static HarborFutureTask buildTask(Class<?> clazz) {
+		return new HarborFutureTask(clazz, new HarborFutureCallable(), true);
 	}
 
 	static class HarborFutureCallable implements Callable<Object> {
