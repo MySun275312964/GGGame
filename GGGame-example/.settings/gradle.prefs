@@ -1,0 +1,12 @@
+{
+  "1.0": {
+    "project_path": ":GGGame-example",
+    "project_dir": "/Volumes/HDD/Users/hunter/develop/opensource/GGGame/GGGame-example",
+    "connection_project_dir": "/Volumes/HDD/Users/hunter/develop/opensource/GGGame",
+    "connection_gradle_user_home": "/Users/hunter/develop/gradle-2.7",
+    "connection_gradle_distribution": "GRADLE_DISTRIBUTION(LOCAL_INSTALLATION(/Users/hunter/develop/gradle-2.7))",
+    "connection_java_home": "/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home",
+    "connection_jvm_arguments": "",
+    "connection_arguments": ""
+  }
+}

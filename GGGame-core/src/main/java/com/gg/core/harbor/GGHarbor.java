@@ -5,6 +5,7 @@ import java.util.concurrent.Executor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 
 import com.gg.common.Constants;
 import com.gg.core.harbor.protocol.HarborGrpc;
@@ -34,15 +35,21 @@ public class GGHarbor {
 	private static HarborDispatch dispatch;
 	private static Service self;
 	private static String service;
+	private static ApplicationContext ctx;
 	
-	public static ServerImpl start(String service, String host, int port, Executor exepool) throws IOException {
+	public static ServerImpl start(ApplicationContext ctx, String service, String host, int port, Executor exepool) throws IOException {
+		GGHarbor.ctx = ctx;
 		GGHarbor.service = service;
-		self = Service.newBuilder().setHost(host).setPort(port).build();
+		self = Service.newBuilder().setName(service).setHost(host).setPort(port).build();
 		dispatch = new HarborDispatch(exepool);
 		ServerImpl server = NettyServerBuilder.forPort(port)
 				.addService(HarborGrpc.bindService(new HarborService(dispatch))).build().start();
 		handshake(host, port);
 		return server;
+	}
+	
+	public static ApplicationContext getCtx() {
+		return ctx;
 	}
 
 //	public static ServerImpl start(String service, String host, int port, IHarborHandler handler) throws IOException {
@@ -58,7 +65,7 @@ public class GGHarbor {
 	public static Service getSelf() {
 		return self;
 	}
-
+	
 	public static HarborDispatch getDispatch() {
 		return dispatch;
 	}

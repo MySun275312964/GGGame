@@ -27,7 +27,7 @@ public class GGGateApp implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(GGGateApp.class);
 
 	public static void init(ApplicationContext ctx) throws BeansException, IOException {
-		ServerImpl server = GGHarbor.start("gate", Constants.Localhost, Constants.GatePort, Executors.newSingleThreadExecutor());
+		ServerImpl server = GGHarbor.start(ctx, Constants.Gate, Constants.Localhost, Constants.GatePort, Executors.newSingleThreadExecutor());
 
 		while (!server.isShutdown()) {
 			try {

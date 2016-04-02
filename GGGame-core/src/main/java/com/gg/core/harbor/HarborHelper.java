@@ -32,4 +32,14 @@ public class HarborHelper {
 		return HarborMessage.newBuilder().setType(type).setSid(sid).setRid(rid).setSource(GGHarbor.getSelf())
 				.setInstance(instance).setMethod(method).addAllPayload(payloads).build();
 	}
+
+	public static HarborMessage buildHarborResponse(int sid, int rid, Object... msg) {
+		List<String> payloads = new ArrayList<String>();
+		if (msg != null) {
+			for (Object m : msg) {
+				payloads.add(JsonHelper.toJson(m));
+			}
+		}
+		return HarborMessage.newBuilder().setType(MessageType.Response).setSid(sid).setRid(rid).addAllPayload(payloads).build();
+	}
 }

@@ -1,9 +1,14 @@
 package com.gg.core.harbor;
 
+import java.lang.reflect.Field;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ReflectionUtils;
+import org.springframework.util.StringUtils;
 
 import com.gg.common.JsonHelper;
+import com.gg.common.StringUtil;
 import com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage;
 import com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage;
 import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
@@ -50,9 +55,10 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 		if (msg.getType() == MessageType.Handshake) {
 			HandshakeMessage handshake = JsonHelper.fromJson(msg.getPayload(0), HandshakeMessage.class);
 			logger.info(
-					"receive handshake: " + handshake.getSource().getHost() + ":" + handshake.getSource().getPort());
+					"receive handshake: " + handshake.getSource().getName() + ":" + handshake.getSource().getHost() + ":" + handshake.getSource().getPort());
 			identity = getKey(handshake);
-			dispatch.remoteHarborHandshake(msg.getSource().getName(), identity, this);
+			String sourceName = handshake.getSource().getName();
+			dispatch.remoteHarborHandshake(sourceName, identity, this);
 		} else {
 			dispatch.onMessage(identity, msg);
 		}

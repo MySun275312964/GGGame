@@ -14,9 +14,11 @@ import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
 public class HarborRPC implements InvocationHandler {
 
 	private String service;
+	private String instance;
 
-	public HarborRPC(String service) {
+	public HarborRPC(String service, String instance) {
 		this.service = service;
+		this.instance = instance;
 	}
 
 	@Override
@@ -27,22 +29,29 @@ public class HarborRPC implements InvocationHandler {
 			Async async = asyncs[0];
 			Class<?> clazz = async.clazz();
 			HarborFutureTask future = HarborFutureTask.buildTask(clazz, true);
-			HarborMessage msg = HarborHelper.buildHarborMessage2(MessageType.Request, 0, 0, service, method.getName(),
+			HarborMessage msg = HarborHelper.buildHarborMessage2(MessageType.Request, 0, 0, instance, method.getName(),
 					args);
 			dispatch.call(service, msg, future);
 			return future;
 		} else {
 			Class<?> clazz = method.getReturnType();
-			HarborFutureTask future = HarborFutureTask.buildTask(clazz, false);
-			HarborMessage msg = HarborHelper.buildHarborMessage2(MessageType.Request, 0, 0, service, method.getName(),
+			String rname = clazz.getName();
+			HarborMessage msg = HarborHelper.buildHarborMessage2(MessageType.Request, 0, 0, instance, method.getName(),
 					args);
-			dispatch.call(service, msg, future);
-			return future.get();
+			if (rname.length() == 4 && "void".equalsIgnoreCase(rname)) {
+				msg = msg.toBuilder().setType(MessageType.Post).build();
+				dispatch.post(service, msg);
+				return null;
+			} else {
+				HarborFutureTask future = HarborFutureTask.buildTask(clazz, false);
+				dispatch.call(service, msg, future);
+				return future.get();
+			}
 		}
 	}
 
 	public static <T> T getHarbor(String service, Class<T> clazz) {
-		HarborRPC proxy = new HarborRPC(service);
-		return (T) Proxy.newProxyInstance(clazz.getClassLoader(), clazz.getInterfaces(), proxy);
+		HarborRPC proxy = new HarborRPC(service, clazz.getName());
+		return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[]{clazz}, proxy);
 	}
 }

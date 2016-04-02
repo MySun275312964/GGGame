@@ -16,6 +16,6 @@ include 'api'
 include 'services:webservice'
 */
 
-include 'GGGame-protocol', 'GGGame-gate', 'GGGame-core', 'GGGame-master', 'GGGame-common'
+include 'GGGame-protocol', 'GGGame-gate', 'GGGame-core', 'GGGame-master', 'GGGame-common', 'GGGame-example'
 
 rootProject.name = 'GGGame'
