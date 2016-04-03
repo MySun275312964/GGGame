@@ -24,7 +24,7 @@ public class HarborFutureTask extends FutureTask<Object> {
 		this.async = async;
 	}
 
-	public void finish(String value) {
+	public void remoteFinish(String value) {
 		Object obj = JsonHelper.fromJson(value, clazz);
 		doFinish(obj);
 	}

@@ -43,10 +43,10 @@ public class HarborDispatch {
 		if (future != null) {
 			if (future.isAsync()) { // 异步调用，需要把逻辑引导到exepool中执行
 				exepool.execute(() -> {
-					future.finish(msg.getPayload(0));
+					future.remoteFinish(msg.getPayload(0));
 				});
 			} else { // 同步调用，直接设置完成状态
-				future.finish(msg.getPayload(0));
+				future.remoteFinish(msg.getPayload(0));
 			}
 		} else {
 			// TODO ... 响应对应的请求找不到，如何处理

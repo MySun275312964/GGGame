@@ -29,6 +29,7 @@ public class GameServiceApp {
 		Game g = ctx.getBean(Game.class);
 		g.usertest();
 		g.usertestasync();
+		logger.info(" =========== function call end ==============");
 
 		while (!server.isShutdown()) {
 			try {

@@ -19,6 +19,11 @@ public class UserServiceImpl implements IUserService {
 		new Thread() {
 			@Override
 			public void run() {
+				try {
+					Thread.sleep(15*1000L);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				User u = new User("testid", "testname", "testicon", age);
 				task.finish(u);
 			}
