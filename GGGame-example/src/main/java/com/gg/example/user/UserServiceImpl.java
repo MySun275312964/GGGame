@@ -14,7 +14,7 @@ import com.gg.example.protocol.task.ITaskService;
 import com.gg.example.protocol.task.Task;
 import com.gg.example.protocol.user.IUserService;
 import com.gg.example.protocol.user.User;
-import com.google.common.reflect.TypeToken;
+import com.google.gson.reflect.TypeToken;
 
 @Service
 public class UserServiceImpl implements IUserService {
