@@ -1,6 +1,9 @@
 package com.gg.example.protocol.user;
 
+import java.util.List;
+
 import com.gg.common.JsonHelper;
+import com.gg.example.protocol.task.Task;
 
 public class User implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,11 +13,14 @@ public class User implements java.io.Serializable {
 	private String icon;
 	private int age;
 
-	public User(String id, String name, String icon, int age) {
+	private List<Task> taskList;
+
+	public User(String id, String name, String icon, int age, List<Task> taskList) {
 		this.id = id;
 		this.name = name;
 		this.icon = icon;
 		this.age = age;
+		this.taskList = taskList;
 	}
 
 	public String getName() {
@@ -47,6 +53,21 @@ public class User implements java.io.Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the taskList
+	 */
+	public List<Task> getTaskList() {
+		return taskList;
+	}
+
+	/**
+	 * @param taskList
+	 *            the taskList to set
+	 */
+	public void setTaskList(List<Task> taskList) {
+		this.taskList = taskList;
 	}
 
 	@Override

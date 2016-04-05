@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.gg.core.harbor.HarborFutureTask;
 import com.gg.core.harbor.HarborRPC;
 import com.gg.example.common.ExampleConst;
+import com.gg.example.protocol.task.Task;
 import com.gg.example.protocol.user.IUserService;
 import com.gg.example.protocol.user.User;
 
@@ -26,6 +27,11 @@ public class Game {
 		HarborFutureTask future = us.getUserByAge(30);
 		future.addCallback((u) -> {
 			logger.info("<<<<<<<<<<<<<<<<<: " + u.toString());
+			User uu = (User) u;
+			
+			for (Task t:uu.getTaskList()) {
+				logger.info(t.getName());
+			}
 		});
 	}
 }
