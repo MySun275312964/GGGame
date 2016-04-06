@@ -9,6 +9,10 @@ public class Task implements java.io.Serializable {
 
 	private String name;
 	private int level;
+	
+	public Task() {
+		
+	}
 
 	public Task(String name, int level) {
 		this.name = name;

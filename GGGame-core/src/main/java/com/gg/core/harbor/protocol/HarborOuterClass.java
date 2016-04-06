@@ -1457,23 +1457,17 @@ public final class HarborOuterClass {
         getMethodBytes();
 
     /**
-     * <code>repeated string payload = 7;</code>
+     * <code>repeated bytes payload = 7;</code>
      */
-    com.google.protobuf.ProtocolStringList
-        getPayloadList();
+    java.util.List<com.google.protobuf.ByteString> getPayloadList();
     /**
-     * <code>repeated string payload = 7;</code>
+     * <code>repeated bytes payload = 7;</code>
      */
     int getPayloadCount();
     /**
-     * <code>repeated string payload = 7;</code>
+     * <code>repeated bytes payload = 7;</code>
      */
-    java.lang.String getPayload(int index);
-    /**
-     * <code>repeated string payload = 7;</code>
-     */
-    com.google.protobuf.ByteString
-        getPayloadBytes(int index);
+    com.google.protobuf.ByteString getPayload(int index);
   }
   /**
    * Protobuf type {@code HarborMessage}
@@ -1492,7 +1486,7 @@ public final class HarborOuterClass {
       rid_ = 0;
       instance_ = "";
       method_ = "";
-      payload_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      payload_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1561,12 +1555,11 @@ public final class HarborOuterClass {
               break;
             }
             case 58: {
-              java.lang.String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
-                payload_ = new com.google.protobuf.LazyStringArrayList();
+                payload_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
                 mutable_bitField0_ |= 0x00000040;
               }
-              payload_.add(s);
+              payload_.add(input.readBytes());
               break;
             }
           }
@@ -1579,7 +1572,7 @@ public final class HarborOuterClass {
                 e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
-          payload_ = payload_.getUnmodifiableView();
+          payload_ = java.util.Collections.unmodifiableList(payload_);
         }
         makeExtensionsImmutable();
       }
@@ -1737,32 +1730,25 @@ public final class HarborOuterClass {
     }
 
     public static final int PAYLOAD_FIELD_NUMBER = 7;
-    private com.google.protobuf.LazyStringList payload_;
+    private java.util.List<com.google.protobuf.ByteString> payload_;
     /**
-     * <code>repeated string payload = 7;</code>
+     * <code>repeated bytes payload = 7;</code>
      */
-    public com.google.protobuf.ProtocolStringList
+    public java.util.List<com.google.protobuf.ByteString>
         getPayloadList() {
       return payload_;
     }
     /**
-     * <code>repeated string payload = 7;</code>
+     * <code>repeated bytes payload = 7;</code>
      */
     public int getPayloadCount() {
       return payload_.size();
     }
     /**
-     * <code>repeated string payload = 7;</code>
+     * <code>repeated bytes payload = 7;</code>
      */
-    public java.lang.String getPayload(int index) {
+    public com.google.protobuf.ByteString getPayload(int index) {
       return payload_.get(index);
-    }
-    /**
-     * <code>repeated string payload = 7;</code>
-     */
-    public com.google.protobuf.ByteString
-        getPayloadBytes(int index) {
-      return payload_.getByteString(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1796,7 +1782,7 @@ public final class HarborOuterClass {
         com.google.protobuf.GeneratedMessage.writeString(output, 6, method_);
       }
       for (int i = 0; i < payload_.size(); i++) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 7, payload_.getRaw(i));
+        output.writeBytes(7, payload_.get(i));
       }
     }
 
@@ -1830,7 +1816,8 @@ public final class HarborOuterClass {
       {
         int dataSize = 0;
         for (int i = 0; i < payload_.size(); i++) {
-          dataSize += computeStringSizeNoTag(payload_.getRaw(i));
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(payload_.get(i));
         }
         size += dataSize;
         size += 1 * getPayloadList().size();
@@ -1962,7 +1949,7 @@ public final class HarborOuterClass {
 
         method_ = "";
 
-        payload_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        payload_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
@@ -1999,7 +1986,7 @@ public final class HarborOuterClass {
         result.instance_ = instance_;
         result.method_ = method_;
         if (((bitField0_ & 0x00000040) == 0x00000040)) {
-          payload_ = payload_.getUnmodifiableView();
+          payload_ = java.util.Collections.unmodifiableList(payload_);
           bitField0_ = (bitField0_ & ~0x00000040);
         }
         result.payload_ = payload_;
@@ -2471,44 +2458,37 @@ public final class HarborOuterClass {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList payload_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private java.util.List<com.google.protobuf.ByteString> payload_ = java.util.Collections.emptyList();
       private void ensurePayloadIsMutable() {
         if (!((bitField0_ & 0x00000040) == 0x00000040)) {
-          payload_ = new com.google.protobuf.LazyStringArrayList(payload_);
+          payload_ = new java.util.ArrayList<com.google.protobuf.ByteString>(payload_);
           bitField0_ |= 0x00000040;
          }
       }
       /**
-       * <code>repeated string payload = 7;</code>
+       * <code>repeated bytes payload = 7;</code>
        */
-      public com.google.protobuf.ProtocolStringList
+      public java.util.List<com.google.protobuf.ByteString>
           getPayloadList() {
-        return payload_.getUnmodifiableView();
+        return java.util.Collections.unmodifiableList(payload_);
       }
       /**
-       * <code>repeated string payload = 7;</code>
+       * <code>repeated bytes payload = 7;</code>
        */
       public int getPayloadCount() {
         return payload_.size();
       }
       /**
-       * <code>repeated string payload = 7;</code>
+       * <code>repeated bytes payload = 7;</code>
        */
-      public java.lang.String getPayload(int index) {
+      public com.google.protobuf.ByteString getPayload(int index) {
         return payload_.get(index);
       }
       /**
-       * <code>repeated string payload = 7;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPayloadBytes(int index) {
-        return payload_.getByteString(index);
-      }
-      /**
-       * <code>repeated string payload = 7;</code>
+       * <code>repeated bytes payload = 7;</code>
        */
       public Builder setPayload(
-          int index, java.lang.String value) {
+          int index, com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2518,10 +2498,9 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>repeated string payload = 7;</code>
+       * <code>repeated bytes payload = 7;</code>
        */
-      public Builder addPayload(
-          java.lang.String value) {
+      public Builder addPayload(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2531,10 +2510,10 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>repeated string payload = 7;</code>
+       * <code>repeated bytes payload = 7;</code>
        */
       public Builder addAllPayload(
-          java.lang.Iterable<java.lang.String> values) {
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
         ensurePayloadIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, payload_);
@@ -2542,25 +2521,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>repeated string payload = 7;</code>
+       * <code>repeated bytes payload = 7;</code>
        */
       public Builder clearPayload() {
-        payload_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        payload_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000040);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string payload = 7;</code>
-       */
-      public Builder addPayloadBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        ensurePayloadIsMutable();
-        payload_.add(value);
         onChanged();
         return this;
       }
@@ -2652,7 +2617,7 @@ public final class HarborOuterClass {
       "rborMessage\022\032\n\004type\030\001 \001(\0162\014.MessageType\022" +
       "\013\n\003sid\030\002 \001(\005\022\013\n\003rid\030\003 \001(\005\022\030\n\006source\030\004 \001(" +
       "\0132\010.Service\022\020\n\010instance\030\005 \001(\t\022\016\n\006method\030" +
-      "\006 \001(\t\022\017\n\007payload\030\007 \003(\t*A\n\013MessageType\022\r\n" +
+      "\006 \001(\t\022\017\n\007payload\030\007 \003(\014*A\n\013MessageType\022\r\n" +
       "\tHandshake\020\000\022\013\n\007Request\020\001\022\014\n\010Response\020\002\022" +
       "\010\n\004Post\020\00324\n\006Harbor\022*\n\004post\022\016.HarborMess" +
       "age\032\016.HarborMessage(\0010\001B\035\n\033com.gg.core.h",

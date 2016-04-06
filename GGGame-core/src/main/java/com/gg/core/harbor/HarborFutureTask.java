@@ -1,34 +1,31 @@
 package com.gg.core.harbor;
 
-import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.function.Consumer;
 
-import com.gg.common.JsonHelper;
+import com.gg.common.KryoHelper;
 
 /**
  * @author guofeng.qin
  */
 public class HarborFutureTask extends FutureTask<Object> {
-	private Class<?> clazz;
 	private HarborFutureCallable future;
 	private boolean async;
 	private Consumer<Object> callback;
 	private Object Lock = new Object();
 
-	private HarborFutureTask(Class<?> clazz, Callable<Object> callable, boolean async) {
+	private HarborFutureTask(Callable<Object> callable, boolean async) {
 		super(callable);
-		this.clazz = clazz;
 		this.future = (HarborFutureCallable) callable;
 		this.async = async;
 	}
 
-	public void remoteFinish(String value) {
-		Object obj = JsonHelper.fromJson(value, clazz);
+	public void remoteFinish(byte[] value) {
+		Object obj = KryoHelper.readClassAndObject(value);
 		doFinish(obj);
 	}
-	
+
 	private void doFinish(Object obj) {
 		// 同步调用, 直接finish
 		if (!async) {
@@ -47,7 +44,7 @@ public class HarborFutureTask extends FutureTask<Object> {
 			run();
 		}
 	}
-	
+
 	public void finish(Object obj) {
 		doFinish(obj);
 	}
@@ -66,17 +63,17 @@ public class HarborFutureTask extends FutureTask<Object> {
 			}
 		}
 	}
-	
+
 	public boolean isAsync() {
 		return async;
 	}
 
-	public static HarborFutureTask buildTask(Class<?> clazz, boolean async) {
-		return new HarborFutureTask(clazz, new HarborFutureCallable(), async);
+	public static HarborFutureTask buildTask(boolean async) {
+		return new HarborFutureTask(new HarborFutureCallable(), async);
 	}
-	
-	public static HarborFutureTask buildTask(Class<?> clazz) {
-		return new HarborFutureTask(clazz, new HarborFutureCallable(), true);
+
+	public static HarborFutureTask buildTask() {
+		return new HarborFutureTask(new HarborFutureCallable(), true);
 	}
 
 	static class HarborFutureCallable implements Callable<Object> {

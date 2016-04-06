@@ -14,6 +14,10 @@ public class User implements java.io.Serializable {
 	private int age;
 
 	private List<Task> taskList;
+	
+	public User() {
+		
+	}
 
 	public User(String id, String name, String icon, int age, List<Task> taskList) {
 		this.id = id;

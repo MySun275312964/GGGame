@@ -11,11 +11,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.util.ReflectionUtils;
 
-import com.gg.common.JsonHelper;
+import com.gg.common.KryoHelper;
 import com.gg.common.StringUtil;
 import com.gg.core.Async;
 import com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage;
 import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
+import com.google.protobuf.ByteString;
 
 /**
  * @author guofeng.qin
@@ -43,10 +44,10 @@ public class HarborDispatch {
 		if (future != null) {
 			if (future.isAsync()) { // 异步调用，需要把逻辑引导到exepool中执行
 				exepool.execute(() -> {
-					future.remoteFinish(msg.getPayload(0));
+					future.remoteFinish(msg.getPayload(0).toByteArray());
 				});
 			} else { // 同步调用，直接设置完成状态
-				future.remoteFinish(msg.getPayload(0));
+				future.remoteFinish(msg.getPayload(0).toByteArray());
 			}
 		} else {
 			// TODO ... 响应对应的请求找不到，如何处理
@@ -105,14 +106,12 @@ public class HarborDispatch {
 		if (methodEntry != null) {
 			Method method = methodEntry.method;
 			// 反序列化参数
-			List<String> payloads = msg.getPayloadList();
-			Class<?>[] ptypes = method.getParameterTypes();
+			List<ByteString> payloads = msg.getPayloadList();
 			List<Object> params = new ArrayList<Object>();
-			if (ptypes != null) {
-				for (int i = 0; i < ptypes.length; i++) {
-					Class<?> ptype = ptypes[i];
-					String json = payloads.get(i);
-					Object param = JsonHelper.fromJson(json, ptype);
+			if (payloads != null) {
+				for (ByteString payload : payloads) {
+					byte[] value = payload.toByteArray();
+					Object param = KryoHelper.readClassAndObject(value);
 					params.add(param);
 				}
 			}
@@ -121,8 +120,8 @@ public class HarborDispatch {
 					Object result = method.invoke(methodEntry.target, params.toArray(new Object[0]));
 					if (msg.getType() == MessageType.Request) { // need response
 						Async asyncs[] = method.getAnnotationsByType(Async.class);
-						if (asyncs != null && asyncs.length > 0) { // async
-																	// function
+						// async function
+						if (asyncs != null && asyncs.length > 0) {
 							HarborFutureTask future = (HarborFutureTask) result;
 							future.addCallback((obj) -> {
 								post(msg.getSource().getName(),

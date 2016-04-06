@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.gg.common.JsonHelper;
 import com.gg.core.harbor.HarborFutureTask;
 import com.gg.core.harbor.HarborRPC;
 import com.gg.example.common.ExampleConst;
@@ -14,7 +13,6 @@ import com.gg.example.protocol.task.ITaskService;
 import com.gg.example.protocol.task.Task;
 import com.gg.example.protocol.user.IUserService;
 import com.gg.example.protocol.user.User;
-import com.google.gson.reflect.TypeToken;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -27,7 +25,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public HarborFutureTask getUserByAge(int age) {
-		HarborFutureTask task = HarborFutureTask.buildTask(User.class);
+		HarborFutureTask task = HarborFutureTask.buildTask();
 		new Thread() {
 			@Override
 			public void run() {
@@ -39,7 +37,7 @@ public class UserServiceImpl implements IUserService {
 				ITaskService taskService = HarborRPC.getHarbor(ExampleConst.TaskService, ITaskService.class);
 				List<Task> tl = taskService.getTaskList();
 				User u = new User("testid", "testname", "testicon", age, tl);
-				tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
+//				tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
 				if (tl != null) {
 					for (Task t:tl) {
 						logger.info(t.toString());

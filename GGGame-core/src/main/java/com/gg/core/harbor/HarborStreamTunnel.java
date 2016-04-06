@@ -1,17 +1,13 @@
 package com.gg.core.harbor;
 
-import java.lang.reflect.Field;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ReflectionUtils;
-import org.springframework.util.StringUtils;
 
-import com.gg.common.JsonHelper;
-import com.gg.common.StringUtil;
+import com.gg.common.KryoHelper;
 import com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage;
 import com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage;
 import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
+import com.google.protobuf.ByteString;
 
 import io.grpc.stub.StreamObserver;
 
@@ -50,12 +46,22 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 		return handshake.getSource().getHost() + ":" + handshake.getSource().getPort();
 	}
 
+	private HandshakeMessage parseHandshakeMsg(ByteString payload) {
+		return KryoHelper.readClassAndObject(payload.toByteArray());
+	}
+
 	@Override
 	public void onNext(HarborMessage msg) {
 		if (msg.getType() == MessageType.Handshake) {
-			HandshakeMessage handshake = JsonHelper.fromJson(msg.getPayload(0), HandshakeMessage.class);
-			logger.info(
-					"receive handshake: " + handshake.getSource().getName() + ":" + handshake.getSource().getHost() + ":" + handshake.getSource().getPort());
+			HandshakeMessage handshake = parseHandshakeMsg(msg.getPayload(0));
+			if (handshake == null) {
+				logger.error("handshake message decode error.");
+				// TODO ... 握手错误处理
+//				destStream.onError(new RuntimeException("handshake message decode error."));
+				return;
+			}
+			logger.info("receive handshake: " + handshake.getSource().getName() + ":" + handshake.getSource().getHost()
+					+ ":" + handshake.getSource().getPort());
 			identity = getKey(handshake);
 			String sourceName = handshake.getSource().getName();
 			dispatch.remoteHarborHandshake(sourceName, identity, this);
