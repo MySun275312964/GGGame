@@ -6,6 +6,6 @@ import com.gg.core.harbor.HarborFutureTask;
 public interface IUserService {
 	User getUserById(String id);
 
-	@Async(clazz = User.class)
+	@Async
 	HarborFutureTask getUserByAge(int age);
 }

@@ -40,7 +40,7 @@ public class UserServiceImpl implements IUserService {
 //				tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
 				if (tl != null) {
 					for (Task t:tl) {
-						logger.info(t.toString());
+						logger.info(t.getName());
 					}
 				}
 				task.finish(u);
