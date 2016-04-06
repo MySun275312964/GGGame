@@ -3,5 +3,7 @@ repositories {
 }
 
 dependencies {
-	
+	compile (
+		'org.apache.zookeeper:zookeeper:3.4.6'
+	)
 }

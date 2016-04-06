@@ -19,7 +19,11 @@ public class Game {
 	public void usertest() {
 		IUserService us = HarborRPC.getHarbor(ExampleConst.UserService, IUserService.class);
 		User u = us.getUserById("gametestid");
-		logger.info(">>>>>>>>>>>>>>>>>>>: " + u.toString());
+		if (u != null) {
+			logger.info(">>>>>>>>>>>>>>>>>>>: " + u.toString());
+		} else {
+			logger.info(">>>>>>>>>>>>>>>>>>>: NULL");
+		}
 	}
 	
 	public void usertestasync() {

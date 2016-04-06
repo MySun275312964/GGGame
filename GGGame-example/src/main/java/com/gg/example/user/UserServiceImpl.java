@@ -20,7 +20,8 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public User getUserById(String id) {
-		return new User(id, "testname", "testicon", 20, null);
+//		return new User(id, "testname", "testicon", 20, null);
+		return null;
 	}
 
 	@Override
@@ -37,7 +38,6 @@ public class UserServiceImpl implements IUserService {
 				ITaskService taskService = HarborRPC.getHarbor(ExampleConst.TaskService, ITaskService.class);
 				List<Task> tl = taskService.getTaskList();
 				User u = new User("testid", "testname", "testicon", age, tl);
-//				tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
 				if (tl != null) {
 					for (Task t:tl) {
 						logger.info(t.getName());
