@@ -1,7 +1,5 @@
 package com.gg.gate;
 
-import com.gg.gate.codec.GateDecoder;
-import com.gg.gate.codec.GateEncoder;
 import com.gg.gate.common.GateConst;
 import com.gg.gate.metrics.BytesMetricsCollector;
 import com.gg.gate.metrics.BytesMetricsHandler;
@@ -18,13 +16,17 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
 /**
  * @author guofeng.qin
  */
 public class GateServer {
-	public ChannelFuture start(String host, int port, ChannelHandler handler) {
+	public static ChannelFuture start(String host, int port, ChannelHandler handler) {
 		GateTimeoutHandler timeoutHandler = new GateTimeoutHandler();
 		BytesMetricsCollector bytesMetricsCollector = new BytesMetricsCollector();
 		MessageMetricsCollector msgMetricsCollector = new MessageMetricsCollector();
@@ -39,11 +41,13 @@ public class GateServer {
 				protected void initChannel(SocketChannel ch) throws Exception {
 					ChannelPipeline pipeline = ch.pipeline();
 					pipeline.addFirst("idleEventHandler", new IdleStateHandler(0, 0, GateConst.DefaultConnectTimeout));
-					pipeline.addAfter("idleStateHandler", "idleEventHandler", timeoutHandler); // 超时处理不经过编解码模块，如果需要经过的话需要移到编解码模块后面
+					pipeline.addAfter("idleEventHandler", "idleStateHandler", timeoutHandler); // 超时处理不经过编解码模块，如果需要经过的话需要移到编解码模块后面
 					pipeline.addFirst("byteMetrics", new BytesMetricsHandler(bytesMetricsCollector));
 
-					pipeline.addLast("decoder", new GateDecoder());
-					pipeline.addLast("encoder", new GateEncoder());
+					pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, GateConst.DefaultHeadLength, 0, GateConst.DefaultHeadLength));
+					pipeline.addLast("decoder", new StringDecoder());
+					pipeline.addLast(new LengthFieldPrepender(GateConst.DefaultHeadLength));
+					pipeline.addLast("encoder", new StringEncoder());
 					pipeline.addLast("messageMetrics", new MessageMetricsHandler(msgMetricsCollector));
 					pipeline.addLast("handler", handler);
 				}

@@ -16,6 +16,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import com.gg.common.Constants;
 import com.gg.core.harbor.GGHarbor;
+import com.gg.gate.common.GateConst;
 
 import io.grpc.internal.ServerImpl;
 
@@ -28,6 +29,8 @@ public class GGGateApp implements CommandLineRunner {
 
 	public static void init(ApplicationContext ctx) throws BeansException, IOException {
 		ServerImpl server = GGHarbor.start(ctx, Constants.Gate, Constants.Localhost, Constants.GatePort, Executors.newSingleThreadExecutor());
+		
+		GateServer.start(GateConst.Host, GateConst.GatePort, new GateHandler());
 
 		while (!server.isShutdown()) {
 			try {
