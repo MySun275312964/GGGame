@@ -1349,10 +1349,10 @@ public final class MasterOuterClass {
       "\n\014Master.proto\"D\n\025MasterRegisterMessage\022" +
       "\017\n\007service\030\001 \001(\t\022\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003" +
       " \001(\005\"@\n\024MasterRegisterResult\022(\n\010previous" +
-      "\030\001 \003(\0132\026.MasterRegisterMessage2C\n\006Master" +
-      "\0229\n\010register\022\026.MasterRegisterMessage\032\025.M" +
-      "asterRegisterResultB\035\n\033com.gg.core.maste" +
-      "r.protocolb\006proto3"
+      "\030\001 \003(\0132\026.MasterRegisterMessage2G\n\006Master" +
+      "\022=\n\010register\022\026.MasterRegisterMessage\032\025.M" +
+      "asterRegisterResult(\0010\001B\035\n\033com.gg.core.m" +
+      "aster.protocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

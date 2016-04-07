@@ -7,6 +7,7 @@ import com.gg.common.KryoHelper;
 import com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage;
 import com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage;
 import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
+import com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage;
 import com.google.protobuf.ByteString;
 
 import io.grpc.stub.StreamObserver;
@@ -20,25 +21,42 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 	private StreamObserver<HarborMessage> destStream;
 	private HarborDispatch dispatch;
 	private String identity;
+	private volatile boolean usable = true;
 
 	public HarborStreamTunnel(HarborDispatch dispatch, StreamObserver<HarborMessage> dest) {
 		this.dispatch = dispatch;
 		this.destStream = dest;
 	}
 
+	public void setRemoteStream(String service, MasterRegisterMessage msg, HandshakeMessage handshake,
+			StreamObserver<HarborMessage> destStream) {
+		String key = msg.getHost() + ":" + msg.getPort();
+		identity = key;
+		setRemoteStream(service, key, handshake, destStream);
+	}
+
 	public void setRemoteStream(String service, HandshakeMessage handshake, StreamObserver<HarborMessage> destStream) {
-		this.destStream = destStream;
-		sendToRemote(HarborHelper.buildHarborMessage(MessageType.Handshake, handshake));
-		dispatch.remoteHarborHandshake(service, getKey(handshake), this);
+		setRemoteStream(service, getKey(handshake), handshake, destStream);
+	}
+
+	private void setRemoteStream(String service, String key, HandshakeMessage handshake,
+			StreamObserver<HarborMessage> destStream) {
+		if (usable) {
+			this.destStream = destStream;
+			sendToRemote(HarborHelper.buildHarborMessage(MessageType.Handshake, handshake));
+			dispatch.remoteHarborHandshake(service, key, this);
+		}
 	}
 
 	@Override
 	public void onCompleted() {
+		usable = false;
 		dispatch.onCompleted(identity);
 	}
 
 	@Override
 	public void onError(Throwable error) {
+		usable = false;
 		dispatch.onError(identity, error);
 	}
 
@@ -57,7 +75,8 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 			if (handshake == null) {
 				logger.error("handshake message decode error.");
 				// TODO ... 握手错误处理
-//				destStream.onError(new RuntimeException("handshake message decode error."));
+				// destStream.onError(new RuntimeException("handshake message
+				// decode error."));
 				return;
 			}
 			logger.info("receive handshake: " + handshake.getSource().getName() + ":" + handshake.getSource().getHost()
@@ -71,10 +90,11 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 	}
 
 	public boolean sendToRemote(HarborMessage msg) {
-		if (destStream != null) {
+		if (usable && destStream != null) {
 			destStream.onNext(msg);
 			return true;
 		}
+		dispatch.removeRemote(identity);
 		return false;
 	}
 }

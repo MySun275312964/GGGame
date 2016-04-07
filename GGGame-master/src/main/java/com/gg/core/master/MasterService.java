@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gg.core.master.protocol.MasterGrpc;
+import com.gg.core.master.protocol.MasterOuterClass;
 import com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage;
 import com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult;
 import com.google.common.base.Predicate;
@@ -27,13 +28,32 @@ public class MasterService implements MasterGrpc.Master {
 	private List<MasterRegisterMessage> registerList = new ArrayList<MasterRegisterMessage>();
 
 	@Override
-	public void register(MasterRegisterMessage request, StreamObserver<MasterRegisterResult> responseObserver) {
-		List<MasterRegisterMessage> previous = doregist(request);
-		if (previous != null) {
-			MasterRegisterResult result = MasterRegisterResult.newBuilder().addAllPrevious(previous).build();
-			responseObserver.onNext(result);
-		}
-		responseObserver.onCompleted();
+	public StreamObserver<MasterRegisterMessage> register(StreamObserver<MasterRegisterResult> responseObserver) {
+		return new StreamObserver<MasterOuterClass.MasterRegisterMessage>() {
+			private MasterRegisterMessage msg;
+
+			@Override
+			public void onCompleted() {
+
+			}
+
+			@Override
+			public void onError(Throwable arg0) {
+				if (msg != null) {
+					unregist(msg);
+				}
+			}
+
+			@Override
+			public void onNext(MasterRegisterMessage request) {
+				this.msg = request;
+				List<MasterRegisterMessage> previous = doregist(request);
+				if (previous != null) {
+					MasterRegisterResult result = MasterRegisterResult.newBuilder().addAllPrevious(previous).build();
+					responseObserver.onNext(result);
+				}
+			}
+		};
 	}
 
 	private void removeIfExist(MasterRegisterMessage msg) {
@@ -58,5 +78,11 @@ public class MasterService implements MasterGrpc.Master {
 			logger.info(msg.getService() + ":" + msg.getHost() + ":" + msg.getPort() + " registed...");
 		}
 		return previous;
+	}
+
+	private void unregist(MasterRegisterMessage msg) {
+		synchronized (Lock) {
+			removeIfExist(msg);
+		}
 	}
 }

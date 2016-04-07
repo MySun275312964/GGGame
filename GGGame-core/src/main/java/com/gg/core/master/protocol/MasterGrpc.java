@@ -25,7 +25,7 @@ public class MasterGrpc {
   public static final io.grpc.MethodDescriptor<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage,
       com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult> METHOD_REGISTER =
       io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
+          io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING,
           generateFullMethodName(
               "Master", "register"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage.getDefaultInstance()),
@@ -47,19 +47,14 @@ public class MasterGrpc {
 
   public static interface Master {
 
-    public void register(com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage request,
+    public io.grpc.stub.StreamObserver<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage> register(
         io.grpc.stub.StreamObserver<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult> responseObserver);
   }
 
   public static interface MasterBlockingClient {
-
-    public com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult register(com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage request);
   }
 
   public static interface MasterFutureClient {
-
-    public com.google.common.util.concurrent.ListenableFuture<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult> register(
-        com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage request);
   }
 
   public static class MasterStub extends io.grpc.stub.AbstractStub<MasterStub>
@@ -80,10 +75,10 @@ public class MasterGrpc {
     }
 
     @java.lang.Override
-    public void register(com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage request,
+    public io.grpc.stub.StreamObserver<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage> register(
         io.grpc.stub.StreamObserver<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_REGISTER, getCallOptions()), request, responseObserver);
+      return asyncBidiStreamingCall(
+          getChannel().newCall(METHOD_REGISTER, getCallOptions()), responseObserver);
     }
   }
 
@@ -103,12 +98,6 @@ public class MasterGrpc {
         io.grpc.CallOptions callOptions) {
       return new MasterBlockingStub(channel, callOptions);
     }
-
-    @java.lang.Override
-    public com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult register(com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_REGISTER, getCallOptions(), request);
-    }
   }
 
   public static class MasterFutureStub extends io.grpc.stub.AbstractStub<MasterFutureStub>
@@ -126,13 +115,6 @@ public class MasterGrpc {
     protected MasterFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new MasterFutureStub(channel, callOptions);
-    }
-
-    @java.lang.Override
-    public com.google.common.util.concurrent.ListenableFuture<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult> register(
-        com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_REGISTER, getCallOptions()), request);
     }
   }
 
@@ -154,10 +136,6 @@ public class MasterGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_REGISTER:
-          serviceImpl.register((com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage) request,
-              (io.grpc.stub.StreamObserver<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult>) responseObserver);
-          break;
         default:
           throw new AssertionError();
       }
@@ -167,6 +145,9 @@ public class MasterGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_REGISTER:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.register(
+              (io.grpc.stub.StreamObserver<com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -178,7 +159,7 @@ public class MasterGrpc {
     return io.grpc.ServerServiceDefinition.builder(SERVICE_NAME)
         .addMethod(
           METHOD_REGISTER,
-          asyncUnaryCall(
+          asyncBidiStreamingCall(
             new MethodHandlers<
               com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage,
               com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult>(

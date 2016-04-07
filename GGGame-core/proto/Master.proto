@@ -13,5 +13,5 @@ message MasterRegisterResult {
 }
 
 service Master {
-	rpc register(MasterRegisterMessage) returns (MasterRegisterResult);
+	rpc register(stream MasterRegisterMessage) returns (stream MasterRegisterResult);
 }

@@ -35,7 +35,6 @@ public class HarborDispatch {
 	}
 
 	public void onCompleted(String identity) {
-		// TODO ...
 	}
 
 	private void handleResponse(HarborMessage msg) {
@@ -148,7 +147,25 @@ public class HarborDispatch {
 	}
 
 	public void onError(String identity, Throwable error) {
-		// TODO ...
+		removeRemote(identity);
+	}
+
+	public void removeRemote(String identity) {
+		if (harborMap.containsKey(identity)) {
+			harborMap.remove(identity);
+		}
+		if (nameKeyMap.containsValue(identity)) {
+			String key = null;
+			for (Map.Entry<String, String> entry : nameKeyMap.entrySet()) {
+				if (entry.getValue().equals(identity)) {
+					key = entry.getKey();
+					break;
+				}
+			}
+			if (key != null) {
+				nameKeyMap.remove(key);
+			}
+		}
 	}
 
 	public void remoteHarborHandshake(String service, String key, HarborStreamTunnel tunnel) {
@@ -160,10 +177,16 @@ public class HarborDispatch {
 	}
 
 	public void post(String service, HarborMessage msg) {
+		if (!nameKeyMap.containsKey(service)) {
+			throw new RuntimeException("remote service not found");
+		}
 		harborMap.get(nameKeyMap.get(service)).sendToRemote(msg);
 	}
 
 	public void call(String service, HarborMessage msg, HarborFutureTask future) {
+		if (!nameKeyMap.containsKey(service)) {
+			throw new RuntimeException("remote service not found");
+		}
 		int reqid = requestId.incrementAndGet();
 		msg = msg.toBuilder().setRid(reqid).build();
 		rmap.put(reqid, future);
