@@ -1,5 +1,7 @@
 package com.gg.core.harbor;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +24,7 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 	private HarborDispatch dispatch;
 	private String identity;
 	private volatile boolean usable = true;
+	private AtomicReference<Thread> Lock = new AtomicReference<>();
 
 	public HarborStreamTunnel(HarborDispatch dispatch, StreamObserver<HarborMessage> dest) {
 		this.dispatch = dispatch;
@@ -91,7 +94,13 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 
 	public boolean sendToRemote(HarborMessage msg) {
 		if (usable && destStream != null) {
-			destStream.onNext(msg);
+			Thread currentThread = Thread.currentThread();
+			while(!Lock.compareAndSet(null, currentThread)) { } // spinlock
+			try {
+				destStream.onNext(msg);
+			} finally {
+				Lock.compareAndSet(currentThread, null); // unlock
+			}
 			return true;
 		}
 		dispatch.removeRemote(identity);

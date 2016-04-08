@@ -24,11 +24,18 @@ public class GameServiceApp {
 	private static final Logger logger = LoggerFactory.getLogger(GameServiceApp.class);
 
 	public static void init(ApplicationContext ctx) throws BeansException, IOException {
-		ServerImpl server = GGHarbor.start(ctx, ExampleConst.GameService, Constants.Localhost, ExampleConst.GameSerivcePort, Executors.newSingleThreadExecutor());
+		ServerImpl server = GGHarbor.start(ctx, ExampleConst.GameService, Constants.Localhost, ExampleConst.GameSerivcePort, Executors.newFixedThreadPool(10));
 		
 		Game g = ctx.getBean(Game.class);
-		g.usertest();
-		g.usertestasync();
+		for(int i = 0; i < Integer.MAX_VALUE; i++) {
+			g.usertest();
+			g.usertestasync();
+			try {
+				Thread.sleep(1L);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		logger.info(" =========== function call end ==============");
 
 		while (!server.isShutdown()) {

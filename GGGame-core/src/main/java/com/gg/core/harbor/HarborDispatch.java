@@ -9,6 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ReflectionUtils;
 
 import com.gg.common.KryoHelper;
@@ -22,6 +24,8 @@ import com.google.protobuf.ByteString;
  * @author guofeng.qin
  */
 public class HarborDispatch {
+	private static final Logger logger = LoggerFactory.getLogger(HarborDispatch.class);
+	
 	private AtomicInteger requestId = new AtomicInteger(0); // request id index
 	private Map<Integer, HarborFutureTask> rmap = new ConcurrentHashMap<>();
 	private Map<String, Class<?>> instanceCacheMap = new ConcurrentHashMap<>();
@@ -147,6 +151,7 @@ public class HarborDispatch {
 	}
 
 	public void onError(String identity, Throwable error) {
+		logger.error(identity + " error...", error);
 		removeRemote(identity);
 	}
 
@@ -178,7 +183,8 @@ public class HarborDispatch {
 
 	public void post(String service, HarborMessage msg) {
 		if (!nameKeyMap.containsKey(service)) {
-			throw new RuntimeException("remote service not found");
+//			throw new RuntimeException("remote service not found");
+			System.exit(0);
 		}
 		harborMap.get(nameKeyMap.get(service)).sendToRemote(msg);
 	}

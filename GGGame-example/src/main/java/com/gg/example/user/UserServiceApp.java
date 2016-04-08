@@ -24,7 +24,7 @@ public class UserServiceApp {
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceApp.class);
 
 	public static void init(ApplicationContext ctx) throws BeansException, IOException {
-		ServerImpl server = GGHarbor.start(ctx, ExampleConst.UserService, Constants.Localhost, ExampleConst.UserServicePort, Executors.newSingleThreadExecutor());
+		ServerImpl server = GGHarbor.start(ctx, ExampleConst.UserService, Constants.Localhost, ExampleConst.UserServicePort, Executors.newFixedThreadPool(10));
 
 		while (!server.isShutdown()) {
 			try {

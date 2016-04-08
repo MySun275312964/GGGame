@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gg.common.JsonHelper;
 import com.gg.core.master.protocol.MasterGrpc;
 import com.gg.core.master.protocol.MasterOuterClass;
 import com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage;
@@ -64,7 +65,8 @@ public class MasterService implements MasterGrpc.Master {
 						return msg.getHost().equals(input.getHost()) && (msg.getPort() == input.getPort());
 					}
 				});
-		if (old != null) {
+		if (old != null && old.size() > 0) {
+			logger.warn(JsonHelper.toJson(old) + " Removed...");
 			registerList.removeAll(old);
 		}
 	}

@@ -38,11 +38,13 @@ public class UserServiceImpl implements IUserService {
 				List<Task> tl = taskService.getTaskList();
 				User u = new User("testid", "testname", "testicon", age, tl);
 //				tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
-				if (tl != null) {
-					for (Task t:tl) {
-						logger.info(t.getName());
-					}
-				}
+//				if (tl != null) {
+//					for (Task t:tl) {
+//						logger.info(t.getName());
+//					}
+//				}
+				
+//				User u = new User("testid", "testname", "testicon", age, null);
 				task.finish(u);
 			}
 		}.start();

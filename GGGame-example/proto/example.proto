@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "com.gg.example.test.protocol";
+
+message TestRequest {
+	string id = 1;
+}
+
+message TestEntry {
+	string name = 1;
+	int32 id = 2;
+}
+
+message TestResponse {
+	repeated TestEntry names = 1;
+}
+
+service Test {
+	rpc post(stream TestRequest) returns (stream TestResponse);
+}
