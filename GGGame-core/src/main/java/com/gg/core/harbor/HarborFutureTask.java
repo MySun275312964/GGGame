@@ -40,6 +40,10 @@ public class HarborFutureTask extends FutureTask<Object> {
 		}
 		// 异步调用，没有设置callback，可能会有资源竞争，加锁
 		synchronized (Lock) {
+			if (callback != null) { // double check
+				callback.accept(obj);
+				return;
+			}
 			future.finish(obj);
 			run();
 		}

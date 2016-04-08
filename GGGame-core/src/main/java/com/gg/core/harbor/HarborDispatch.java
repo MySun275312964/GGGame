@@ -43,7 +43,7 @@ public class HarborDispatch {
 
 	private void handleResponse(HarborMessage msg) {
 		int rid = msg.getRid();
-		HarborFutureTask future = rmap.get(rid);
+		HarborFutureTask future = rmap.remove(rid);
 		if (future != null) {
 			if (future.isAsync()) { // 异步调用，需要把逻辑引导到exepool中执行
 				exepool.execute(() -> {
@@ -57,6 +57,7 @@ public class HarborDispatch {
 		}
 	}
 
+	// TODO ... 这个方法多线程触发的一瞬间会有线程问题，待解决
 	private MethodEntry getMethodWith(String instanceName, String methodName) {
 		String tag = StringUtil.join(":", instanceName, methodName);
 		MethodEntry methodEntry = methodCacheMap.get(tag);

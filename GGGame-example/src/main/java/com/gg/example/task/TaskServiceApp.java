@@ -28,7 +28,7 @@ public class TaskServiceApp {
 
 	public static void init(ApplicationContext ctx) throws BeansException, IOException {
 		ServerImpl server = GGHarbor.start(ctx, ExampleConst.TaskService, Constants.Localhost,
-				ExampleConst.TaskServicePort, Executors.newFixedThreadPool(10));
+				ExampleConst.TaskServicePort, Executors.newFixedThreadPool(1));
 
 		while (!server.isShutdown()) {
 			try {

@@ -99,7 +99,7 @@ public class HarborStreamTunnel implements StreamObserver<HarborMessage> {
 			try {
 				destStream.onNext(msg);
 			} finally {
-				Lock.compareAndSet(currentThread, null); // unlock
+				Lock.set(null); // unlock
 			}
 			return true;
 		}

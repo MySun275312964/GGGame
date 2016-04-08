@@ -1,6 +1,9 @@
 package com.gg.example.user;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +20,8 @@ import com.gg.example.protocol.user.User;
 @Service
 public class UserServiceImpl implements IUserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static Executor pool = Executors.newFixedThreadPool(3);
+	private static AtomicLong COUNT = new AtomicLong(0L);
 	
 	@Override
 	public User getUserById(String id) {
@@ -26,7 +31,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public HarborFutureTask getUserByAge(int age) {
 		HarborFutureTask task = HarborFutureTask.buildTask();
-		new Thread() {
+		/*new Thread() {
 			@Override
 			public void run() {
 //				try {
@@ -34,9 +39,10 @@ public class UserServiceImpl implements IUserService {
 //				} catch (InterruptedException e) {
 //					e.printStackTrace();
 //				}
-				ITaskService taskService = HarborRPC.getHarbor(ExampleConst.TaskService, ITaskService.class);
-				List<Task> tl = taskService.getTaskList();
-				User u = new User("testid", "testname", "testicon", age, tl);
+//				ITaskService taskService = HarborRPC.getHarbor(ExampleConst.TaskService, ITaskService.class);
+//				List<Task> tl = taskService.getTaskList();
+//				User u = new User("testid", "testname", "testicon", age, tl);
+				
 //				tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
 //				if (tl != null) {
 //					for (Task t:tl) {
@@ -44,10 +50,28 @@ public class UserServiceImpl implements IUserService {
 //					}
 //				}
 				
-//				User u = new User("testid", "testname", "testicon", age, null);
+				User u = new User("testid", "testname", "testicon", age, null);
 				task.finish(u);
 			}
-		}.start();
+		}.start();*/
+		pool.execute(()->{
+			ITaskService taskService = HarborRPC.getHarbor(ExampleConst.TaskService, ITaskService.class);
+			List<Task> tl = taskService.getTaskList();
+			User u = new User("testid", "testname", "testicon", age, tl);
+			
+//			tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
+//			if (tl != null) {
+//				for (Task t:tl) {
+//					logger.info(t.getName());
+//				}
+//			}
+			
+			Thread.currentThread().setName("LogicPool");
+//			User u = new User("testid", "testname", "testicon", age, null);
+			task.finish(u);
+		});
+//		long l = COUNT.incrementAndGet();
+//		logger.info("Count: " + l);
 		return task;
 	}
 }

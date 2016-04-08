@@ -1,5 +1,7 @@
 package com.gg.example.game;
 
+import java.util.function.Consumer;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,10 +20,11 @@ public class Game {
 	public void usertest() {
 		IUserService us = HarborRPC.getHarbor(ExampleConst.UserService, IUserService.class);
 		User u = us.getUserById("gametestid");
-		logger.info(">>>>>>>>>>>>>>>>>>>: " + u.toString());
+//		u.toString();
+//		logger.info(">>>>>>>>>>>>>>>>>>>: " + u.toString());
 	}
 	
-	public void usertestasync() {
+	public <T>  void usertestasync() {
 		IUserService us = HarborRPC.getHarbor(ExampleConst.UserService, IUserService.class);
 		HarborFutureTask future = us.getUserByAge(30);
 		future.addCallback((u) -> {
@@ -32,5 +35,11 @@ public class Game {
 //				logger.info(t.getName());
 //			}
 		});
+	}
+	
+	public void usertestasync(Consumer<Object> consumer) {
+		IUserService us = HarborRPC.getHarbor(ExampleConst.UserService, IUserService.class);
+		HarborFutureTask future = us.getUserByAge(30);
+		future.addCallback(consumer);
 	}
 }
