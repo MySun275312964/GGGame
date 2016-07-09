@@ -65,12 +65,13 @@ public class HarborDispatch {
                 try {
                     instance = Class.forName(instanceName);
                     if (instance != null) {
-                        instanceCacheMap.put(instanceName, instance);
+                        instanceCacheMap.putIfAbsent(instanceName, instance);
                     }
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
+            instance = instanceCacheMap.get(instanceName);
             if (instance != null) {
                 Method ms[] = ReflectionUtils.getAllDeclaredMethods(instance);
                 Method method = null;

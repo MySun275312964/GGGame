@@ -2639,7 +2639,7 @@ public final class HarborOuterClass {
     static {
         java.lang.String[] descriptorData = {"\n\014Harbor.proto\"3\n\007Service\022\014\n\004name\030\001 \001(\t\022"
                 + "\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\",\n\020Handshake"
-                + "Message\022\030\n\006source\030\001 \001(\0132\010.Service\"\222\001\n\rHa"
+                + "RequestMessage\022\030\n\006source\030\001 \001(\0132\010.Service\"\222\001\n\rHa"
                 + "rborMessage\022\032\n\004type\030\001 \001(\0162\014.MessageType\022"
                 + "\013\n\003sid\030\002 \001(\005\022\013\n\003rid\030\003 \001(\005\022\030\n\006source\030\004 \001("
                 + "\0132\010.Service\022\020\n\010instance\030\005 \001(\t\022\016\n\006method\030"

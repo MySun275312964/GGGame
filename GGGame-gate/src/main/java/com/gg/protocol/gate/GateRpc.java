@@ -9,7 +9,7 @@ public final class GateRpc {
     public static void registerAllExtensions(com.google.protobuf.ExtensionRegistry registry) {}
 
     public interface MessageOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:Message)
+            // @@protoc_insertion_point(interface_extends:RequestMessage)
             com.google.protobuf.MessageOrBuilder {
 
         /**
@@ -65,12 +65,12 @@ public final class GateRpc {
         com.google.protobuf.ByteString getPayload();
     }
     /**
-     * Protobuf type {@code Message}
+     * Protobuf type {@code RequestMessage}
      */
     public static final class Message extends com.google.protobuf.GeneratedMessage implements
-            // @@protoc_insertion_point(message_implements:Message)
+            // @@protoc_insertion_point(message_implements:RequestMessage)
             MessageOrBuilder {
-        // Use Message.newBuilder() to construct.
+        // Use RequestMessage.newBuilder() to construct.
         private Message(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
             super(builder);
         }
@@ -416,10 +416,10 @@ public final class GateRpc {
         }
 
         /**
-         * Protobuf type {@code Message}
+         * Protobuf type {@code RequestMessage}
          */
         public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-                // @@protoc_insertion_point(builder_implements:Message)
+                // @@protoc_insertion_point(builder_implements:RequestMessage)
                 com.gg.protocol.gate.GateRpc.MessageOrBuilder {
             public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
                 return com.gg.protocol.gate.GateRpc.internal_static_Message_descriptor;
@@ -431,7 +431,7 @@ public final class GateRpc {
                                 com.gg.protocol.gate.GateRpc.Message.Builder.class);
             }
 
-            // Construct using com.gg.protocol.gate.GateRpc.Message.newBuilder()
+            // Construct using com.gg.protocol.gate.GateRpc.RequestMessage.newBuilder()
             private Builder() {
                 maybeForceBuilderInitialization();
             }
@@ -849,10 +849,10 @@ public final class GateRpc {
             }
 
 
-            // @@protoc_insertion_point(builder_scope:Message)
+            // @@protoc_insertion_point(builder_scope:RequestMessage)
         }
 
-        // @@protoc_insertion_point(class_scope:Message)
+        // @@protoc_insertion_point(class_scope:RequestMessage)
         private static final com.gg.protocol.gate.GateRpc.Message DEFAULT_INSTANCE;
         static {
             DEFAULT_INSTANCE = new com.gg.protocol.gate.GateRpc.Message();
@@ -905,7 +905,7 @@ public final class GateRpc {
         java.lang.String[] descriptorData = {"\n\rGateRpc.proto\"d\n\007Message\022\014\n\004type\030\001 \001(\005"
                 + "\022\013\n\003sid\030\002 \001(\005\022\013\n\003rid\030\003 \001(\005\022\020\n\010instance\030\004"
                 + " \001(\t\022\016\n\006method\030\005 \001(\t\022\017\n\007payload\030\006 \001(\0142.\n"
-                + "\nGateTunnel\022 \n\006tunnel\022\010.Message\032\010.Messag"
+                + "\nGateTunnel\022 \n\006tunnel\022\010.RequestMessage\032\010.Messag"
                 + "e(\0010\001B\026\n\024com.gg.protocol.gateb\006proto3"};
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

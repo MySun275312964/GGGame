@@ -13,7 +13,7 @@ public class StringUtils {
         return sb.toString();
     }
 
-    public static String join(String split, Object... objs) {
+    public static String join(String split, String... objs) {
         StringBuilder sb = threadLocalStringBuilderHolder.get().resetAndGetStringBuilder();
         int len = objs.length;
         for (int index = 0; index < len; index++) {
