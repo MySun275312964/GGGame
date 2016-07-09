@@ -3,15 +3,15 @@ syntax = "proto3";
 option java_package = "com.gg.core.master.protocol";
 
 message MasterRegisterMessage {
-	string service = 1;
-	string host = 2;
-	int32 port = 3;
+    string service = 1;
+    string host = 2;
+    int32 port = 3;
 }
 
 message MasterRegisterResult {
-	repeated MasterRegisterMessage previous = 1;
+    repeated MasterRegisterMessage previous = 1;
 }
 
 service Master {
-	rpc register(stream MasterRegisterMessage) returns (stream MasterRegisterResult);
+    rpc register (stream MasterRegisterMessage) returns (stream MasterRegisterResult);
 }

@@ -1,5 +1,15 @@
 package com.gg.core.harbor;
 
+import com.gg.common.KryoHelper;
+import com.gg.common.StringUtils;
+import com.gg.core.Async;
+import com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage;
+import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
+import com.google.protobuf.ByteString;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ReflectionUtils;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,17 +18,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.ReflectionUtils;
-
-import com.gg.common.KryoHelper;
-import com.gg.common.StringUtil;
-import com.gg.core.Async;
-import com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage;
-import com.gg.core.harbor.protocol.HarborOuterClass.MessageType;
-import com.google.protobuf.ByteString;
 
 /**
  * @author guofeng.qin
@@ -58,7 +57,7 @@ public class HarborDispatch {
 
     // TODO ... 这个方法多线程触发的一瞬间会有线程问题，待解决
     private MethodEntry getMethodWith(String instanceName, String methodName) {
-        String tag = StringUtil.join(":", instanceName, methodName);
+        String tag = StringUtils.join(":", instanceName, methodName);
         MethodEntry methodEntry = methodCacheMap.get(tag);
         if (methodEntry == null) { // cache miss
             Class<?> instance = instanceCacheMap.get(instanceName);
