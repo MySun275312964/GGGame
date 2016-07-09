@@ -23,26 +23,14 @@ import io.grpc.internal.ServerImpl;
 @SpringBootApplication
 public class GameServiceApp {
 	private static final Logger logger = LoggerFactory.getLogger(GameServiceApp.class);
-	final static long COUNT = 500000L;
+	final static long COUNT = 50000L;
 	static AtomicLong AC = new AtomicLong(COUNT);
 
 	public static void init(ApplicationContext ctx) throws BeansException, IOException {
 		ServerImpl server = GGHarbor.start(ctx, ExampleConst.GameService, Constants.Localhost, ExampleConst.GameSerivcePort, Executors.newFixedThreadPool(1));
 		
 		Game g = ctx.getBean(Game.class);
-//		for(int i = 0; i < Integer.MAX_VALUE; i++) {
-//			for (int j = 0; j < 1000; j++) {
-//				g.usertest();
-//				g.usertestasync();
-//			}
-//			try {
-//				Thread.sleep(1L);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		logger.info(" =========== function call end ==============");
-		g.usertestasync((s)->{});
+/*		g.usertestasync((s)->{});
 		try {
 			Thread.sleep(10L);
 		} catch (InterruptedException e1) {
@@ -61,6 +49,9 @@ public class GameServiceApp {
 		}
 		long end = System.currentTimeMillis();
 		logger.info("TotalTime1:" + (end-start));
+*/		
+		g.utest1();
+		g.utest2();
 
 		while (!server.isShutdown()) {
 			try {

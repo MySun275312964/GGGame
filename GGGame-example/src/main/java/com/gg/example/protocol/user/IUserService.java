@@ -8,4 +8,9 @@ public interface IUserService {
 
 	@Async
 	HarborFutureTask getUserByAge(int age);
+	
+	String test();
+	
+	@Async
+	HarborFutureTask test2();
 }

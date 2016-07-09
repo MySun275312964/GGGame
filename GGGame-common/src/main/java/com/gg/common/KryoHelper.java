@@ -4,6 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.io.Input;
@@ -13,6 +16,8 @@ import com.esotericsoftware.kryo.io.Output;
  * @author guofeng.qin
  */
 public class KryoHelper {
+	private static final Logger logger = LoggerFactory.getLogger(KryoHelper.class);
+
 	private static ThreadLocal<KryoEntry> localKryo = new ThreadLocal<>();
 	private static final int DefaultBufferSize = 256;
 
@@ -31,7 +36,7 @@ public class KryoHelper {
 			retryCount++;
 			try {
 				kryo.writeClassAndObject(out, obj);
-				return out.getBuffer();
+				return out.toBytes();
 			} catch (KryoException e) {
 				try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
 						ObjectOutputStream bos = new ObjectOutputStream(baos)) {

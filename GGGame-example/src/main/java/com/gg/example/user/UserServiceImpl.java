@@ -1,6 +1,5 @@
 package com.gg.example.user;
 
-import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
@@ -10,17 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.gg.core.harbor.HarborFutureTask;
-import com.gg.core.harbor.HarborRPC;
-import com.gg.example.common.ExampleConst;
-import com.gg.example.protocol.task.ITaskService;
-import com.gg.example.protocol.task.Task;
 import com.gg.example.protocol.user.IUserService;
 import com.gg.example.protocol.user.User;
 
 @Service
 public class UserServiceImpl implements IUserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-	private static Executor pool = Executors.newFixedThreadPool(3);
+	private static Executor pool = Executors.newFixedThreadPool(2);
 	private static AtomicLong COUNT = new AtomicLong(0L);
 	
 	@Override
@@ -55,9 +50,9 @@ public class UserServiceImpl implements IUserService {
 			}
 		}.start();*/
 		pool.execute(()->{
-			ITaskService taskService = HarborRPC.getHarbor(ExampleConst.TaskService, ITaskService.class);
-			List<Task> tl = taskService.getTaskList();
-			User u = new User("testid", "testname", "testicon", age, tl);
+//			ITaskService taskService = HarborRPC.getHarbor(ExampleConst.TaskService, ITaskService.class);
+//			List<Task> tl = taskService.getTaskList();
+//			User u = new User("testid", "testname", "testicon", age, tl);
 			
 //			tl = JsonHelper.reparse(tl, new TypeToken<List<Task>>() {}.getType());
 //			if (tl != null) {
@@ -66,12 +61,24 @@ public class UserServiceImpl implements IUserService {
 //				}
 //			}
 			
-			Thread.currentThread().setName("LogicPool");
-//			User u = new User("testid", "testname", "testicon", age, null);
+//			Thread.currentThread().setName("LogicPool");
+			User u = new User("testid", "testname", "testicon", age, null);
 			task.finish(u);
 		});
 //		long l = COUNT.incrementAndGet();
 //		logger.info("Count: " + l);
 		return task;
+	}
+
+	@Override
+	public String test() {
+		return "abcdefg";
+	}
+
+	@Override
+	public HarborFutureTask test2() {
+		HarborFutureTask future = HarborFutureTask.buildTask();
+		future.finish("123456");
+		return future;
 	}
 }
