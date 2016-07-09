@@ -25,37 +25,38 @@ import io.grpc.internal.ServerImpl;
  */
 @SpringBootApplication
 public class GGGateApp implements CommandLineRunner {
-	private static final Logger logger = LoggerFactory.getLogger(GGGateApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(GGGateApp.class);
 
-	public static void init(ApplicationContext ctx) throws BeansException, IOException {
-		ServerImpl server = GGHarbor.start(ctx, Constants.Gate, Constants.Localhost, Constants.GatePort, Executors.newSingleThreadExecutor());
-		
-		GateServer.start(GateConst.Host, GateConst.GatePort, new GateHandler());
+    public static void init(ApplicationContext ctx) throws BeansException, IOException {
+        ServerImpl server = GGHarbor.start(ctx, Constants.Gate, Constants.Localhost, Constants.GatePort,
+                Executors.newSingleThreadExecutor());
 
-		while (!server.isShutdown()) {
-			try {
-				server.awaitTermination();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        GateServer.start(GateConst.Host, GateConst.GatePort, new GateHandler());
 
-	public static void main(String[] args) throws BeansException, IOException {
-		try (ConfigurableApplicationContext ctx = SpringApplication.run(GGGateApp.class, args)) {
-			ctx.addApplicationListener(new ApplicationListener<ApplicationEvent>() {
-				@Override
-				public void onApplicationEvent(ApplicationEvent event) {
-					logger.info("EVENT: " + event.toString());
-				}
-			});
+        while (!server.isShutdown()) {
+            try {
+                server.awaitTermination();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-			init(ctx);
-		}
-	}
+    public static void main(String[] args) throws BeansException, IOException {
+        try (ConfigurableApplicationContext ctx = SpringApplication.run(GGGateApp.class, args)) {
+            ctx.addApplicationListener(new ApplicationListener<ApplicationEvent>() {
+                @Override
+                public void onApplicationEvent(ApplicationEvent event) {
+                    logger.info("EVENT: " + event.toString());
+                }
+            });
 
-	@Override
-	public void run(String... args) throws Exception {
-		// do some init here
-	}
+            init(ctx);
+        }
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // do some init here
+    }
 }

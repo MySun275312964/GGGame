@@ -11,17 +11,17 @@ import io.netty.handler.timeout.IdleStateEvent;
  */
 @Sharable
 public class GateTimeoutHandler extends ChannelDuplexHandler {
-	@Override
-	public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-		if (evt instanceof IdleStateEvent) {
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent) {
             IdleState e = ((IdleStateEvent) evt).state();
             if (e == IdleState.ALL_IDLE) {
-            	// TODO ...
+                // TODO ...
                 ctx.fireChannelInactive();
                 ctx.close();
             }
         } else {
             super.userEventTriggered(ctx, evt);
         }
-	}
+    }
 }

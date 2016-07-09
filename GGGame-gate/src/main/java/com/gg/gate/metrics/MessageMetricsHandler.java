@@ -1,15 +1,12 @@
 /*
  * Copyright (c) 2012-2015 The original author or authors
- * ------------------------------------------------------
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * and Apache License v2.0 which accompanies this distribution.
+ * ------------------------------------------------------ All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 and
+ * Apache License v2.0 which accompanies this distribution.
  *
- * The Eclipse Public License is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
  *
- * The Apache License v2.0 is available at
- * http://www.opensource.org/licenses/apache2.0.php
+ * The Apache License v2.0 is available at http://www.opensource.org/licenses/apache2.0.php
  *
  * You may elect to redistribute this code under either of these licenses.
  */
@@ -28,7 +25,7 @@ public class MessageMetricsHandler extends ChannelDuplexHandler {
     private MessageMetricsCollector m_collector;
 
     public MessageMetricsHandler(MessageMetricsCollector collector) {
-          m_collector = collector;
+        m_collector = collector;
     }
 
     @Override
@@ -55,8 +52,7 @@ public class MessageMetricsHandler extends ChannelDuplexHandler {
 
 
     @Override
-    public void close(ChannelHandlerContext ctx,
-                      ChannelPromise promise) throws Exception {
+    public void close(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {
         MessageMetrics metrics = ctx.attr(ATTR_KEY_METRICS).get();
         m_collector.sumReadMessages(metrics.messagesRead());
         m_collector.sumWroteMessages(metrics.messagesWrote());

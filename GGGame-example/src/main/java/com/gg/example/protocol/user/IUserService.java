@@ -4,13 +4,13 @@ import com.gg.core.Async;
 import com.gg.core.harbor.HarborFutureTask;
 
 public interface IUserService {
-	User getUserById(String id);
+    User getUserById(String id);
 
-	@Async
-	HarborFutureTask getUserByAge(int age);
-	
-	String test();
-	
-	@Async
-	HarborFutureTask test2();
+    @Async
+    HarborFutureTask getUserByAge(int age);
+
+    String test();
+
+    @Async
+    HarborFutureTask test2();
 }

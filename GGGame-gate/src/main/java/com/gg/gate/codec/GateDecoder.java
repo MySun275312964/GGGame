@@ -13,17 +13,17 @@ import io.netty.handler.codec.ByteToMessageDecoder;
  * @author guofeng.qin
  */
 public class GateDecoder extends ByteToMessageDecoder {
-	private static final Logger logger = LoggerFactory.getLogger(GateDecoder.class);
+    private static final Logger logger = LoggerFactory.getLogger(GateDecoder.class);
 
-	@Override
-	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-//		logger.info(in.toString());
-		logger.info("Readable: " + in.readableBytes());
-		if (in.readableBytes() == 15) {
-//			byte[] r = new byte[4];
-//			ByteBuf b = in.readBytes(r);
-			int i = in.readInt();
-			logger.info("" + i);
-		}
-	}
+    @Override
+    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+        // logger.info(in.toString());
+        logger.info("Readable: " + in.readableBytes());
+        if (in.readableBytes() == 15) {
+            // byte[] r = new byte[4];
+            // ByteBuf b = in.readBytes(r);
+            int i = in.readInt();
+            logger.info("" + i);
+        }
+    }
 }

@@ -6,13 +6,12 @@
 build
 bin
 generated
-icegenerated
 /release
 browse.VC.db
 /log
 log.log
 log.log.1
-.tags
+.tags?
 *.iml
 *.ipr
 *.iws

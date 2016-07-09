@@ -6,5 +6,5 @@ import java.util.List;
  * @author guofeng.qin
  */
 public interface ITaskService {
-	List<Task> getTaskList();
+    List<Task> getTaskList();
 }

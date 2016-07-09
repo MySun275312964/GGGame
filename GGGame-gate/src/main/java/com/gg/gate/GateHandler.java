@@ -14,17 +14,17 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 @Component
 @Sharable
 public class GateHandler extends ChannelInboundHandlerAdapter {
-	private static final Logger logger = LoggerFactory.getLogger(GateHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(GateHandler.class);
 
-	@Override
-	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		super.channelActive(ctx);
-		logger.info("channel active ...");
-	}
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+        logger.info("channel active ...");
+    }
 
-	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		logger.info(msg.toString());
-		ctx.writeAndFlush(msg);
-	}
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        logger.info(msg.toString());
+        ctx.writeAndFlush(msg);
+    }
 }

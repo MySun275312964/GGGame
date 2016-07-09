@@ -21,33 +21,33 @@ import io.grpc.stub.StreamObserver;
  * @author guofeng.qin
  */
 public class TestClient {
-	private static final Logger logger = LoggerFactory.getLogger(TestClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestClient.class);
 
-	public static void main(String[] args) {
-		ManagedChannelImpl channel = NettyChannelBuilder
-				.forAddress(Constants.Localhost, ExampleConst.Test.TestServerPort)
-				.negotiationType(NegotiationType.PLAINTEXT).build();
-		TestStub stub = TestGrpc.newStub(channel);
-		StreamObserver<TestRequest> req = stub.post(new StreamObserver<Example.TestResponse>() {
+    public static void main(String[] args) {
+        ManagedChannelImpl channel =
+                NettyChannelBuilder.forAddress(Constants.Localhost, ExampleConst.Test.TestServerPort)
+                        .negotiationType(NegotiationType.PLAINTEXT).build();
+        TestStub stub = TestGrpc.newStub(channel);
+        StreamObserver<TestRequest> req = stub.post(new StreamObserver<Example.TestResponse>() {
 
-			@Override
-			public void onNext(TestResponse arg0) {
-				logger.info(JsonHelper.toJson(arg0));
-			}
+            @Override
+            public void onNext(TestResponse arg0) {
+                logger.info(JsonHelper.toJson(arg0));
+            }
 
-			@Override
-			public void onError(Throwable arg0) {
-				logger.warn("client error... ", arg0);
-			}
+            @Override
+            public void onError(Throwable arg0) {
+                logger.warn("client error... ", arg0);
+            }
 
-			@Override
-			public void onCompleted() {
-				logger.warn("client onCompleted... ");
-			}
-		});
+            @Override
+            public void onCompleted() {
+                logger.warn("client onCompleted... ");
+            }
+        });
 
-		for (int i = 0; i < Integer.MAX_VALUE; i++) {
-			req.onNext(TestRequest.newBuilder().setId(System.currentTimeMillis() + "").build());
-		}
-	}
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            req.onNext(TestRequest.newBuilder().setId(System.currentTimeMillis() + "").build());
+        }
+    }
 }
