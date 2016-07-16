@@ -8,13 +8,23 @@ import java.util.concurrent.CompletableFuture;
  * Created by guofeng.qin on 2016/7/9.
  */
 public class ActorRef {
+    private String systemName;
+    private String name;
     private int id;
+    private boolean local = true;
     private ActorSystem system;
 
     public ActorRef() {}
 
     public ActorRef(int id) {
         this.id = id;
+    }
+
+    public ActorRef(ActorSystem system, String systemName, String name, boolean local) {
+        this.system = system;
+        this.systemName = systemName;
+        this.name = name;
+        this.local = local;
     }
 
     public ActorRef(int id, ActorSystem system) {
@@ -31,7 +41,11 @@ public class ActorRef {
     }
 
     public int tell(RequestMessage msg, ActorRef sender) {
-        return system.sendRequestMessageTo(sender, this, msg);
+        if (local) {
+            return system.sendRequestMessageTo(sender, this, msg);
+        } else {
+            return system.sendRemoteRequestMessageTo(sender.getId(), systemName, name, id, msg);
+        }
     }
 
     public void ask(RequestMessage msg, ActorBase sender, CompletableFuture<? super Object> future) {

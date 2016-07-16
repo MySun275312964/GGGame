@@ -1,12 +1,5 @@
 package com.gg.core.master;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.gg.common.JsonHelper;
 import com.gg.core.master.protocol.MasterGrpc;
 import com.gg.core.master.protocol.MasterOuterClass;
@@ -14,8 +7,13 @@ import com.gg.core.master.protocol.MasterOuterClass.MasterRegisterMessage;
 import com.gg.core.master.protocol.MasterOuterClass.MasterRegisterResult;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
-
 import io.grpc.stub.StreamObserver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author guofeng.qin

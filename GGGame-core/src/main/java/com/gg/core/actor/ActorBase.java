@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.BiConsumer;
@@ -23,7 +24,7 @@ public abstract class ActorBase implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(ActorBase.class);
 
     private Queue<ActorMessage> messages = new ConcurrentLinkedQueue<>();
-    private Map<Integer, BiConsumer<? super Object, ? super Throwable>> callbackMap = new HashMap<>();
+    private Map<Integer, BiConsumer<? super Object, ? super Throwable>> callbackMap = new ConcurrentHashMap<>();
 
     private AtomicBoolean dispatching = new AtomicBoolean(false); // true if is in dispatching
 
@@ -86,19 +87,19 @@ public abstract class ActorBase implements Runnable {
                                 // 这里不需要调度到特定线程执行, 因为发送消息操作是线程安全的
                                 future.whenComplete((r, e) -> {
                                     ResponseMessage resp = new ResponseMessage(r, e);
-                                    system.sendResponseMessageTo(identity.getId(), msg.getSender(), msg.getSid(), resp);
+                                    system.sendResponseMessageTo(identity.getId(), msg, resp);
                                 });
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                             ResponseMessage resp = new ResponseMessage(null, e);
-                            system.sendResponseMessageTo(identity.getId(), msg.getSender(), msg.getSid(), resp);
+                            system.sendResponseMessageTo(identity.getId(), msg, resp);
                         }
                     } else {
                         String errorMsg = "Method not found. " + JsonHelper.toJson(request);
                         logger.error(errorMsg);
                         ResponseMessage resp = new ResponseMessage(null, new RuntimeException(errorMsg));
-                        system.sendResponseMessageTo(identity.getId(), msg.getSender(), msg.getSid(), resp);
+                        system.sendResponseMessageTo(identity.getId(), msg, resp);
                     }
                 }
                 if (msgType == ActorSystem.TypeResponse) {
@@ -148,5 +149,9 @@ public abstract class ActorBase implements Runnable {
     public void setIdentity(ActorIdentity identity, ActorRef selfRef) {
         this.identity = identity;
         this.selfRef = selfRef;
+    }
+
+    public int getQueueSize() {
+        return messages.size();
     }
 }

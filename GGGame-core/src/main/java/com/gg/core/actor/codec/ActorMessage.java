@@ -5,8 +5,10 @@ package com.gg.core.actor.codec;
  */
 public class ActorMessage {
     private int sid;
-
+    private String senderSystem;
     private int sender;
+    private String receiverSystem;
+    private String receiverName;
     private int receiver;
 
     private int type;
@@ -18,6 +20,16 @@ public class ActorMessage {
     public ActorMessage(int sid, int receiver, int sender, int type, Message msg) {
         this.receiver = receiver;
         this.sender = sender;
+        this.sid = sid;
+        this.type = type;
+        this.msg = msg;
+    }
+
+    public ActorMessage(int sid, String recvSystem, String receiverName, int receiver, int sender, int type, Message msg) {
+        this.receiverSystem = recvSystem;
+        this.receiverName = receiverName;
+        this.sender = sender;
+        this.receiver = receiver;
         this.sid = sid;
         this.type = type;
         this.msg = msg;
@@ -41,5 +53,29 @@ public class ActorMessage {
 
     public Message getMsg() {
         return msg;
+    }
+
+    public String getSenderSystem() {
+        return senderSystem;
+    }
+
+    public void setSenderSystem(String senderSystem) {
+        this.senderSystem = senderSystem;
+    }
+
+    public String getReceiverSystem() {
+        return receiverSystem;
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public void setReceiverSystem(String receiverSystem) {
+        this.receiverSystem = receiverSystem;
     }
 }

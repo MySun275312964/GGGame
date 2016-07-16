@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "com.gg.core.actor.harbor.protocol";
+
+enum MessageType {
+    Handshake = 0; // handshake
+    Post = 1; // post
+}
+
+message Service {
+    string name = 1; // service name
+    string host = 2; // host addr
+    int32 port = 3; // port
+}
+
+message HandshakeMessage {
+    Service source = 1;
+}
+
+message RemoteActorMessage {
+    MessageType type = 1; // msg type
+    bytes payload = 2;
+}
+
+service IActorHarbor {
+    rpc post (stream RemoteActorMessage) returns (stream RemoteActorMessage);
+}
