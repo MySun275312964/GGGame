@@ -37,7 +37,7 @@ public class ActorSystem {
     private ActorHarbor harbor;
 
     public ActorSystem(String name) {
-        this(name, 1);
+        this(name, Runtime.getRuntime().availableProcessors());
     }
 
     public void setHarbor(ActorHarbor harbor) {
