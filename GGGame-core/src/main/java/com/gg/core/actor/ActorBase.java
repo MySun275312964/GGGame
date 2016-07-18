@@ -24,7 +24,7 @@ public abstract class ActorBase implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(ActorBase.class);
 
     private Queue<ActorMessage> messages = new ConcurrentLinkedQueue<>();
-    private Map<Integer, BiConsumer<? super Object, ? super Throwable>> callbackMap = new ConcurrentHashMap<>();
+    private Map<Integer, BiConsumer<? super Object, ? super Throwable>> callbackMap = new HashMap<>();
 
     private AtomicBoolean dispatching = new AtomicBoolean(false); // true if is in dispatching
 
