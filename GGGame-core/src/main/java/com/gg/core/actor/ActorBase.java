@@ -30,7 +30,7 @@ public abstract class ActorBase implements Runnable {
 
     private Map<String, Method> methodMap = new HashMap<>();
 
-    private ActorSystem system;
+    protected ActorSystem system;
 
     private ActorRef selfRef;
 
