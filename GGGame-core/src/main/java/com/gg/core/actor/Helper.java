@@ -14,7 +14,7 @@ public class Helper {
 
     public static String getMethodDesc(Method method) {
         int plen = method.getParameterCount();
-        if (plen <= 0) {
+        if (plen < 0) {
             return "";
         }
 

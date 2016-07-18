@@ -69,6 +69,16 @@ public class ActorSystem {
         return ref;
     }
 
+    public ActorRef actor(String name) {
+        // FIXME ... 需不需要加缓存
+        Integer atrId = actorNameReverseMap.get(name);
+        if (atrId == null) {
+            throw new RuntimeException("no actor named " + name);
+        }
+        ActorRef ref = new ActorRef(atrId, this);
+        return ref;
+    }
+
     public ActorRef remoteActor(String systemName, String name) {
         // TODO ... ActorRef 需不需要系统缓存起来?
         ActorRef actorRef = new ActorRef(this, systemName, name, false);
