@@ -1,5 +1,8 @@
 package com.gg.common;
 
+import com.gg.core.net.IMsgDispatch;
+import io.netty.util.AttributeKey;
+
 /**
  * @author guofeng.qin
  */
@@ -10,4 +13,12 @@ public class Constants {
 
     public static final String Gate = "gate";
     public static final String Master = "master";
+
+
+    public static final class Net {
+        public static final int RPC_TIMEOUT = 50;
+        public static final int DefaultHeadLength = 4;
+
+        public static final AttributeKey<IMsgDispatch> DispatchKey = AttributeKey.valueOf("DispatchKey");
+    }
 }

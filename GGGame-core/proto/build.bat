@@ -7,3 +7,5 @@ protoc.exe --plugin=protoc-gen-grpc-java=protoc-gen-grpc-java.exe --grpc-java_ou
 
 protoc.exe --java_out=../src/main/java Master.proto
 protoc.exe --plugin=protoc-gen-grpc-java=protoc-gen-grpc-java.exe --grpc-java_out=../src/main/java --proto_path=./ Master.proto
+
+protoc.exe --java_out=../src/main/java Net.proto

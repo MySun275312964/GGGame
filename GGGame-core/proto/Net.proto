@@ -1,0 +1,40 @@
+// 暂时废弃
+syntax = "proto3";
+
+package com.gg.core.net.codec;
+
+option java_package = "com.gg.core.net.codec";
+option java_outer_classname = "Net";
+
+message Request {
+    int32 index = 1;
+    string instance = 2;
+    string method = 3;
+    bytes payload = 4;
+};
+
+message Response {
+    int32 index = 1;
+    string name = 2;
+    bytes result = 3;
+    bytes error = 4;
+};
+
+message ErrorMessage {
+    int32 code = 1;
+    string message = 2;
+    bytes data = 3;
+};
+
+enum MessageType {
+    CONNECT = 0;
+    REQUEST = 1;
+    RESPONSE = 2;
+    DISCONNECT = 3;
+    DESTROY = 4;
+}
+
+message NetMessage {
+    MessageType type = 1;
+    bytes payload = 2;
+}

@@ -6,7 +6,13 @@ package com.gg.core.actor.harbor.protocol;
 public final class ActorHarborProtocol {
   private ActorHarborProtocol() {}
   public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+
+  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
    * Protobuf enum {@code MessageType}
@@ -14,51 +20,59 @@ public final class ActorHarborProtocol {
   public enum MessageType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>Handshake = 0;</code>
-     *
      * <pre>
      * handshake
      * </pre>
-     */
-    Handshake(0, 0),
-    /**
-     * <code>Post = 1;</code>
      *
+     * <code>Handshake = 0;</code>
+     */
+    Handshake(0),
+    /**
      * <pre>
      * post
      * </pre>
+     *
+     * <code>Post = 1;</code>
      */
-    Post(1, 1),
-    UNRECOGNIZED(-1, -1),
+    Post(1),
+    UNRECOGNIZED(-1),
     ;
 
     /**
-     * <code>Handshake = 0;</code>
-     *
      * <pre>
      * handshake
      * </pre>
+     *
+     * <code>Handshake = 0;</code>
      */
     public static final int Handshake_VALUE = 0;
     /**
-     * <code>Post = 1;</code>
-     *
      * <pre>
      * post
      * </pre>
+     *
+     * <code>Post = 1;</code>
      */
     public static final int Post_VALUE = 1;
 
 
     public final int getNumber() {
-      if (index == -1) {
+      if (this == UNRECOGNIZED) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static MessageType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static MessageType forNumber(int value) {
       switch (value) {
         case 0: return Handshake;
         case 1: return Post;
@@ -74,13 +88,13 @@ public final class ActorHarborProtocol {
         MessageType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<MessageType>() {
             public MessageType findValueByNumber(int number) {
-              return MessageType.valueOf(number);
+              return MessageType.forNumber(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(index);
+      return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -105,11 +119,9 @@ public final class ActorHarborProtocol {
       return VALUES[desc.getIndex()];
     }
 
-    private final int index;
     private final int value;
 
-    private MessageType(int index, int value) {
-      this.index = index;
+    private MessageType(int value) {
       this.value = value;
     }
 
@@ -121,47 +133,47 @@ public final class ActorHarborProtocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     java.lang.String getName();
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     java.lang.String getHost();
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     com.google.protobuf.ByteString
         getHostBytes();
 
     /**
-     * <code>optional int32 port = 3;</code>
-     *
      * <pre>
      * port
      * </pre>
+     *
+     * <code>optional int32 port = 3;</code>
      */
     int getPort();
   }
@@ -169,11 +181,11 @@ public final class ActorHarborProtocol {
    * Protobuf type {@code Service}
    */
   public  static final class Service extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:Service)
       ServiceOrBuilder {
     // Use Service.newBuilder() to construct.
-    private Service(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private Service(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private Service() {
@@ -189,7 +201,8 @@ public final class ActorHarborProtocol {
     }
     private Service(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -226,11 +239,10 @@ public final class ActorHarborProtocol {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw new RuntimeException(e.setUnfinishedMessage(this));
+        throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
-        throw new RuntimeException(
-            new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(this));
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
       } finally {
         makeExtensionsImmutable();
       }
@@ -240,7 +252,7 @@ public final class ActorHarborProtocol {
       return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_Service_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_Service_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -250,11 +262,11 @@ public final class ActorHarborProtocol {
     public static final int NAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object name_;
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -269,11 +281,11 @@ public final class ActorHarborProtocol {
       }
     }
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -292,11 +304,11 @@ public final class ActorHarborProtocol {
     public static final int HOST_FIELD_NUMBER = 2;
     private volatile java.lang.Object host_;
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     public java.lang.String getHost() {
       java.lang.Object ref = host_;
@@ -311,11 +323,11 @@ public final class ActorHarborProtocol {
       }
     }
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     public com.google.protobuf.ByteString
         getHostBytes() {
@@ -334,11 +346,11 @@ public final class ActorHarborProtocol {
     public static final int PORT_FIELD_NUMBER = 3;
     private int port_;
     /**
-     * <code>optional int32 port = 3;</code>
-     *
      * <pre>
      * port
      * </pre>
+     *
+     * <code>optional int32 port = 3;</code>
      */
     public int getPort() {
       return port_;
@@ -357,10 +369,10 @@ public final class ActorHarborProtocol {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       if (!getHostBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 2, host_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, host_);
       }
       if (port_ != 0) {
         output.writeInt32(3, port_);
@@ -373,10 +385,10 @@ public final class ActorHarborProtocol {
 
       size = 0;
       if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
       if (!getHostBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, host_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, host_);
       }
       if (port_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -387,6 +399,44 @@ public final class ActorHarborProtocol {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service)) {
+        return super.equals(obj);
+      }
+      com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service other = (com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service) obj;
+
+      boolean result = true;
+      result = result && getName()
+          .equals(other.getName());
+      result = result && getHost()
+          .equals(other.getHost());
+      result = result && (getPort()
+          == other.getPort());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + HOST_FIELD_NUMBER;
+      hash = (53 * hash) + getHost().hashCode();
+      hash = (37 * hash) + PORT_FIELD_NUMBER;
+      hash = (53 * hash) + getPort();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -410,34 +460,40 @@ public final class ActorHarborProtocol {
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -454,7 +510,7 @@ public final class ActorHarborProtocol {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -462,7 +518,7 @@ public final class ActorHarborProtocol {
      * Protobuf type {@code Service}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Service)
         com.gg.core.actor.harbor.protocol.ActorHarborProtocol.ServiceOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -470,7 +526,7 @@ public final class ActorHarborProtocol {
         return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_Service_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_Service_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -483,12 +539,13 @@ public final class ActorHarborProtocol {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -528,6 +585,32 @@ public final class ActorHarborProtocol {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service) {
           return mergeFrom((com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service)other);
@@ -567,7 +650,7 @@ public final class ActorHarborProtocol {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -578,11 +661,11 @@ public final class ActorHarborProtocol {
 
       private java.lang.Object name_ = "";
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -597,11 +680,11 @@ public final class ActorHarborProtocol {
         }
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -617,11 +700,11 @@ public final class ActorHarborProtocol {
         }
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public Builder setName(
           java.lang.String value) {
@@ -634,11 +717,11 @@ public final class ActorHarborProtocol {
         return this;
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public Builder clearName() {
         
@@ -647,11 +730,11 @@ public final class ActorHarborProtocol {
         return this;
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -667,11 +750,11 @@ public final class ActorHarborProtocol {
 
       private java.lang.Object host_ = "";
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public java.lang.String getHost() {
         java.lang.Object ref = host_;
@@ -686,11 +769,11 @@ public final class ActorHarborProtocol {
         }
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public com.google.protobuf.ByteString
           getHostBytes() {
@@ -706,11 +789,11 @@ public final class ActorHarborProtocol {
         }
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public Builder setHost(
           java.lang.String value) {
@@ -723,11 +806,11 @@ public final class ActorHarborProtocol {
         return this;
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public Builder clearHost() {
         
@@ -736,11 +819,11 @@ public final class ActorHarborProtocol {
         return this;
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public Builder setHostBytes(
           com.google.protobuf.ByteString value) {
@@ -756,21 +839,21 @@ public final class ActorHarborProtocol {
 
       private int port_ ;
       /**
-       * <code>optional int32 port = 3;</code>
-       *
        * <pre>
        * port
        * </pre>
+       *
+       * <code>optional int32 port = 3;</code>
        */
       public int getPort() {
         return port_;
       }
       /**
-       * <code>optional int32 port = 3;</code>
-       *
        * <pre>
        * port
        * </pre>
+       *
+       * <code>optional int32 port = 3;</code>
        */
       public Builder setPort(int value) {
         
@@ -779,11 +862,11 @@ public final class ActorHarborProtocol {
         return this;
       }
       /**
-       * <code>optional int32 port = 3;</code>
-       *
        * <pre>
        * port
        * </pre>
+       *
+       * <code>optional int32 port = 3;</code>
        */
       public Builder clearPort() {
         
@@ -821,16 +904,7 @@ public final class ActorHarborProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        try {
           return new Service(input, extensionRegistry);
-        } catch (RuntimeException e) {
-          if (e.getCause() instanceof
-              com.google.protobuf.InvalidProtocolBufferException) {
-            throw (com.google.protobuf.InvalidProtocolBufferException)
-                e.getCause();
-          }
-          throw e;
-        }
       }
     };
 
@@ -870,11 +944,11 @@ public final class ActorHarborProtocol {
    * Protobuf type {@code HandshakeMessage}
    */
   public  static final class HandshakeMessage extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:HandshakeMessage)
       HandshakeMessageOrBuilder {
     // Use HandshakeMessage.newBuilder() to construct.
-    private HandshakeMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private HandshakeMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private HandshakeMessage() {
@@ -887,7 +961,8 @@ public final class ActorHarborProtocol {
     }
     private HandshakeMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -920,11 +995,10 @@ public final class ActorHarborProtocol {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw new RuntimeException(e.setUnfinishedMessage(this));
+        throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
-        throw new RuntimeException(
-            new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(this));
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
       } finally {
         makeExtensionsImmutable();
       }
@@ -934,7 +1008,7 @@ public final class ActorHarborProtocol {
       return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_HandshakeMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_HandshakeMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -993,6 +1067,41 @@ public final class ActorHarborProtocol {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage)) {
+        return super.equals(obj);
+      }
+      com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage other = (com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage) obj;
+
+      boolean result = true;
+      result = result && (hasSource() == other.hasSource());
+      if (hasSource()) {
+        result = result && getSource()
+            .equals(other.getSource());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasSource()) {
+        hash = (37 * hash) + SOURCE_FIELD_NUMBER;
+        hash = (53 * hash) + getSource().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1016,34 +1125,40 @@ public final class ActorHarborProtocol {
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -1060,7 +1175,7 @@ public final class ActorHarborProtocol {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1068,7 +1183,7 @@ public final class ActorHarborProtocol {
      * Protobuf type {@code HandshakeMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:HandshakeMessage)
         com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1076,7 +1191,7 @@ public final class ActorHarborProtocol {
         return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_HandshakeMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_HandshakeMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1089,12 +1204,13 @@ public final class ActorHarborProtocol {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1136,6 +1252,32 @@ public final class ActorHarborProtocol {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage) {
           return mergeFrom((com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage)other);
@@ -1167,7 +1309,7 @@ public final class ActorHarborProtocol {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.gg.core.actor.harbor.protocol.ActorHarborProtocol.HandshakeMessage) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1177,7 +1319,7 @@ public final class ActorHarborProtocol {
       }
 
       private com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service source_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service, com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service.Builder, com.gg.core.actor.harbor.protocol.ActorHarborProtocol.ServiceOrBuilder> sourceBuilder_;
       /**
        * <code>optional .Service source = 1;</code>
@@ -1279,11 +1421,11 @@ public final class ActorHarborProtocol {
       /**
        * <code>optional .Service source = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service, com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service.Builder, com.gg.core.actor.harbor.protocol.ActorHarborProtocol.ServiceOrBuilder> 
           getSourceFieldBuilder() {
         if (sourceBuilder_ == null) {
-          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service, com.gg.core.actor.harbor.protocol.ActorHarborProtocol.Service.Builder, com.gg.core.actor.harbor.protocol.ActorHarborProtocol.ServiceOrBuilder>(
                   getSource(),
                   getParentForChildren(),
@@ -1322,16 +1464,7 @@ public final class ActorHarborProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        try {
           return new HandshakeMessage(input, extensionRegistry);
-        } catch (RuntimeException e) {
-          if (e.getCause() instanceof
-              com.google.protobuf.InvalidProtocolBufferException) {
-            throw (com.google.protobuf.InvalidProtocolBufferException)
-                e.getCause();
-          }
-          throw e;
-        }
       }
     };
 
@@ -1355,19 +1488,19 @@ public final class ActorHarborProtocol {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     int getTypeValue();
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType getType();
 
@@ -1380,11 +1513,11 @@ public final class ActorHarborProtocol {
    * Protobuf type {@code RemoteActorMessage}
    */
   public  static final class RemoteActorMessage extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:RemoteActorMessage)
       RemoteActorMessageOrBuilder {
     // Use RemoteActorMessage.newBuilder() to construct.
-    private RemoteActorMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private RemoteActorMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private RemoteActorMessage() {
@@ -1399,7 +1532,8 @@ public final class ActorHarborProtocol {
     }
     private RemoteActorMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -1430,11 +1564,10 @@ public final class ActorHarborProtocol {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw new RuntimeException(e.setUnfinishedMessage(this));
+        throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
-        throw new RuntimeException(
-            new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(this));
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
       } finally {
         makeExtensionsImmutable();
       }
@@ -1444,7 +1577,7 @@ public final class ActorHarborProtocol {
       return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_RemoteActorMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_RemoteActorMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1454,21 +1587,21 @@ public final class ActorHarborProtocol {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     public com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType getType() {
       com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType result = com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType.valueOf(type_);
@@ -1522,6 +1655,39 @@ public final class ActorHarborProtocol {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage)) {
+        return super.equals(obj);
+      }
+      com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage other = (com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage) obj;
+
+      boolean result = true;
+      result = result && type_ == other.type_;
+      result = result && getPayload()
+          .equals(other.getPayload());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
+      hash = (53 * hash) + getPayload().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1545,34 +1711,40 @@ public final class ActorHarborProtocol {
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -1589,7 +1761,7 @@ public final class ActorHarborProtocol {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1597,7 +1769,7 @@ public final class ActorHarborProtocol {
      * Protobuf type {@code RemoteActorMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:RemoteActorMessage)
         com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1605,7 +1777,7 @@ public final class ActorHarborProtocol {
         return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_RemoteActorMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.gg.core.actor.harbor.protocol.ActorHarborProtocol.internal_static_RemoteActorMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1618,12 +1790,13 @@ public final class ActorHarborProtocol {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1660,6 +1833,32 @@ public final class ActorHarborProtocol {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage) {
           return mergeFrom((com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage)other);
@@ -1694,7 +1893,7 @@ public final class ActorHarborProtocol {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.gg.core.actor.harbor.protocol.ActorHarborProtocol.RemoteActorMessage) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1705,21 +1904,21 @@ public final class ActorHarborProtocol {
 
       private int type_ = 0;
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public Builder setTypeValue(int value) {
         type_ = value;
@@ -1727,22 +1926,22 @@ public final class ActorHarborProtocol {
         return this;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType getType() {
         com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType result = com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType.valueOf(type_);
         return result == null ? com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public Builder setType(com.gg.core.actor.harbor.protocol.ActorHarborProtocol.MessageType value) {
         if (value == null) {
@@ -1754,11 +1953,11 @@ public final class ActorHarborProtocol {
         return this;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public Builder clearType() {
         
@@ -1825,16 +2024,7 @@ public final class ActorHarborProtocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        try {
           return new RemoteActorMessage(input, extensionRegistry);
-        } catch (RuntimeException e) {
-          if (e.getCause() instanceof
-              com.google.protobuf.InvalidProtocolBufferException) {
-            throw (com.google.protobuf.InvalidProtocolBufferException)
-                e.getCause();
-          }
-          throw e;
-        }
       }
     };
 
@@ -1853,27 +2043,27 @@ public final class ActorHarborProtocol {
 
   }
 
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Service_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Service_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_HandshakeMessage_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_HandshakeMessage_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_RemoteActorMessage_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_RemoteActorMessage_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -1902,19 +2092,19 @@ public final class ActorHarborProtocol {
     internal_static_Service_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_Service_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Service_descriptor,
         new java.lang.String[] { "Name", "Host", "Port", });
     internal_static_HandshakeMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_HandshakeMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HandshakeMessage_descriptor,
         new java.lang.String[] { "Source", });
     internal_static_RemoteActorMessage_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_RemoteActorMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RemoteActorMessage_descriptor,
         new java.lang.String[] { "Type", "Payload", });
   }

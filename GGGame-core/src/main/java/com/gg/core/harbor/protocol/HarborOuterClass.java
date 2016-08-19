@@ -6,7 +6,13 @@ package com.gg.core.harbor.protocol;
 public final class HarborOuterClass {
   private HarborOuterClass() {}
   public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+
+  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
    * Protobuf enum {@code MessageType}
@@ -14,83 +20,91 @@ public final class HarborOuterClass {
   public enum MessageType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>Handshake = 0;</code>
-     *
      * <pre>
      * handshake
      * </pre>
-     */
-    Handshake(0, 0),
-    /**
-     * <code>Request = 1;</code>
      *
+     * <code>Handshake = 0;</code>
+     */
+    Handshake(0),
+    /**
      * <pre>
      * request, need response
      * </pre>
-     */
-    Request(1, 1),
-    /**
-     * <code>Response = 2;</code>
      *
+     * <code>Request = 1;</code>
+     */
+    Request(1),
+    /**
      * <pre>
      * response
      * </pre>
-     */
-    Response(2, 2),
-    /**
-     * <code>Post = 3;</code>
      *
+     * <code>Response = 2;</code>
+     */
+    Response(2),
+    /**
      * <pre>
      * post, need not response
      * </pre>
+     *
+     * <code>Post = 3;</code>
      */
-    Post(3, 3),
-    UNRECOGNIZED(-1, -1),
+    Post(3),
+    UNRECOGNIZED(-1),
     ;
 
     /**
-     * <code>Handshake = 0;</code>
-     *
      * <pre>
      * handshake
      * </pre>
+     *
+     * <code>Handshake = 0;</code>
      */
     public static final int Handshake_VALUE = 0;
     /**
-     * <code>Request = 1;</code>
-     *
      * <pre>
      * request, need response
      * </pre>
+     *
+     * <code>Request = 1;</code>
      */
     public static final int Request_VALUE = 1;
     /**
-     * <code>Response = 2;</code>
-     *
      * <pre>
      * response
      * </pre>
+     *
+     * <code>Response = 2;</code>
      */
     public static final int Response_VALUE = 2;
     /**
-     * <code>Post = 3;</code>
-     *
      * <pre>
      * post, need not response
      * </pre>
+     *
+     * <code>Post = 3;</code>
      */
     public static final int Post_VALUE = 3;
 
 
     public final int getNumber() {
-      if (index == -1) {
+      if (this == UNRECOGNIZED) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static MessageType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static MessageType forNumber(int value) {
       switch (value) {
         case 0: return Handshake;
         case 1: return Request;
@@ -108,13 +122,13 @@ public final class HarborOuterClass {
         MessageType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<MessageType>() {
             public MessageType findValueByNumber(int number) {
-              return MessageType.valueOf(number);
+              return MessageType.forNumber(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(index);
+      return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -139,11 +153,9 @@ public final class HarborOuterClass {
       return VALUES[desc.getIndex()];
     }
 
-    private final int index;
     private final int value;
 
-    private MessageType(int index, int value) {
-      this.index = index;
+    private MessageType(int value) {
       this.value = value;
     }
 
@@ -155,47 +167,47 @@ public final class HarborOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     java.lang.String getName();
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     java.lang.String getHost();
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     com.google.protobuf.ByteString
         getHostBytes();
 
     /**
-     * <code>optional int32 port = 3;</code>
-     *
      * <pre>
      * port
      * </pre>
+     *
+     * <code>optional int32 port = 3;</code>
      */
     int getPort();
   }
@@ -203,11 +215,11 @@ public final class HarborOuterClass {
    * Protobuf type {@code Service}
    */
   public  static final class Service extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:Service)
       ServiceOrBuilder {
     // Use Service.newBuilder() to construct.
-    private Service(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private Service(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private Service() {
@@ -223,7 +235,8 @@ public final class HarborOuterClass {
     }
     private Service(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -260,11 +273,10 @@ public final class HarborOuterClass {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw new RuntimeException(e.setUnfinishedMessage(this));
+        throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
-        throw new RuntimeException(
-            new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(this));
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
       } finally {
         makeExtensionsImmutable();
       }
@@ -274,7 +286,7 @@ public final class HarborOuterClass {
       return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_Service_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_Service_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -284,11 +296,11 @@ public final class HarborOuterClass {
     public static final int NAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object name_;
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -303,11 +315,11 @@ public final class HarborOuterClass {
       }
     }
     /**
-     * <code>optional string name = 1;</code>
-     *
      * <pre>
      * service name
      * </pre>
+     *
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -326,11 +338,11 @@ public final class HarborOuterClass {
     public static final int HOST_FIELD_NUMBER = 2;
     private volatile java.lang.Object host_;
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     public java.lang.String getHost() {
       java.lang.Object ref = host_;
@@ -345,11 +357,11 @@ public final class HarborOuterClass {
       }
     }
     /**
-     * <code>optional string host = 2;</code>
-     *
      * <pre>
      * host addr
      * </pre>
+     *
+     * <code>optional string host = 2;</code>
      */
     public com.google.protobuf.ByteString
         getHostBytes() {
@@ -368,11 +380,11 @@ public final class HarborOuterClass {
     public static final int PORT_FIELD_NUMBER = 3;
     private int port_;
     /**
-     * <code>optional int32 port = 3;</code>
-     *
      * <pre>
      * port
      * </pre>
+     *
+     * <code>optional int32 port = 3;</code>
      */
     public int getPort() {
       return port_;
@@ -391,10 +403,10 @@ public final class HarborOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, name_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       if (!getHostBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 2, host_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, host_);
       }
       if (port_ != 0) {
         output.writeInt32(3, port_);
@@ -407,10 +419,10 @@ public final class HarborOuterClass {
 
       size = 0;
       if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, name_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
       if (!getHostBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, host_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, host_);
       }
       if (port_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -421,6 +433,44 @@ public final class HarborOuterClass {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.core.harbor.protocol.HarborOuterClass.Service)) {
+        return super.equals(obj);
+      }
+      com.gg.core.harbor.protocol.HarborOuterClass.Service other = (com.gg.core.harbor.protocol.HarborOuterClass.Service) obj;
+
+      boolean result = true;
+      result = result && getName()
+          .equals(other.getName());
+      result = result && getHost()
+          .equals(other.getHost());
+      result = result && (getPort()
+          == other.getPort());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + HOST_FIELD_NUMBER;
+      hash = (53 * hash) + getHost().hashCode();
+      hash = (37 * hash) + PORT_FIELD_NUMBER;
+      hash = (53 * hash) + getPort();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static com.gg.core.harbor.protocol.HarborOuterClass.Service parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -444,34 +494,40 @@ public final class HarborOuterClass {
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.Service parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.Service parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.Service parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.Service parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.Service parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.Service parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -488,7 +544,7 @@ public final class HarborOuterClass {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -496,7 +552,7 @@ public final class HarborOuterClass {
      * Protobuf type {@code Service}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Service)
         com.gg.core.harbor.protocol.HarborOuterClass.ServiceOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -504,7 +560,7 @@ public final class HarborOuterClass {
         return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_Service_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_Service_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -517,12 +573,13 @@ public final class HarborOuterClass {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -562,6 +619,32 @@ public final class HarborOuterClass {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.gg.core.harbor.protocol.HarborOuterClass.Service) {
           return mergeFrom((com.gg.core.harbor.protocol.HarborOuterClass.Service)other);
@@ -601,7 +684,7 @@ public final class HarborOuterClass {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.gg.core.harbor.protocol.HarborOuterClass.Service) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -612,11 +695,11 @@ public final class HarborOuterClass {
 
       private java.lang.Object name_ = "";
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -631,11 +714,11 @@ public final class HarborOuterClass {
         }
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -651,11 +734,11 @@ public final class HarborOuterClass {
         }
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public Builder setName(
           java.lang.String value) {
@@ -668,11 +751,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public Builder clearName() {
         
@@ -681,11 +764,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional string name = 1;</code>
-       *
        * <pre>
        * service name
        * </pre>
+       *
+       * <code>optional string name = 1;</code>
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -701,11 +784,11 @@ public final class HarborOuterClass {
 
       private java.lang.Object host_ = "";
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public java.lang.String getHost() {
         java.lang.Object ref = host_;
@@ -720,11 +803,11 @@ public final class HarborOuterClass {
         }
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public com.google.protobuf.ByteString
           getHostBytes() {
@@ -740,11 +823,11 @@ public final class HarborOuterClass {
         }
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public Builder setHost(
           java.lang.String value) {
@@ -757,11 +840,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public Builder clearHost() {
         
@@ -770,11 +853,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional string host = 2;</code>
-       *
        * <pre>
        * host addr
        * </pre>
+       *
+       * <code>optional string host = 2;</code>
        */
       public Builder setHostBytes(
           com.google.protobuf.ByteString value) {
@@ -790,21 +873,21 @@ public final class HarborOuterClass {
 
       private int port_ ;
       /**
-       * <code>optional int32 port = 3;</code>
-       *
        * <pre>
        * port
        * </pre>
+       *
+       * <code>optional int32 port = 3;</code>
        */
       public int getPort() {
         return port_;
       }
       /**
-       * <code>optional int32 port = 3;</code>
-       *
        * <pre>
        * port
        * </pre>
+       *
+       * <code>optional int32 port = 3;</code>
        */
       public Builder setPort(int value) {
         
@@ -813,11 +896,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 port = 3;</code>
-       *
        * <pre>
        * port
        * </pre>
+       *
+       * <code>optional int32 port = 3;</code>
        */
       public Builder clearPort() {
         
@@ -855,16 +938,7 @@ public final class HarborOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        try {
           return new Service(input, extensionRegistry);
-        } catch (RuntimeException e) {
-          if (e.getCause() instanceof
-              com.google.protobuf.InvalidProtocolBufferException) {
-            throw (com.google.protobuf.InvalidProtocolBufferException)
-                e.getCause();
-          }
-          throw e;
-        }
       }
     };
 
@@ -904,11 +978,11 @@ public final class HarborOuterClass {
    * Protobuf type {@code HandshakeMessage}
    */
   public  static final class HandshakeMessage extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:HandshakeMessage)
       HandshakeMessageOrBuilder {
     // Use HandshakeMessage.newBuilder() to construct.
-    private HandshakeMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private HandshakeMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private HandshakeMessage() {
@@ -921,7 +995,8 @@ public final class HarborOuterClass {
     }
     private HandshakeMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -954,11 +1029,10 @@ public final class HarborOuterClass {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw new RuntimeException(e.setUnfinishedMessage(this));
+        throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
-        throw new RuntimeException(
-            new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(this));
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
       } finally {
         makeExtensionsImmutable();
       }
@@ -968,7 +1042,7 @@ public final class HarborOuterClass {
       return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HandshakeMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HandshakeMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1027,6 +1101,41 @@ public final class HarborOuterClass {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage)) {
+        return super.equals(obj);
+      }
+      com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage other = (com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage) obj;
+
+      boolean result = true;
+      result = result && (hasSource() == other.hasSource());
+      if (hasSource()) {
+        result = result && getSource()
+            .equals(other.getSource());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasSource()) {
+        hash = (37 * hash) + SOURCE_FIELD_NUMBER;
+        hash = (53 * hash) + getSource().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1050,34 +1159,40 @@ public final class HarborOuterClass {
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -1094,7 +1209,7 @@ public final class HarborOuterClass {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1102,7 +1217,7 @@ public final class HarborOuterClass {
      * Protobuf type {@code HandshakeMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:HandshakeMessage)
         com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1110,7 +1225,7 @@ public final class HarborOuterClass {
         return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HandshakeMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HandshakeMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1123,12 +1238,13 @@ public final class HarborOuterClass {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1170,6 +1286,32 @@ public final class HarborOuterClass {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage) {
           return mergeFrom((com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage)other);
@@ -1201,7 +1343,7 @@ public final class HarborOuterClass {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.gg.core.harbor.protocol.HarborOuterClass.HandshakeMessage) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1211,7 +1353,7 @@ public final class HarborOuterClass {
       }
 
       private com.gg.core.harbor.protocol.HarborOuterClass.Service source_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           com.gg.core.harbor.protocol.HarborOuterClass.Service, com.gg.core.harbor.protocol.HarborOuterClass.Service.Builder, com.gg.core.harbor.protocol.HarborOuterClass.ServiceOrBuilder> sourceBuilder_;
       /**
        * <code>optional .Service source = 1;</code>
@@ -1313,11 +1455,11 @@ public final class HarborOuterClass {
       /**
        * <code>optional .Service source = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           com.gg.core.harbor.protocol.HarborOuterClass.Service, com.gg.core.harbor.protocol.HarborOuterClass.Service.Builder, com.gg.core.harbor.protocol.HarborOuterClass.ServiceOrBuilder> 
           getSourceFieldBuilder() {
         if (sourceBuilder_ == null) {
-          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.gg.core.harbor.protocol.HarborOuterClass.Service, com.gg.core.harbor.protocol.HarborOuterClass.Service.Builder, com.gg.core.harbor.protocol.HarborOuterClass.ServiceOrBuilder>(
                   getSource(),
                   getParentForChildren(),
@@ -1356,16 +1498,7 @@ public final class HarborOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        try {
           return new HandshakeMessage(input, extensionRegistry);
-        } catch (RuntimeException e) {
-          if (e.getCause() instanceof
-              com.google.protobuf.InvalidProtocolBufferException) {
-            throw (com.google.protobuf.InvalidProtocolBufferException)
-                e.getCause();
-          }
-          throw e;
-        }
       }
     };
 
@@ -1389,37 +1522,37 @@ public final class HarborOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     int getTypeValue();
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     com.gg.core.harbor.protocol.HarborOuterClass.MessageType getType();
 
     /**
-     * <code>optional int32 sid = 2;</code>
-     *
      * <pre>
      * session id
      * </pre>
+     *
+     * <code>optional int32 sid = 2;</code>
      */
     int getSid();
 
     /**
-     * <code>optional int32 rid = 3;</code>
-     *
      * <pre>
      * request id
      * </pre>
+     *
+     * <code>optional int32 rid = 3;</code>
      */
     int getRid();
 
@@ -1473,11 +1606,11 @@ public final class HarborOuterClass {
    * Protobuf type {@code HarborMessage}
    */
   public  static final class HarborMessage extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:HarborMessage)
       HarborMessageOrBuilder {
     // Use HarborMessage.newBuilder() to construct.
-    private HarborMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private HarborMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private HarborMessage() {
@@ -1496,7 +1629,8 @@ public final class HarborOuterClass {
     }
     private HarborMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -1565,11 +1699,10 @@ public final class HarborOuterClass {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw new RuntimeException(e.setUnfinishedMessage(this));
+        throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
-        throw new RuntimeException(
-            new com.google.protobuf.InvalidProtocolBufferException(
-                e.getMessage()).setUnfinishedMessage(this));
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
           payload_ = java.util.Collections.unmodifiableList(payload_);
@@ -1582,7 +1715,7 @@ public final class HarborOuterClass {
       return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HarborMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HarborMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1593,21 +1726,21 @@ public final class HarborOuterClass {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>optional .MessageType type = 1;</code>
-     *
      * <pre>
      * msg type
      * </pre>
+     *
+     * <code>optional .MessageType type = 1;</code>
      */
     public com.gg.core.harbor.protocol.HarborOuterClass.MessageType getType() {
       com.gg.core.harbor.protocol.HarborOuterClass.MessageType result = com.gg.core.harbor.protocol.HarborOuterClass.MessageType.valueOf(type_);
@@ -1617,11 +1750,11 @@ public final class HarborOuterClass {
     public static final int SID_FIELD_NUMBER = 2;
     private int sid_;
     /**
-     * <code>optional int32 sid = 2;</code>
-     *
      * <pre>
      * session id
      * </pre>
+     *
+     * <code>optional int32 sid = 2;</code>
      */
     public int getSid() {
       return sid_;
@@ -1630,11 +1763,11 @@ public final class HarborOuterClass {
     public static final int RID_FIELD_NUMBER = 3;
     private int rid_;
     /**
-     * <code>optional int32 rid = 3;</code>
-     *
      * <pre>
      * request id
      * </pre>
+     *
+     * <code>optional int32 rid = 3;</code>
      */
     public int getRid() {
       return rid_;
@@ -1776,10 +1909,10 @@ public final class HarborOuterClass {
         output.writeMessage(4, getSource());
       }
       if (!getInstanceBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 5, instance_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, instance_);
       }
       if (!getMethodBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 6, method_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, method_);
       }
       for (int i = 0; i < payload_.size(); i++) {
         output.writeBytes(7, payload_.get(i));
@@ -1808,10 +1941,10 @@ public final class HarborOuterClass {
           .computeMessageSize(4, getSource());
       }
       if (!getInstanceBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, instance_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, instance_);
       }
       if (!getMethodBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(6, method_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, method_);
       }
       {
         int dataSize = 0;
@@ -1827,6 +1960,66 @@ public final class HarborOuterClass {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage)) {
+        return super.equals(obj);
+      }
+      com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage other = (com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage) obj;
+
+      boolean result = true;
+      result = result && type_ == other.type_;
+      result = result && (getSid()
+          == other.getSid());
+      result = result && (getRid()
+          == other.getRid());
+      result = result && (hasSource() == other.hasSource());
+      if (hasSource()) {
+        result = result && getSource()
+            .equals(other.getSource());
+      }
+      result = result && getInstance()
+          .equals(other.getInstance());
+      result = result && getMethod()
+          .equals(other.getMethod());
+      result = result && getPayloadList()
+          .equals(other.getPayloadList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      hash = (37 * hash) + SID_FIELD_NUMBER;
+      hash = (53 * hash) + getSid();
+      hash = (37 * hash) + RID_FIELD_NUMBER;
+      hash = (53 * hash) + getRid();
+      if (hasSource()) {
+        hash = (37 * hash) + SOURCE_FIELD_NUMBER;
+        hash = (53 * hash) + getSource().hashCode();
+      }
+      hash = (37 * hash) + INSTANCE_FIELD_NUMBER;
+      hash = (53 * hash) + getInstance().hashCode();
+      hash = (37 * hash) + METHOD_FIELD_NUMBER;
+      hash = (53 * hash) + getMethod().hashCode();
+      if (getPayloadCount() > 0) {
+        hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
+        hash = (53 * hash) + getPayloadList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1850,34 +2043,40 @@ public final class HarborOuterClass {
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -1894,7 +2093,7 @@ public final class HarborOuterClass {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1902,7 +2101,7 @@ public final class HarborOuterClass {
      * Protobuf type {@code HarborMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:HarborMessage)
         com.gg.core.harbor.protocol.HarborOuterClass.HarborMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1910,7 +2109,7 @@ public final class HarborOuterClass {
         return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HarborMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.gg.core.harbor.protocol.HarborOuterClass.internal_static_HarborMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1923,12 +2122,13 @@ public final class HarborOuterClass {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1995,6 +2195,32 @@ public final class HarborOuterClass {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage) {
           return mergeFrom((com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage)other);
@@ -2053,7 +2279,7 @@ public final class HarborOuterClass {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.gg.core.harbor.protocol.HarborOuterClass.HarborMessage) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -2065,21 +2291,21 @@ public final class HarborOuterClass {
 
       private int type_ = 0;
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public Builder setTypeValue(int value) {
         type_ = value;
@@ -2087,22 +2313,22 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public com.gg.core.harbor.protocol.HarborOuterClass.MessageType getType() {
         com.gg.core.harbor.protocol.HarborOuterClass.MessageType result = com.gg.core.harbor.protocol.HarborOuterClass.MessageType.valueOf(type_);
         return result == null ? com.gg.core.harbor.protocol.HarborOuterClass.MessageType.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public Builder setType(com.gg.core.harbor.protocol.HarborOuterClass.MessageType value) {
         if (value == null) {
@@ -2114,11 +2340,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional .MessageType type = 1;</code>
-       *
        * <pre>
        * msg type
        * </pre>
+       *
+       * <code>optional .MessageType type = 1;</code>
        */
       public Builder clearType() {
         
@@ -2129,21 +2355,21 @@ public final class HarborOuterClass {
 
       private int sid_ ;
       /**
-       * <code>optional int32 sid = 2;</code>
-       *
        * <pre>
        * session id
        * </pre>
+       *
+       * <code>optional int32 sid = 2;</code>
        */
       public int getSid() {
         return sid_;
       }
       /**
-       * <code>optional int32 sid = 2;</code>
-       *
        * <pre>
        * session id
        * </pre>
+       *
+       * <code>optional int32 sid = 2;</code>
        */
       public Builder setSid(int value) {
         
@@ -2152,11 +2378,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 sid = 2;</code>
-       *
        * <pre>
        * session id
        * </pre>
+       *
+       * <code>optional int32 sid = 2;</code>
        */
       public Builder clearSid() {
         
@@ -2167,21 +2393,21 @@ public final class HarborOuterClass {
 
       private int rid_ ;
       /**
-       * <code>optional int32 rid = 3;</code>
-       *
        * <pre>
        * request id
        * </pre>
+       *
+       * <code>optional int32 rid = 3;</code>
        */
       public int getRid() {
         return rid_;
       }
       /**
-       * <code>optional int32 rid = 3;</code>
-       *
        * <pre>
        * request id
        * </pre>
+       *
+       * <code>optional int32 rid = 3;</code>
        */
       public Builder setRid(int value) {
         
@@ -2190,11 +2416,11 @@ public final class HarborOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 rid = 3;</code>
-       *
        * <pre>
        * request id
        * </pre>
+       *
+       * <code>optional int32 rid = 3;</code>
        */
       public Builder clearRid() {
         
@@ -2204,7 +2430,7 @@ public final class HarborOuterClass {
       }
 
       private com.gg.core.harbor.protocol.HarborOuterClass.Service source_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           com.gg.core.harbor.protocol.HarborOuterClass.Service, com.gg.core.harbor.protocol.HarborOuterClass.Service.Builder, com.gg.core.harbor.protocol.HarborOuterClass.ServiceOrBuilder> sourceBuilder_;
       /**
        * <code>optional .Service source = 4;</code>
@@ -2306,11 +2532,11 @@ public final class HarborOuterClass {
       /**
        * <code>optional .Service source = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           com.gg.core.harbor.protocol.HarborOuterClass.Service, com.gg.core.harbor.protocol.HarborOuterClass.Service.Builder, com.gg.core.harbor.protocol.HarborOuterClass.ServiceOrBuilder> 
           getSourceFieldBuilder() {
         if (sourceBuilder_ == null) {
-          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          sourceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.gg.core.harbor.protocol.HarborOuterClass.Service, com.gg.core.harbor.protocol.HarborOuterClass.Service.Builder, com.gg.core.harbor.protocol.HarborOuterClass.ServiceOrBuilder>(
                   getSource(),
                   getParentForChildren(),
@@ -2559,16 +2785,7 @@ public final class HarborOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        try {
           return new HarborMessage(input, extensionRegistry);
-        } catch (RuntimeException e) {
-          if (e.getCause() instanceof
-              com.google.protobuf.InvalidProtocolBufferException) {
-            throw (com.google.protobuf.InvalidProtocolBufferException)
-                e.getCause();
-          }
-          throw e;
-        }
       }
     };
 
@@ -2587,27 +2804,27 @@ public final class HarborOuterClass {
 
   }
 
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Service_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Service_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_HandshakeMessage_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_HandshakeMessage_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_HarborMessage_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_HarborMessage_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -2638,19 +2855,19 @@ public final class HarborOuterClass {
     internal_static_Service_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_Service_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Service_descriptor,
         new java.lang.String[] { "Name", "Host", "Port", });
     internal_static_HandshakeMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_HandshakeMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HandshakeMessage_descriptor,
         new java.lang.String[] { "Source", });
     internal_static_HarborMessage_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_HarborMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HarborMessage_descriptor,
         new java.lang.String[] { "Type", "Sid", "Rid", "Source", "Instance", "Method", "Payload", });
   }

@@ -40,6 +40,9 @@ subprojects {
                 'com.google.guava:guava:bundle:19.0',
                 'com.esotericsoftware:kryo:3.0.3',
                 'org.apache.zookeeper:zookeeper:3.4.8',
+                'com.google.protobuf:protobuf-java:3.0.0',
+                'com.google.protobuf:protobuf-java-util:3.0.0',
+                'io.netty:netty-all:4.0.36.Final',
         )
 
         testCompile 'junit:junit:4.12'
