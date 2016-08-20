@@ -1,4 +1,3 @@
-// 暂时废弃
 syntax = "proto3";
 
 package com.gg.core.net.codec;

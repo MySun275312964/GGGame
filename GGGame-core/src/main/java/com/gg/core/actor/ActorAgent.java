@@ -14,11 +14,14 @@ public class ActorAgent implements InvocationHandler {
     private ActorBase self;
     private ActorRef remote;
 
+    public ActorAgent(ActorRef remote) {
+        this(null, remote);
+    }
+
     public ActorAgent(ActorBase self, ActorRef remote) {
         this.self = self;
         this.remote = remote;
-        // TODO ... 可以允许 self 为空
-        if (self == null || remote == null) {
+        if (remote == null) {
             throw new RuntimeException("ActorRef can not be null.");
         }
     }

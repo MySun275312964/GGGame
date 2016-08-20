@@ -36,6 +36,9 @@ public class ActorSystem {
 
     private ActorHarbor harbor;
 
+    private SystemActor systemActor;
+    private ActorRef systemActorRef;
+
     public ActorSystem(String name) {
         this(name, Runtime.getRuntime().availableProcessors());
     }
@@ -47,11 +50,25 @@ public class ActorSystem {
     public ActorSystem(String name, int parallelism) {
         this.name = name;
         workPool = new ForkJoinPool(parallelism);
+        initSystemActor();
         // workPool = Executors.newSingleThreadExecutor();
     }
 
     public void emit(ActorBase actor) {
         workPool.execute(actor);
+    }
+
+    private synchronized void initSystemActor() {
+        systemActor = new SystemActor(this);
+        systemActorRef = actor("SystemActor", systemActor);
+    }
+
+    public ActorRef getSystemActorRef() {
+        return systemActorRef;
+    }
+
+    public ActorBase getSystemActor() {
+        return systemActor;
     }
 
     public ActorRef actor(String name, ActorBase actor) {
@@ -163,5 +180,11 @@ public class ActorSystem {
 
     public String getName() {
         return name;
+    }
+
+    private static final class SystemActor extends ActorBase {
+        public SystemActor(ActorSystem system) {
+            super(system);
+        }
     }
 }

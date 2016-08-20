@@ -14,7 +14,11 @@ import io.netty.util.Attribute;
 public class GameServerHandler extends SimpleChannelInboundHandler<Net.Request> {
     private static final GGLogger logger = GGLogger.getLogger(GameServerHandler.class);
 
-    private IMsgDispatch defaultDispatch = GameNetServer.getInstance().getDefaultDispatch();
+    private IMsgDispatch defaultDispatch;
+
+    public GameServerHandler(IMsgDispatch dispatch) {
+        this.defaultDispatch = dispatch;
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Net.Request msg) throws Exception {
@@ -24,6 +28,6 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.Request> 
         if (dispatch == null) {
             dispatch = defaultDispatch;
         }
-        dispatch.process(msg);
+        dispatch.process(ctx, msg);
     }
 }

@@ -22,26 +22,16 @@ import static com.gg.common.Constants.Net.RPC_TIMEOUT;
  * Created by guofeng.qin on 2016/7/4.
  */
 public class GameNetServer {
-    private GameNetServer() {}
-
-    private static final class Holder {
-        private static final GameNetServer Instance = new GameNetServer();
-    }
-
-    public static GameNetServer getInstance() {
-        return Holder.Instance;
-    }
-
     private GameNetConfig config;
     private IMsgDispatch defaultDispatch;
 
-    public void init(GameNetConfig config, IMsgDispatch dispatch) {
-        this.config = config;
-        this.defaultDispatch = dispatch;
+    public GameNetServer(GameNetConfig config, IMsgDispatch dispatch) {
+        init(config, dispatch);
     }
 
-    public IMsgDispatch getDefaultDispatch() {
-        return defaultDispatch;
+    private void init(GameNetConfig config, IMsgDispatch dispatch) {
+        this.config = config;
+        this.defaultDispatch = dispatch;
     }
 
     public ChannelFuture bind(String host, int port) {
@@ -59,7 +49,7 @@ public class GameNetServer {
                         pipeline.addLast(new LengthFieldPrepender(DefaultHeadLength));
                         pipeline.addLast(new StringEncoder());
                         pipeline.addLast(new NetMessageEncoder());
-                        pipeline.addLast(new GameServerHandler());
+                        pipeline.addLast(new GameServerHandler(defaultDispatch));
                     }
                 }).option(ChannelOption.SO_BACKLOG, 256).option(ChannelOption.SO_BACKLOG, 256)
                 .option(ChannelOption.SO_REUSEADDR, true).option(ChannelOption.TCP_NODELAY, true)
