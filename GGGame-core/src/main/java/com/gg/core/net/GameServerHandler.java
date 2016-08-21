@@ -39,7 +39,15 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.NetMessag
                 JsonFormat.Parser jsonParser = JsonFormat.parser();
                 jsonParser.merge(msg.getPayload().toStringUtf8(), reqBuilder);
                 Net.Request request = reqBuilder.build();
-                dispatch.process(ctx, request, callback);
+                try {
+                    dispatch.process(ctx, request, callback);
+                } catch (Throwable throwable) {
+                    logger.error("Error: ", throwable);
+                    if (callback.doResponse()) {
+                        Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.ERROR).setPayload(ByteString.copyFromUtf8(throwable.getMessage())).build();
+                        ctx.writeAndFlush(netMessage);
+                    }
+                }
                 break;
             default:
                 Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.UNRECOGNIZED).setPayload(ByteString.EMPTY).build();
