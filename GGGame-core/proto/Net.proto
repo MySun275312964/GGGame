@@ -6,17 +6,15 @@ option java_package = "com.gg.core.net.codec";
 option java_outer_classname = "Net";
 
 message Request {
-    int32 index = 1;
-    string instance = 2;
-    string method = 3;
-    bytes payload = 4;
+    string instance = 1;
+    string method = 2;
+    bytes payload = 3;
 };
 
 message Response {
-    int32 index = 1;
-    string name = 2;
-    bytes result = 3;
-    bytes error = 4;
+    string name = 1;
+    bytes result = 2;
+    bytes error = 3;
 };
 
 message ErrorMessage {
@@ -31,9 +29,11 @@ enum MessageType {
     RESPONSE = 2;
     DISCONNECT = 3;
     DESTROY = 4;
-}
+    ERROR = 5;
+};
 
 message NetMessage {
     MessageType type = 1;
-    bytes payload = 2;
-}
+    int32 index = 2;
+    bytes payload = 3;
+};

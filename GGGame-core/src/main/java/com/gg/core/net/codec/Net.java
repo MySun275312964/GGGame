@@ -39,6 +39,10 @@ public final class Net {
      * <code>DESTROY = 4;</code>
      */
     DESTROY(4),
+    /**
+     * <code>ERROR = 5;</code>
+     */
+    ERROR(5),
     UNRECOGNIZED(-1),
     ;
 
@@ -62,6 +66,10 @@ public final class Net {
      * <code>DESTROY = 4;</code>
      */
     public static final int DESTROY_VALUE = 4;
+    /**
+     * <code>ERROR = 5;</code>
+     */
+    public static final int ERROR_VALUE = 5;
 
 
     public final int getNumber() {
@@ -87,6 +95,7 @@ public final class Net {
         case 2: return RESPONSE;
         case 3: return DISCONNECT;
         case 4: return DESTROY;
+        case 5: return ERROR;
         default: return null;
       }
     }
@@ -144,32 +153,27 @@ public final class Net {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int32 index = 1;</code>
-     */
-    int getIndex();
-
-    /**
-     * <code>optional string instance = 2;</code>
+     * <code>optional string instance = 1;</code>
      */
     java.lang.String getInstance();
     /**
-     * <code>optional string instance = 2;</code>
+     * <code>optional string instance = 1;</code>
      */
     com.google.protobuf.ByteString
         getInstanceBytes();
 
     /**
-     * <code>optional string method = 3;</code>
+     * <code>optional string method = 2;</code>
      */
     java.lang.String getMethod();
     /**
-     * <code>optional string method = 3;</code>
+     * <code>optional string method = 2;</code>
      */
     com.google.protobuf.ByteString
         getMethodBytes();
 
     /**
-     * <code>optional bytes payload = 4;</code>
+     * <code>optional bytes payload = 3;</code>
      */
     com.google.protobuf.ByteString getPayload();
   }
@@ -185,7 +189,6 @@ public final class Net {
       super(builder);
     }
     private Request() {
-      index_ = 0;
       instance_ = "";
       method_ = "";
       payload_ = com.google.protobuf.ByteString.EMPTY;
@@ -216,24 +219,19 @@ public final class Net {
               }
               break;
             }
-            case 8: {
-
-              index_ = input.readInt32();
-              break;
-            }
-            case 18: {
+            case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
               instance_ = s;
               break;
             }
-            case 26: {
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               method_ = s;
               break;
             }
-            case 34: {
+            case 26: {
 
               payload_ = input.readBytes();
               break;
@@ -261,19 +259,10 @@ public final class Net {
               com.gg.core.net.codec.Net.Request.class, com.gg.core.net.codec.Net.Request.Builder.class);
     }
 
-    public static final int INDEX_FIELD_NUMBER = 1;
-    private int index_;
-    /**
-     * <code>optional int32 index = 1;</code>
-     */
-    public int getIndex() {
-      return index_;
-    }
-
-    public static final int INSTANCE_FIELD_NUMBER = 2;
+    public static final int INSTANCE_FIELD_NUMBER = 1;
     private volatile java.lang.Object instance_;
     /**
-     * <code>optional string instance = 2;</code>
+     * <code>optional string instance = 1;</code>
      */
     public java.lang.String getInstance() {
       java.lang.Object ref = instance_;
@@ -288,7 +277,7 @@ public final class Net {
       }
     }
     /**
-     * <code>optional string instance = 2;</code>
+     * <code>optional string instance = 1;</code>
      */
     public com.google.protobuf.ByteString
         getInstanceBytes() {
@@ -304,10 +293,10 @@ public final class Net {
       }
     }
 
-    public static final int METHOD_FIELD_NUMBER = 3;
+    public static final int METHOD_FIELD_NUMBER = 2;
     private volatile java.lang.Object method_;
     /**
-     * <code>optional string method = 3;</code>
+     * <code>optional string method = 2;</code>
      */
     public java.lang.String getMethod() {
       java.lang.Object ref = method_;
@@ -322,7 +311,7 @@ public final class Net {
       }
     }
     /**
-     * <code>optional string method = 3;</code>
+     * <code>optional string method = 2;</code>
      */
     public com.google.protobuf.ByteString
         getMethodBytes() {
@@ -338,10 +327,10 @@ public final class Net {
       }
     }
 
-    public static final int PAYLOAD_FIELD_NUMBER = 4;
+    public static final int PAYLOAD_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString payload_;
     /**
-     * <code>optional bytes payload = 4;</code>
+     * <code>optional bytes payload = 3;</code>
      */
     public com.google.protobuf.ByteString getPayload() {
       return payload_;
@@ -359,17 +348,14 @@ public final class Net {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (index_ != 0) {
-        output.writeInt32(1, index_);
-      }
       if (!getInstanceBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, instance_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, instance_);
       }
       if (!getMethodBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, method_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, method_);
       }
       if (!payload_.isEmpty()) {
-        output.writeBytes(4, payload_);
+        output.writeBytes(3, payload_);
       }
     }
 
@@ -378,19 +364,15 @@ public final class Net {
       if (size != -1) return size;
 
       size = 0;
-      if (index_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, index_);
-      }
       if (!getInstanceBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, instance_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, instance_);
       }
       if (!getMethodBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, method_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, method_);
       }
       if (!payload_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, payload_);
+          .computeBytesSize(3, payload_);
       }
       memoizedSize = size;
       return size;
@@ -408,8 +390,6 @@ public final class Net {
       com.gg.core.net.codec.Net.Request other = (com.gg.core.net.codec.Net.Request) obj;
 
       boolean result = true;
-      result = result && (getIndex()
-          == other.getIndex());
       result = result && getInstance()
           .equals(other.getInstance());
       result = result && getMethod()
@@ -426,8 +406,6 @@ public final class Net {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + INDEX_FIELD_NUMBER;
-      hash = (53 * hash) + getIndex();
       hash = (37 * hash) + INSTANCE_FIELD_NUMBER;
       hash = (53 * hash) + getInstance().hashCode();
       hash = (37 * hash) + METHOD_FIELD_NUMBER;
@@ -552,8 +530,6 @@ public final class Net {
       }
       public Builder clear() {
         super.clear();
-        index_ = 0;
-
         instance_ = "";
 
         method_ = "";
@@ -582,7 +558,6 @@ public final class Net {
 
       public com.gg.core.net.codec.Net.Request buildPartial() {
         com.gg.core.net.codec.Net.Request result = new com.gg.core.net.codec.Net.Request(this);
-        result.index_ = index_;
         result.instance_ = instance_;
         result.method_ = method_;
         result.payload_ = payload_;
@@ -627,9 +602,6 @@ public final class Net {
 
       public Builder mergeFrom(com.gg.core.net.codec.Net.Request other) {
         if (other == com.gg.core.net.codec.Net.Request.getDefaultInstance()) return this;
-        if (other.getIndex() != 0) {
-          setIndex(other.getIndex());
-        }
         if (!other.getInstance().isEmpty()) {
           instance_ = other.instance_;
           onChanged();
@@ -667,35 +639,9 @@ public final class Net {
         return this;
       }
 
-      private int index_ ;
-      /**
-       * <code>optional int32 index = 1;</code>
-       */
-      public int getIndex() {
-        return index_;
-      }
-      /**
-       * <code>optional int32 index = 1;</code>
-       */
-      public Builder setIndex(int value) {
-        
-        index_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 index = 1;</code>
-       */
-      public Builder clearIndex() {
-        
-        index_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object instance_ = "";
       /**
-       * <code>optional string instance = 2;</code>
+       * <code>optional string instance = 1;</code>
        */
       public java.lang.String getInstance() {
         java.lang.Object ref = instance_;
@@ -710,7 +656,7 @@ public final class Net {
         }
       }
       /**
-       * <code>optional string instance = 2;</code>
+       * <code>optional string instance = 1;</code>
        */
       public com.google.protobuf.ByteString
           getInstanceBytes() {
@@ -726,7 +672,7 @@ public final class Net {
         }
       }
       /**
-       * <code>optional string instance = 2;</code>
+       * <code>optional string instance = 1;</code>
        */
       public Builder setInstance(
           java.lang.String value) {
@@ -739,7 +685,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional string instance = 2;</code>
+       * <code>optional string instance = 1;</code>
        */
       public Builder clearInstance() {
         
@@ -748,7 +694,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional string instance = 2;</code>
+       * <code>optional string instance = 1;</code>
        */
       public Builder setInstanceBytes(
           com.google.protobuf.ByteString value) {
@@ -764,7 +710,7 @@ public final class Net {
 
       private java.lang.Object method_ = "";
       /**
-       * <code>optional string method = 3;</code>
+       * <code>optional string method = 2;</code>
        */
       public java.lang.String getMethod() {
         java.lang.Object ref = method_;
@@ -779,7 +725,7 @@ public final class Net {
         }
       }
       /**
-       * <code>optional string method = 3;</code>
+       * <code>optional string method = 2;</code>
        */
       public com.google.protobuf.ByteString
           getMethodBytes() {
@@ -795,7 +741,7 @@ public final class Net {
         }
       }
       /**
-       * <code>optional string method = 3;</code>
+       * <code>optional string method = 2;</code>
        */
       public Builder setMethod(
           java.lang.String value) {
@@ -808,7 +754,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional string method = 3;</code>
+       * <code>optional string method = 2;</code>
        */
       public Builder clearMethod() {
         
@@ -817,7 +763,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional string method = 3;</code>
+       * <code>optional string method = 2;</code>
        */
       public Builder setMethodBytes(
           com.google.protobuf.ByteString value) {
@@ -833,13 +779,13 @@ public final class Net {
 
       private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes payload = 4;</code>
+       * <code>optional bytes payload = 3;</code>
        */
       public com.google.protobuf.ByteString getPayload() {
         return payload_;
       }
       /**
-       * <code>optional bytes payload = 4;</code>
+       * <code>optional bytes payload = 3;</code>
        */
       public Builder setPayload(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -851,7 +797,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes payload = 4;</code>
+       * <code>optional bytes payload = 3;</code>
        */
       public Builder clearPayload() {
         
@@ -913,27 +859,22 @@ public final class Net {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int32 index = 1;</code>
-     */
-    int getIndex();
-
-    /**
-     * <code>optional string name = 2;</code>
+     * <code>optional string name = 1;</code>
      */
     java.lang.String getName();
     /**
-     * <code>optional string name = 2;</code>
+     * <code>optional string name = 1;</code>
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
-     * <code>optional bytes result = 3;</code>
+     * <code>optional bytes result = 2;</code>
      */
     com.google.protobuf.ByteString getResult();
 
     /**
-     * <code>optional bytes error = 4;</code>
+     * <code>optional bytes error = 3;</code>
      */
     com.google.protobuf.ByteString getError();
   }
@@ -949,7 +890,6 @@ public final class Net {
       super(builder);
     }
     private Response() {
-      index_ = 0;
       name_ = "";
       result_ = com.google.protobuf.ByteString.EMPTY;
       error_ = com.google.protobuf.ByteString.EMPTY;
@@ -980,23 +920,18 @@ public final class Net {
               }
               break;
             }
-            case 8: {
-
-              index_ = input.readInt32();
-              break;
-            }
-            case 18: {
+            case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
               break;
             }
-            case 26: {
+            case 18: {
 
               result_ = input.readBytes();
               break;
             }
-            case 34: {
+            case 26: {
 
               error_ = input.readBytes();
               break;
@@ -1024,19 +959,10 @@ public final class Net {
               com.gg.core.net.codec.Net.Response.class, com.gg.core.net.codec.Net.Response.Builder.class);
     }
 
-    public static final int INDEX_FIELD_NUMBER = 1;
-    private int index_;
-    /**
-     * <code>optional int32 index = 1;</code>
-     */
-    public int getIndex() {
-      return index_;
-    }
-
-    public static final int NAME_FIELD_NUMBER = 2;
+    public static final int NAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object name_;
     /**
-     * <code>optional string name = 2;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -1051,7 +977,7 @@ public final class Net {
       }
     }
     /**
-     * <code>optional string name = 2;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -1067,19 +993,19 @@ public final class Net {
       }
     }
 
-    public static final int RESULT_FIELD_NUMBER = 3;
+    public static final int RESULT_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString result_;
     /**
-     * <code>optional bytes result = 3;</code>
+     * <code>optional bytes result = 2;</code>
      */
     public com.google.protobuf.ByteString getResult() {
       return result_;
     }
 
-    public static final int ERROR_FIELD_NUMBER = 4;
+    public static final int ERROR_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString error_;
     /**
-     * <code>optional bytes error = 4;</code>
+     * <code>optional bytes error = 3;</code>
      */
     public com.google.protobuf.ByteString getError() {
       return error_;
@@ -1097,17 +1023,14 @@ public final class Net {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (index_ != 0) {
-        output.writeInt32(1, index_);
-      }
       if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       if (!result_.isEmpty()) {
-        output.writeBytes(3, result_);
+        output.writeBytes(2, result_);
       }
       if (!error_.isEmpty()) {
-        output.writeBytes(4, error_);
+        output.writeBytes(3, error_);
       }
     }
 
@@ -1116,20 +1039,16 @@ public final class Net {
       if (size != -1) return size;
 
       size = 0;
-      if (index_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, index_);
-      }
       if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
       if (!result_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, result_);
+          .computeBytesSize(2, result_);
       }
       if (!error_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, error_);
+          .computeBytesSize(3, error_);
       }
       memoizedSize = size;
       return size;
@@ -1147,8 +1066,6 @@ public final class Net {
       com.gg.core.net.codec.Net.Response other = (com.gg.core.net.codec.Net.Response) obj;
 
       boolean result = true;
-      result = result && (getIndex()
-          == other.getIndex());
       result = result && getName()
           .equals(other.getName());
       result = result && getResult()
@@ -1165,8 +1082,6 @@ public final class Net {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + INDEX_FIELD_NUMBER;
-      hash = (53 * hash) + getIndex();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + RESULT_FIELD_NUMBER;
@@ -1291,8 +1206,6 @@ public final class Net {
       }
       public Builder clear() {
         super.clear();
-        index_ = 0;
-
         name_ = "";
 
         result_ = com.google.protobuf.ByteString.EMPTY;
@@ -1321,7 +1234,6 @@ public final class Net {
 
       public com.gg.core.net.codec.Net.Response buildPartial() {
         com.gg.core.net.codec.Net.Response result = new com.gg.core.net.codec.Net.Response(this);
-        result.index_ = index_;
         result.name_ = name_;
         result.result_ = result_;
         result.error_ = error_;
@@ -1366,9 +1278,6 @@ public final class Net {
 
       public Builder mergeFrom(com.gg.core.net.codec.Net.Response other) {
         if (other == com.gg.core.net.codec.Net.Response.getDefaultInstance()) return this;
-        if (other.getIndex() != 0) {
-          setIndex(other.getIndex());
-        }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -1405,35 +1314,9 @@ public final class Net {
         return this;
       }
 
-      private int index_ ;
-      /**
-       * <code>optional int32 index = 1;</code>
-       */
-      public int getIndex() {
-        return index_;
-      }
-      /**
-       * <code>optional int32 index = 1;</code>
-       */
-      public Builder setIndex(int value) {
-        
-        index_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 index = 1;</code>
-       */
-      public Builder clearIndex() {
-        
-        index_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object name_ = "";
       /**
-       * <code>optional string name = 2;</code>
+       * <code>optional string name = 1;</code>
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -1448,7 +1331,7 @@ public final class Net {
         }
       }
       /**
-       * <code>optional string name = 2;</code>
+       * <code>optional string name = 1;</code>
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -1464,7 +1347,7 @@ public final class Net {
         }
       }
       /**
-       * <code>optional string name = 2;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder setName(
           java.lang.String value) {
@@ -1477,7 +1360,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional string name = 2;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder clearName() {
         
@@ -1486,7 +1369,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional string name = 2;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -1502,13 +1385,13 @@ public final class Net {
 
       private com.google.protobuf.ByteString result_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes result = 3;</code>
+       * <code>optional bytes result = 2;</code>
        */
       public com.google.protobuf.ByteString getResult() {
         return result_;
       }
       /**
-       * <code>optional bytes result = 3;</code>
+       * <code>optional bytes result = 2;</code>
        */
       public Builder setResult(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1520,7 +1403,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes result = 3;</code>
+       * <code>optional bytes result = 2;</code>
        */
       public Builder clearResult() {
         
@@ -1531,13 +1414,13 @@ public final class Net {
 
       private com.google.protobuf.ByteString error_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes error = 4;</code>
+       * <code>optional bytes error = 3;</code>
        */
       public com.google.protobuf.ByteString getError() {
         return error_;
       }
       /**
-       * <code>optional bytes error = 4;</code>
+       * <code>optional bytes error = 3;</code>
        */
       public Builder setError(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1549,7 +1432,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes error = 4;</code>
+       * <code>optional bytes error = 3;</code>
        */
       public Builder clearError() {
         
@@ -2252,7 +2135,12 @@ public final class Net {
     com.gg.core.net.codec.Net.MessageType getType();
 
     /**
-     * <code>optional bytes payload = 2;</code>
+     * <code>optional int32 index = 2;</code>
+     */
+    int getIndex();
+
+    /**
+     * <code>optional bytes payload = 3;</code>
      */
     com.google.protobuf.ByteString getPayload();
   }
@@ -2269,6 +2157,7 @@ public final class Net {
     }
     private NetMessage() {
       type_ = 0;
+      index_ = 0;
       payload_ = com.google.protobuf.ByteString.EMPTY;
     }
 
@@ -2303,7 +2192,12 @@ public final class Net {
               type_ = rawValue;
               break;
             }
-            case 18: {
+            case 16: {
+
+              index_ = input.readInt32();
+              break;
+            }
+            case 26: {
 
               payload_ = input.readBytes();
               break;
@@ -2347,10 +2241,19 @@ public final class Net {
       return result == null ? com.gg.core.net.codec.Net.MessageType.UNRECOGNIZED : result;
     }
 
-    public static final int PAYLOAD_FIELD_NUMBER = 2;
+    public static final int INDEX_FIELD_NUMBER = 2;
+    private int index_;
+    /**
+     * <code>optional int32 index = 2;</code>
+     */
+    public int getIndex() {
+      return index_;
+    }
+
+    public static final int PAYLOAD_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString payload_;
     /**
-     * <code>optional bytes payload = 2;</code>
+     * <code>optional bytes payload = 3;</code>
      */
     public com.google.protobuf.ByteString getPayload() {
       return payload_;
@@ -2371,8 +2274,11 @@ public final class Net {
       if (type_ != com.gg.core.net.codec.Net.MessageType.CONNECT.getNumber()) {
         output.writeEnum(1, type_);
       }
+      if (index_ != 0) {
+        output.writeInt32(2, index_);
+      }
       if (!payload_.isEmpty()) {
-        output.writeBytes(2, payload_);
+        output.writeBytes(3, payload_);
       }
     }
 
@@ -2385,9 +2291,13 @@ public final class Net {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
+      if (index_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, index_);
+      }
       if (!payload_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, payload_);
+          .computeBytesSize(3, payload_);
       }
       memoizedSize = size;
       return size;
@@ -2406,6 +2316,8 @@ public final class Net {
 
       boolean result = true;
       result = result && type_ == other.type_;
+      result = result && (getIndex()
+          == other.getIndex());
       result = result && getPayload()
           .equals(other.getPayload());
       return result;
@@ -2420,6 +2332,8 @@ public final class Net {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
+      hash = (37 * hash) + INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getIndex();
       hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
       hash = (53 * hash) + getPayload().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -2542,6 +2456,8 @@ public final class Net {
         super.clear();
         type_ = 0;
 
+        index_ = 0;
+
         payload_ = com.google.protobuf.ByteString.EMPTY;
 
         return this;
@@ -2567,6 +2483,7 @@ public final class Net {
       public com.gg.core.net.codec.Net.NetMessage buildPartial() {
         com.gg.core.net.codec.Net.NetMessage result = new com.gg.core.net.codec.Net.NetMessage(this);
         result.type_ = type_;
+        result.index_ = index_;
         result.payload_ = payload_;
         onBuilt();
         return result;
@@ -2611,6 +2528,9 @@ public final class Net {
         if (other == com.gg.core.net.codec.Net.NetMessage.getDefaultInstance()) return this;
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
+        }
+        if (other.getIndex() != 0) {
+          setIndex(other.getIndex());
         }
         if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
           setPayload(other.getPayload());
@@ -2685,15 +2605,41 @@ public final class Net {
         return this;
       }
 
+      private int index_ ;
+      /**
+       * <code>optional int32 index = 2;</code>
+       */
+      public int getIndex() {
+        return index_;
+      }
+      /**
+       * <code>optional int32 index = 2;</code>
+       */
+      public Builder setIndex(int value) {
+        
+        index_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 index = 2;</code>
+       */
+      public Builder clearIndex() {
+        
+        index_ = 0;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes payload = 2;</code>
+       * <code>optional bytes payload = 3;</code>
        */
       public com.google.protobuf.ByteString getPayload() {
         return payload_;
       }
       /**
-       * <code>optional bytes payload = 2;</code>
+       * <code>optional bytes payload = 3;</code>
        */
       public Builder setPayload(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -2705,7 +2651,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes payload = 2;</code>
+       * <code>optional bytes payload = 3;</code>
        */
       public Builder clearPayload() {
         
@@ -2791,18 +2737,18 @@ public final class Net {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tNet.proto\022\025com.gg.core.net.codec\"K\n\007Re" +
-      "quest\022\r\n\005index\030\001 \001(\005\022\020\n\010instance\030\002 \001(\t\022\016" +
-      "\n\006method\030\003 \001(\t\022\017\n\007payload\030\004 \001(\014\"F\n\010Respo" +
-      "nse\022\r\n\005index\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\016\n\006resu" +
-      "lt\030\003 \001(\014\022\r\n\005error\030\004 \001(\014\";\n\014ErrorMessage\022" +
-      "\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\022\014\n\004data\030\003" +
-      " \001(\014\"O\n\nNetMessage\0220\n\004type\030\001 \001(\0162\".com.g" +
-      "g.core.net.codec.MessageType\022\017\n\007payload\030" +
-      "\002 \001(\014*R\n\013MessageType\022\013\n\007CONNECT\020\000\022\013\n\007REQ" +
-      "UEST\020\001\022\014\n\010RESPONSE\020\002\022\016\n\nDISCONNECT\020\003\022\013\n\007",
-      "DESTROY\020\004B\034\n\025com.gg.core.net.codecB\003Netb" +
-      "\006proto3"
+      "\n\tNet.proto\022\025com.gg.core.net.codec\"<\n\007Re" +
+      "quest\022\020\n\010instance\030\001 \001(\t\022\016\n\006method\030\002 \001(\t\022" +
+      "\017\n\007payload\030\003 \001(\014\"7\n\010Response\022\014\n\004name\030\001 \001" +
+      "(\t\022\016\n\006result\030\002 \001(\014\022\r\n\005error\030\003 \001(\014\";\n\014Err" +
+      "orMessage\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t" +
+      "\022\014\n\004data\030\003 \001(\014\"^\n\nNetMessage\0220\n\004type\030\001 \001" +
+      "(\0162\".com.gg.core.net.codec.MessageType\022\r" +
+      "\n\005index\030\002 \001(\005\022\017\n\007payload\030\003 \001(\014*]\n\013Messag" +
+      "eType\022\013\n\007CONNECT\020\000\022\013\n\007REQUEST\020\001\022\014\n\010RESPO" +
+      "NSE\020\002\022\016\n\nDISCONNECT\020\003\022\013\n\007DESTROY\020\004\022\t\n\005ER",
+      "ROR\020\005B\034\n\025com.gg.core.net.codecB\003Netb\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2821,13 +2767,13 @@ public final class Net {
     internal_static_com_gg_core_net_codec_Request_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_core_net_codec_Request_descriptor,
-        new java.lang.String[] { "Index", "Instance", "Method", "Payload", });
+        new java.lang.String[] { "Instance", "Method", "Payload", });
     internal_static_com_gg_core_net_codec_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_gg_core_net_codec_Response_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_core_net_codec_Response_descriptor,
-        new java.lang.String[] { "Index", "Name", "Result", "Error", });
+        new java.lang.String[] { "Name", "Result", "Error", });
     internal_static_com_gg_core_net_codec_ErrorMessage_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_com_gg_core_net_codec_ErrorMessage_fieldAccessorTable = new
@@ -2839,7 +2785,7 @@ public final class Net {
     internal_static_com_gg_core_net_codec_NetMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_core_net_codec_NetMessage_descriptor,
-        new java.lang.String[] { "Type", "Payload", });
+        new java.lang.String[] { "Type", "Index", "Payload", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

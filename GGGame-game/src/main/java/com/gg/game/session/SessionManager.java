@@ -5,6 +5,8 @@ import com.gg.common.JsonHelper;
 import com.gg.core.actor.ActorBase;
 import com.gg.core.actor.ActorSystem;
 import com.gg.core.net.IMsgDispatch;
+import com.gg.core.net.NetPBCallback;
+import com.gg.core.net.NetPBHelper;
 import com.gg.core.net.codec.Net;
 import com.gg.game.proto.GameProto;
 import com.gg.game.proto.GameProto.ISessionManager;
@@ -18,6 +20,9 @@ import io.netty.channel.ChannelHandlerContext;
 public class SessionManager extends ActorBase implements IMsgDispatch {
     private static final GGLogger logger = GGLogger.getLogger(SessionManager.class);
 
+    private static final String InstanceName = "ISessionManager";
+    private static final String MethodName = "connect";
+
     private InnerSessionManager sessionManager;
 
     public SessionManager(ActorSystem system) {
@@ -26,15 +31,27 @@ public class SessionManager extends ActorBase implements IMsgDispatch {
     }
 
     @Override
-    public void process(ChannelHandlerContext ctx, Net.Request request) {
+    public void process(ChannelHandlerContext ctx, Net.Request request, RpcCallback callback) {
         logger.info("SessionManager process: {}.", JsonHelper.toJson(request));
+        if (!InstanceName.equals(request.getInstance()) || !MethodName.equals(request.getMethod())) {
+            logger.warn("wrong request, must send {}.{} first.", InstanceName, MethodName);
+            NetPBCallback.Helper.disconnect(ctx.channel());
+            return;
+        }
 
+        // parse ConnectRequest
+        GameProto.ConnectRequest.Builder builder = GameProto.ConnectRequest.newBuilder();
+        NetPBHelper.parseJson(request.getPayload().toStringUtf8(), builder);
+        GameProto.ConnectRequest connectRequest = builder.build();
+
+        sessionManager.connect(null, connectRequest, callback);
     }
 
     private static final class InnerSessionManager extends ISessionManager {
         @Override
         public void connect(RpcController controller, GameProto.ConnectRequest request, RpcCallback<GameProto.ConnectResponse> done) {
-
+            GameProto.ConnectResponse resp = GameProto.ConnectResponse.newBuilder().setCode(0).setMsg("success").build();
+            done.run(resp);
         }
     }
 }
