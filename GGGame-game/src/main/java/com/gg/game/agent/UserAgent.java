@@ -1,5 +1,6 @@
 package com.gg.game.agent;
 
+import com.gg.common.GGLogger;
 import com.gg.common.StringUtils;
 import com.gg.core.actor.ActorBase;
 import com.gg.core.actor.ActorSystem;
@@ -19,6 +20,7 @@ import java.util.function.Consumer;
  * Created by hunter on 2016/8/21.
  */
 public class UserAgent extends ActorBase implements IMsgDispatch {
+    private static final GGLogger logger = GGLogger.getLogger(UserAgent.class);
 
     private static List<Consumer<UserAgent>> registryRunners = new ArrayList<>();
 
@@ -85,6 +87,20 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
             throw new RuntimeException("Method not found.");
         }
         // TODO ... dispatch method...
+        Method func = funcEntry.method;
+        List<Object> paramList = new ArrayList<>();
+        paramList.add(null); // RpcController not support yet.
+        if (func.getParameterCount() > 0) {
+            Class<?> [] paramTypes = func.getParameterTypes();
+            // TODO ... deserialize payload ...
+        }
+        paramList.add(callback);
+        try {
+            func.invoke(funcEntry.instance, paramList.toArray(new Object[0]));
+        } catch (Exception e) {
+            logger.error("Method Invoke Error", e);
+            throw new RuntimeException(StringUtils.join(":", "Method Invoke Error", e.getMessage()));
+        }
     }
 
     private static final class FuncEntry {
