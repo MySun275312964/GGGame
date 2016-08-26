@@ -3,8 +3,8 @@
 
 package com.gg.game.proto;
 
-public final class GameProto {
-  private GameProto() {}
+public final class Test {
+  private Test() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -81,14 +81,14 @@ public final class GameProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestRequest_descriptor;
+      return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestRequest_fieldAccessorTable
+      return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.gg.game.proto.GameProto.TestRequest.class, com.gg.game.proto.GameProto.TestRequest.Builder.class);
+              com.gg.game.proto.Test.TestRequest.class, com.gg.game.proto.Test.TestRequest.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
@@ -136,10 +136,10 @@ public final class GameProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.gg.game.proto.GameProto.TestRequest)) {
+      if (!(obj instanceof com.gg.game.proto.Test.TestRequest)) {
         return super.equals(obj);
       }
-      com.gg.game.proto.GameProto.TestRequest other = (com.gg.game.proto.GameProto.TestRequest) obj;
+      com.gg.game.proto.Test.TestRequest other = (com.gg.game.proto.Test.TestRequest) obj;
 
       boolean result = true;
       result = result && (getCode()
@@ -161,58 +161,58 @@ public final class GameProto {
       return hash;
     }
 
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(
+    public static com.gg.game.proto.Test.TestRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(
+    public static com.gg.game.proto.Test.TestRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(byte[] data)
+    public static com.gg.game.proto.Test.TestRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(
+    public static com.gg.game.proto.Test.TestRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(java.io.InputStream input)
+    public static com.gg.game.proto.Test.TestRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(
+    public static com.gg.game.proto.Test.TestRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.gg.game.proto.Test.TestRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseDelimitedFrom(
+    public static com.gg.game.proto.Test.TestRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(
+    public static com.gg.game.proto.Test.TestRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.gg.game.proto.GameProto.TestRequest parseFrom(
+    public static com.gg.game.proto.Test.TestRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -224,7 +224,7 @@ public final class GameProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.gg.game.proto.GameProto.TestRequest prototype) {
+    public static Builder newBuilder(com.gg.game.proto.Test.TestRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -244,20 +244,20 @@ public final class GameProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.gg.game.proto.TestRequest)
-        com.gg.game.proto.GameProto.TestRequestOrBuilder {
+        com.gg.game.proto.Test.TestRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestRequest_descriptor;
+        return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestRequest_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestRequest_fieldAccessorTable
+        return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.gg.game.proto.GameProto.TestRequest.class, com.gg.game.proto.GameProto.TestRequest.Builder.class);
+                com.gg.game.proto.Test.TestRequest.class, com.gg.game.proto.Test.TestRequest.Builder.class);
       }
 
-      // Construct using com.gg.game.proto.GameProto.TestRequest.newBuilder()
+      // Construct using com.gg.game.proto.Test.TestRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -281,23 +281,23 @@ public final class GameProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestRequest_descriptor;
+        return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestRequest_descriptor;
       }
 
-      public com.gg.game.proto.GameProto.TestRequest getDefaultInstanceForType() {
-        return com.gg.game.proto.GameProto.TestRequest.getDefaultInstance();
+      public com.gg.game.proto.Test.TestRequest getDefaultInstanceForType() {
+        return com.gg.game.proto.Test.TestRequest.getDefaultInstance();
       }
 
-      public com.gg.game.proto.GameProto.TestRequest build() {
-        com.gg.game.proto.GameProto.TestRequest result = buildPartial();
+      public com.gg.game.proto.Test.TestRequest build() {
+        com.gg.game.proto.Test.TestRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.gg.game.proto.GameProto.TestRequest buildPartial() {
-        com.gg.game.proto.GameProto.TestRequest result = new com.gg.game.proto.GameProto.TestRequest(this);
+      public com.gg.game.proto.Test.TestRequest buildPartial() {
+        com.gg.game.proto.Test.TestRequest result = new com.gg.game.proto.Test.TestRequest(this);
         result.code_ = code_;
         onBuilt();
         return result;
@@ -330,16 +330,16 @@ public final class GameProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.gg.game.proto.GameProto.TestRequest) {
-          return mergeFrom((com.gg.game.proto.GameProto.TestRequest)other);
+        if (other instanceof com.gg.game.proto.Test.TestRequest) {
+          return mergeFrom((com.gg.game.proto.Test.TestRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.gg.game.proto.GameProto.TestRequest other) {
-        if (other == com.gg.game.proto.GameProto.TestRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.gg.game.proto.Test.TestRequest other) {
+        if (other == com.gg.game.proto.Test.TestRequest.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -355,11 +355,11 @@ public final class GameProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.gg.game.proto.GameProto.TestRequest parsedMessage = null;
+        com.gg.game.proto.Test.TestRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.gg.game.proto.GameProto.TestRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.gg.game.proto.Test.TestRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -409,12 +409,12 @@ public final class GameProto {
     }
 
     // @@protoc_insertion_point(class_scope:com.gg.game.proto.TestRequest)
-    private static final com.gg.game.proto.GameProto.TestRequest DEFAULT_INSTANCE;
+    private static final com.gg.game.proto.Test.TestRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.gg.game.proto.GameProto.TestRequest();
+      DEFAULT_INSTANCE = new com.gg.game.proto.Test.TestRequest();
     }
 
-    public static com.gg.game.proto.GameProto.TestRequest getDefaultInstance() {
+    public static com.gg.game.proto.Test.TestRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -437,7 +437,7 @@ public final class GameProto {
       return PARSER;
     }
 
-    public com.gg.game.proto.GameProto.TestRequest getDefaultInstanceForType() {
+    public com.gg.game.proto.Test.TestRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -510,14 +510,14 @@ public final class GameProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestResponse_descriptor;
+      return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestResponse_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestResponse_fieldAccessorTable
+      return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.gg.game.proto.GameProto.TestResponse.class, com.gg.game.proto.GameProto.TestResponse.Builder.class);
+              com.gg.game.proto.Test.TestResponse.class, com.gg.game.proto.Test.TestResponse.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 2;
@@ -565,10 +565,10 @@ public final class GameProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.gg.game.proto.GameProto.TestResponse)) {
+      if (!(obj instanceof com.gg.game.proto.Test.TestResponse)) {
         return super.equals(obj);
       }
-      com.gg.game.proto.GameProto.TestResponse other = (com.gg.game.proto.GameProto.TestResponse) obj;
+      com.gg.game.proto.Test.TestResponse other = (com.gg.game.proto.Test.TestResponse) obj;
 
       boolean result = true;
       result = result && (getCode()
@@ -590,58 +590,58 @@ public final class GameProto {
       return hash;
     }
 
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(
+    public static com.gg.game.proto.Test.TestResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(
+    public static com.gg.game.proto.Test.TestResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(byte[] data)
+    public static com.gg.game.proto.Test.TestResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(
+    public static com.gg.game.proto.Test.TestResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(java.io.InputStream input)
+    public static com.gg.game.proto.Test.TestResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(
+    public static com.gg.game.proto.Test.TestResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.gg.game.proto.Test.TestResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseDelimitedFrom(
+    public static com.gg.game.proto.Test.TestResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(
+    public static com.gg.game.proto.Test.TestResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.gg.game.proto.GameProto.TestResponse parseFrom(
+    public static com.gg.game.proto.Test.TestResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -653,7 +653,7 @@ public final class GameProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.gg.game.proto.GameProto.TestResponse prototype) {
+    public static Builder newBuilder(com.gg.game.proto.Test.TestResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -673,20 +673,20 @@ public final class GameProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.gg.game.proto.TestResponse)
-        com.gg.game.proto.GameProto.TestResponseOrBuilder {
+        com.gg.game.proto.Test.TestResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestResponse_descriptor;
+        return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestResponse_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestResponse_fieldAccessorTable
+        return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.gg.game.proto.GameProto.TestResponse.class, com.gg.game.proto.GameProto.TestResponse.Builder.class);
+                com.gg.game.proto.Test.TestResponse.class, com.gg.game.proto.Test.TestResponse.Builder.class);
       }
 
-      // Construct using com.gg.game.proto.GameProto.TestResponse.newBuilder()
+      // Construct using com.gg.game.proto.Test.TestResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -710,23 +710,23 @@ public final class GameProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.gg.game.proto.GameProto.internal_static_com_gg_game_proto_TestResponse_descriptor;
+        return com.gg.game.proto.Test.internal_static_com_gg_game_proto_TestResponse_descriptor;
       }
 
-      public com.gg.game.proto.GameProto.TestResponse getDefaultInstanceForType() {
-        return com.gg.game.proto.GameProto.TestResponse.getDefaultInstance();
+      public com.gg.game.proto.Test.TestResponse getDefaultInstanceForType() {
+        return com.gg.game.proto.Test.TestResponse.getDefaultInstance();
       }
 
-      public com.gg.game.proto.GameProto.TestResponse build() {
-        com.gg.game.proto.GameProto.TestResponse result = buildPartial();
+      public com.gg.game.proto.Test.TestResponse build() {
+        com.gg.game.proto.Test.TestResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.gg.game.proto.GameProto.TestResponse buildPartial() {
-        com.gg.game.proto.GameProto.TestResponse result = new com.gg.game.proto.GameProto.TestResponse(this);
+      public com.gg.game.proto.Test.TestResponse buildPartial() {
+        com.gg.game.proto.Test.TestResponse result = new com.gg.game.proto.Test.TestResponse(this);
         result.code_ = code_;
         onBuilt();
         return result;
@@ -759,16 +759,16 @@ public final class GameProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.gg.game.proto.GameProto.TestResponse) {
-          return mergeFrom((com.gg.game.proto.GameProto.TestResponse)other);
+        if (other instanceof com.gg.game.proto.Test.TestResponse) {
+          return mergeFrom((com.gg.game.proto.Test.TestResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.gg.game.proto.GameProto.TestResponse other) {
-        if (other == com.gg.game.proto.GameProto.TestResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.gg.game.proto.Test.TestResponse other) {
+        if (other == com.gg.game.proto.Test.TestResponse.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -784,11 +784,11 @@ public final class GameProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.gg.game.proto.GameProto.TestResponse parsedMessage = null;
+        com.gg.game.proto.Test.TestResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.gg.game.proto.GameProto.TestResponse) e.getUnfinishedMessage();
+          parsedMessage = (com.gg.game.proto.Test.TestResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -838,12 +838,12 @@ public final class GameProto {
     }
 
     // @@protoc_insertion_point(class_scope:com.gg.game.proto.TestResponse)
-    private static final com.gg.game.proto.GameProto.TestResponse DEFAULT_INSTANCE;
+    private static final com.gg.game.proto.Test.TestResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.gg.game.proto.GameProto.TestResponse();
+      DEFAULT_INSTANCE = new com.gg.game.proto.Test.TestResponse();
     }
 
-    public static com.gg.game.proto.GameProto.TestResponse getDefaultInstance() {
+    public static com.gg.game.proto.Test.TestResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -866,7 +866,7 @@ public final class GameProto {
       return PARSER;
     }
 
-    public com.gg.game.proto.GameProto.TestResponse getDefaultInstanceForType() {
+    public com.gg.game.proto.Test.TestResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -885,8 +885,8 @@ public final class GameProto {
        */
       public abstract void connect(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.GameProto.TestRequest request,
-          com.google.protobuf.RpcCallback<com.gg.game.proto.GameProto.TestResponse> done);
+          com.gg.game.proto.Test.TestRequest request,
+          com.google.protobuf.RpcCallback<com.gg.game.proto.Test.TestResponse> done);
 
     }
 
@@ -896,8 +896,8 @@ public final class GameProto {
         @java.lang.Override
         public  void connect(
             com.google.protobuf.RpcController controller,
-            com.gg.game.proto.GameProto.TestRequest request,
-            com.google.protobuf.RpcCallback<com.gg.game.proto.GameProto.TestResponse> done) {
+            com.gg.game.proto.Test.TestRequest request,
+            com.google.protobuf.RpcCallback<com.gg.game.proto.Test.TestResponse> done) {
           impl.connect(controller, request, done);
         }
 
@@ -924,7 +924,7 @@ public final class GameProto {
           }
           switch(method.getIndex()) {
             case 0:
-              return impl.connect(controller, (com.gg.game.proto.GameProto.TestRequest)request);
+              return impl.connect(controller, (com.gg.game.proto.Test.TestRequest)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -940,7 +940,7 @@ public final class GameProto {
           }
           switch(method.getIndex()) {
             case 0:
-              return com.gg.game.proto.GameProto.TestRequest.getDefaultInstance();
+              return com.gg.game.proto.Test.TestRequest.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -956,7 +956,7 @@ public final class GameProto {
           }
           switch(method.getIndex()) {
             case 0:
-              return com.gg.game.proto.GameProto.TestResponse.getDefaultInstance();
+              return com.gg.game.proto.Test.TestResponse.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -970,13 +970,13 @@ public final class GameProto {
      */
     public abstract void connect(
         com.google.protobuf.RpcController controller,
-        com.gg.game.proto.GameProto.TestRequest request,
-        com.google.protobuf.RpcCallback<com.gg.game.proto.GameProto.TestResponse> done);
+        com.gg.game.proto.Test.TestRequest request,
+        com.google.protobuf.RpcCallback<com.gg.game.proto.Test.TestResponse> done);
 
     public static final
         com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptor() {
-      return com.gg.game.proto.GameProto.getDescriptor().getServices().get(0);
+      return com.gg.game.proto.Test.getDescriptor().getServices().get(0);
     }
     public final com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptorForType() {
@@ -996,8 +996,8 @@ public final class GameProto {
       }
       switch(method.getIndex()) {
         case 0:
-          this.connect(controller, (com.gg.game.proto.GameProto.TestRequest)request,
-            com.google.protobuf.RpcUtil.<com.gg.game.proto.GameProto.TestResponse>specializeCallback(
+          this.connect(controller, (com.gg.game.proto.Test.TestRequest)request,
+            com.google.protobuf.RpcUtil.<com.gg.game.proto.Test.TestResponse>specializeCallback(
               done));
           return;
         default:
@@ -1015,7 +1015,7 @@ public final class GameProto {
       }
       switch(method.getIndex()) {
         case 0:
-          return com.gg.game.proto.GameProto.TestRequest.getDefaultInstance();
+          return com.gg.game.proto.Test.TestRequest.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -1031,7 +1031,7 @@ public final class GameProto {
       }
       switch(method.getIndex()) {
         case 0:
-          return com.gg.game.proto.GameProto.TestResponse.getDefaultInstance();
+          return com.gg.game.proto.Test.TestResponse.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -1042,7 +1042,7 @@ public final class GameProto {
       return new Stub(channel);
     }
 
-    public static final class Stub extends com.gg.game.proto.GameProto.ITest implements Interface {
+    public static final class Stub extends com.gg.game.proto.Test.ITest implements Interface {
       private Stub(com.google.protobuf.RpcChannel channel) {
         this.channel = channel;
       }
@@ -1055,17 +1055,17 @@ public final class GameProto {
 
       public  void connect(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.GameProto.TestRequest request,
-          com.google.protobuf.RpcCallback<com.gg.game.proto.GameProto.TestResponse> done) {
+          com.gg.game.proto.Test.TestRequest request,
+          com.google.protobuf.RpcCallback<com.gg.game.proto.Test.TestResponse> done) {
         channel.callMethod(
           getDescriptor().getMethods().get(0),
           controller,
           request,
-          com.gg.game.proto.GameProto.TestResponse.getDefaultInstance(),
+          com.gg.game.proto.Test.TestResponse.getDefaultInstance(),
           com.google.protobuf.RpcUtil.generalizeCallback(
             done,
-            com.gg.game.proto.GameProto.TestResponse.class,
-            com.gg.game.proto.GameProto.TestResponse.getDefaultInstance()));
+            com.gg.game.proto.Test.TestResponse.class,
+            com.gg.game.proto.Test.TestResponse.getDefaultInstance()));
       }
     }
 
@@ -1075,9 +1075,9 @@ public final class GameProto {
     }
 
     public interface BlockingInterface {
-      public com.gg.game.proto.GameProto.TestResponse connect(
+      public com.gg.game.proto.Test.TestResponse connect(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.GameProto.TestRequest request)
+          com.gg.game.proto.Test.TestRequest request)
           throws com.google.protobuf.ServiceException;
     }
 
@@ -1088,15 +1088,15 @@ public final class GameProto {
 
       private final com.google.protobuf.BlockingRpcChannel channel;
 
-      public com.gg.game.proto.GameProto.TestResponse connect(
+      public com.gg.game.proto.Test.TestResponse connect(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.GameProto.TestRequest request)
+          com.gg.game.proto.Test.TestRequest request)
           throws com.google.protobuf.ServiceException {
-        return (com.gg.game.proto.GameProto.TestResponse) channel.callBlockingMethod(
+        return (com.gg.game.proto.Test.TestResponse) channel.callBlockingMethod(
           getDescriptor().getMethods().get(0),
           controller,
           request,
-          com.gg.game.proto.GameProto.TestResponse.getDefaultInstance());
+          com.gg.game.proto.Test.TestResponse.getDefaultInstance());
       }
 
     }
@@ -1127,8 +1127,8 @@ public final class GameProto {
       "equest\022\014\n\004code\030\001 \001(\005\"\034\n\014TestResponse\022\014\n\004" +
       "code\030\002 \001(\0052S\n\005ITest\022J\n\007connect\022\036.com.gg." +
       "game.proto.TestRequest\032\037.com.gg.game.pro" +
-      "to.TestResponseB!\n\021com.gg.game.protoB\tGa" +
-      "meProto\210\001\001b\006proto3"
+      "to.TestResponseB\026\n\021com.gg.game.proto\210\001\001b" +
+      "\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

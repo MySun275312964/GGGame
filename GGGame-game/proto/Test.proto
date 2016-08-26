@@ -3,7 +3,7 @@ syntax = "proto3";
 package com.gg.game.proto;
 
 option java_package = "com.gg.game.proto";
-option java_outer_classname = "GameProto";
+//option java_outer_classname = "GameProto";
 option java_generic_services = true;
 
 message TestRequest {

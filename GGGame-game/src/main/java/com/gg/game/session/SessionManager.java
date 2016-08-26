@@ -8,10 +8,10 @@ import com.gg.core.net.IMsgDispatch;
 import com.gg.core.net.NetPBCallback;
 import com.gg.core.net.NetPBHelper;
 import com.gg.core.net.codec.Net;
-import com.gg.game.proto.GameProto;
-import com.gg.game.proto.GameProto.ISessionManager;
+import com.gg.game.proto.PSessionManager;
 import com.google.protobuf.RpcCallback;
 import com.google.protobuf.RpcController;
+
 import io.netty.channel.ChannelHandlerContext;
 
 /**
@@ -40,17 +40,19 @@ public class SessionManager extends ActorBase implements IMsgDispatch {
         }
 
         // parse ConnectRequest
-        GameProto.ConnectRequest.Builder builder = GameProto.ConnectRequest.newBuilder();
+        PSessionManager.ConnectRequest.Builder builder = PSessionManager.ConnectRequest.newBuilder();
         NetPBHelper.parseJson(request.getPayload().toStringUtf8(), builder);
-        GameProto.ConnectRequest connectRequest = builder.build();
+        PSessionManager.ConnectRequest connectRequest = builder.build();
 
         sessionManager.connect(null, connectRequest, callback);
     }
 
-    private static final class InnerSessionManager extends ISessionManager {
+    private static final class InnerSessionManager extends PSessionManager.ISessionManager {
         @Override
-        public void connect(RpcController controller, GameProto.ConnectRequest request, RpcCallback<GameProto.ConnectResponse> done) {
-            GameProto.ConnectResponse resp = GameProto.ConnectResponse.newBuilder().setCode(0).setMsg("success").build();
+        public void connect(RpcController controller, PSessionManager.ConnectRequest request,
+                RpcCallback<PSessionManager.ConnectResponse> done) {
+            PSessionManager.ConnectResponse resp =
+                    PSessionManager.ConnectResponse.newBuilder().setCode(0).setMsg("success").build();
             done.run(resp);
         }
     }
