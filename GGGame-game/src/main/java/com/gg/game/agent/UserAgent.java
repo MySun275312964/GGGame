@@ -6,7 +6,9 @@ import com.gg.core.actor.ActorBase;
 import com.gg.core.actor.ActorSystem;
 import com.gg.core.net.IMsgDispatch;
 import com.gg.core.net.codec.Net;
+import com.google.protobuf.Message;
 import com.google.protobuf.RpcCallback;
+import com.google.protobuf.util.JsonFormat;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.lang.reflect.Method;
@@ -40,7 +42,7 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
     }
 
     // 業務類註冊自己的初始化進來
-    public static void addRegistryRunners (Consumer<UserAgent> runner) {
+    public static void addRegistryRunners(Consumer<UserAgent> runner) {
         registryRunners.add(runner);
     }
 
@@ -58,7 +60,7 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
         Object obj = funcMap.get(key);
         Method objMethod = null;
         if (obj != null) {
-            Method [] methods = obj.getClass().getMethods();
+            Method[] methods = obj.getClass().getMethods();
             if (methods != null) {
                 for (Method m : methods) {
                     if (m.getName().equals(method)) {
@@ -86,13 +88,22 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
         if (funcEntry == null) {
             throw new RuntimeException("Method not found.");
         }
-        // TODO ... dispatch method...
         Method func = funcEntry.method;
         List<Object> paramList = new ArrayList<>();
         paramList.add(null); // RpcController not support yet.
         if (func.getParameterCount() > 0) {
-            Class<?> [] paramTypes = func.getParameterTypes();
-            // TODO ... deserialize payload ...
+            if (func.getParameterCount() > 0) {
+                Class<?> paramType = func.getParameterTypes()[0];
+                try {
+                    Method descMethod = paramType.getMethod("newBuilder");
+                    Message.Builder builder = (Message.Builder) descMethod.invoke(null);
+                    JsonFormat.Parser parser = JsonFormat.parser();
+                    parser.merge(request.getPayload().toStringUtf8(), builder);
+                    paramList.add(builder.build());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
         paramList.add(callback);
         try {
