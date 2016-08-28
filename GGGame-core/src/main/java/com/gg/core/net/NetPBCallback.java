@@ -2,7 +2,6 @@ package com.gg.core.net;
 
 import com.gg.common.StringUtils;
 import com.gg.core.net.codec.Net;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.RpcCallback;
@@ -41,25 +40,23 @@ public class NetPBCallback<T> implements RpcCallback<T> {
             try {
                 String name = parameter.getClass().getSimpleName();
                 String jstr = printer.print((MessageOrBuilder) parameter);
-                ByteString bytes = ByteString.copyFromUtf8(jstr);
-                respBuilder.setName(name).setResult(bytes);
+                respBuilder.setName(name).setResult(jstr);
             } catch (InvalidProtocolBufferException e) {
                 e.printStackTrace();
                 String name = "SystemError";
                 String msg = StringUtils.join("", "SystemError", e.getMessage());
-                respBuilder.setName(name).setError(ByteString.copyFromUtf8(msg));
+                respBuilder.setName(name).setError(msg);
             }
             Net.Response resp = respBuilder.build();
             Net.NetMessage.Builder netMessageBuilder = Net.NetMessage.newBuilder();
             netMessageBuilder.setIndex(index);
             try {
-                ByteString respBytes = ByteString.copyFromUtf8(printer.print(resp));
                 netMessageBuilder.setType(Net.MessageType.RESPONSE);
-                netMessageBuilder.setPayload(respBytes);
+                netMessageBuilder.setPayload(printer.print(resp));
             } catch (InvalidProtocolBufferException e) {
                 e.printStackTrace();
                 netMessageBuilder.setType(Net.MessageType.ERROR);
-                netMessageBuilder.setPayload(ByteString.EMPTY);
+                netMessageBuilder.setPayload(e.getMessage());
             }
             Net.NetMessage netMessage = netMessageBuilder.build();
             channel.writeAndFlush(netMessage);
@@ -68,7 +65,7 @@ public class NetPBCallback<T> implements RpcCallback<T> {
 
     public static final class Helper {
         public static void disconnect(Channel channel) {
-            Net.NetMessage netMessage = Net.NetMessage.newBuilder().setType(Net.MessageType.DISCONNECT).setIndex(0).setPayload(ByteString.EMPTY).build();
+            Net.NetMessage netMessage = Net.NetMessage.newBuilder().setType(Net.MessageType.DISCONNECT).setIndex(0).build();
             channel.writeAndFlush(netMessage).addListener((f) ->
                     channel.close()
             );

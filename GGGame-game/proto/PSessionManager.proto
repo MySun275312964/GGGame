@@ -15,6 +15,7 @@ message ConnectRequest {
 message ConnectResponse {
     int32 code = 1;
     string msg = 2;
+    string sid = 3;
 };
 
 service ISessionManager {

@@ -93,12 +93,12 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
         paramList.add(null); // RpcController not support yet.
         if (func.getParameterCount() > 0) {
             if (func.getParameterCount() > 0) {
-                Class<?> paramType = func.getParameterTypes()[0];
+                Class<?> paramType = func.getParameterTypes()[1];
                 try {
                     Method descMethod = paramType.getMethod("newBuilder");
                     Message.Builder builder = (Message.Builder) descMethod.invoke(null);
                     JsonFormat.Parser parser = JsonFormat.parser();
-                    parser.merge(request.getPayload().toStringUtf8(), builder);
+                    parser.merge(request.getPayload(), builder);
                     paramList.add(builder.build());
                 } catch (Exception e) {
                     e.printStackTrace();

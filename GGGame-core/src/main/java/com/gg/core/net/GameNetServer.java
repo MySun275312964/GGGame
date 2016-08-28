@@ -11,9 +11,9 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
+
+import java.nio.ByteOrder;
 
 import static com.gg.common.Constants.Net.DefaultHeadLength;
 import static com.gg.common.Constants.Net.RPC_TIMEOUT;
@@ -42,13 +42,12 @@ public class GameNetServer {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast(new IdleStateHandler(RPC_TIMEOUT, 0, 0));
-                        pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, DefaultHeadLength, 0,
-                                DefaultHeadLength));
-                        pipeline.addLast(new StringDecoder());
-                        pipeline.addLast(new NetMessageDecoder());
-                        pipeline.addLast(new LengthFieldPrepender(DefaultHeadLength));
-                        pipeline.addLast(new StringEncoder());
-                        pipeline.addLast(new NetMessageEncoder());
+                        ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
+                        pipeline.addLast(new LengthFieldBasedFrameDecoder(byteOrder, Integer.MAX_VALUE, 0, DefaultHeadLength, 0,
+                                DefaultHeadLength, true));
+                        pipeline.addLast(new NetMessageDecoder(byteOrder));
+                        pipeline.addLast(new LengthFieldPrepender(byteOrder, DefaultHeadLength, 0, false));
+                        pipeline.addLast(new NetMessageEncoder(byteOrder));
                         pipeline.addLast(new GameServerHandler(defaultDispatch));
                     }
                 }).option(ChannelOption.SO_BACKLOG, 256).option(ChannelOption.SO_BACKLOG, 256)

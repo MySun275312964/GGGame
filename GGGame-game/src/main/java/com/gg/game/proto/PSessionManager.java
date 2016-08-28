@@ -809,6 +809,16 @@ public final class PSessionManager {
      */
     com.google.protobuf.ByteString
         getMsgBytes();
+
+    /**
+     * <code>optional string sid = 3;</code>
+     */
+    java.lang.String getSid();
+    /**
+     * <code>optional string sid = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getSidBytes();
   }
   /**
    * Protobuf type {@code com.gg.game.proto.ConnectResponse}
@@ -824,6 +834,7 @@ public final class PSessionManager {
     private ConnectResponse() {
       code_ = 0;
       msg_ = "";
+      sid_ = "";
     }
 
     @java.lang.Override
@@ -860,6 +871,12 @@ public final class PSessionManager {
               java.lang.String s = input.readStringRequireUtf8();
 
               msg_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              sid_ = s;
               break;
             }
           }
@@ -928,6 +945,40 @@ public final class PSessionManager {
       }
     }
 
+    public static final int SID_FIELD_NUMBER = 3;
+    private volatile java.lang.Object sid_;
+    /**
+     * <code>optional string sid = 3;</code>
+     */
+    public java.lang.String getSid() {
+      java.lang.Object ref = sid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sid_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string sid = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSidBytes() {
+      java.lang.Object ref = sid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -946,6 +997,9 @@ public final class PSessionManager {
       if (!getMsgBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, msg_);
       }
+      if (!getSidBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, sid_);
+      }
     }
 
     public int getSerializedSize() {
@@ -959,6 +1013,9 @@ public final class PSessionManager {
       }
       if (!getMsgBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, msg_);
+      }
+      if (!getSidBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, sid_);
       }
       memoizedSize = size;
       return size;
@@ -980,6 +1037,8 @@ public final class PSessionManager {
           == other.getCode());
       result = result && getMsg()
           .equals(other.getMsg());
+      result = result && getSid()
+          .equals(other.getSid());
       return result;
     }
 
@@ -994,6 +1053,8 @@ public final class PSessionManager {
       hash = (53 * hash) + getCode();
       hash = (37 * hash) + MSG_FIELD_NUMBER;
       hash = (53 * hash) + getMsg().hashCode();
+      hash = (37 * hash) + SID_FIELD_NUMBER;
+      hash = (53 * hash) + getSid().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1116,6 +1177,8 @@ public final class PSessionManager {
 
         msg_ = "";
 
+        sid_ = "";
+
         return this;
       }
 
@@ -1140,6 +1203,7 @@ public final class PSessionManager {
         com.gg.game.proto.PSessionManager.ConnectResponse result = new com.gg.game.proto.PSessionManager.ConnectResponse(this);
         result.code_ = code_;
         result.msg_ = msg_;
+        result.sid_ = sid_;
         onBuilt();
         return result;
       }
@@ -1186,6 +1250,10 @@ public final class PSessionManager {
         }
         if (!other.getMsg().isEmpty()) {
           msg_ = other.msg_;
+          onChanged();
+        }
+        if (!other.getSid().isEmpty()) {
+          sid_ = other.sid_;
           onChanged();
         }
         onChanged();
@@ -1305,6 +1373,75 @@ public final class PSessionManager {
   checkByteStringIsUtf8(value);
         
         msg_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sid_ = "";
+      /**
+       * <code>optional string sid = 3;</code>
+       */
+      public java.lang.String getSid() {
+        java.lang.Object ref = sid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string sid = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSidBytes() {
+        java.lang.Object ref = sid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string sid = 3;</code>
+       */
+      public Builder setSid(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string sid = 3;</code>
+       */
+      public Builder clearSid() {
+        
+        sid_ = getDefaultInstance().getSid();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string sid = 3;</code>
+       */
+      public Builder setSidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        sid_ = value;
         onChanged();
         return this;
       }
@@ -1610,12 +1747,12 @@ public final class PSessionManager {
     java.lang.String[] descriptorData = {
       "\n\025PSessionManager.proto\022\021com.gg.game.pro" +
       "to\"@\n\016ConnectRequest\022\020\n\010username\030\001 \001(\t\022\r" +
-      "\n\005token\030\002 \001(\t\022\r\n\005extra\030\003 \001(\t\",\n\017ConnectR" +
-      "esponse\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t2c\n\017IS" +
-      "essionManager\022P\n\007connect\022!.com.gg.game.p" +
-      "roto.ConnectRequest\032\".com.gg.game.proto." +
-      "ConnectResponseB\026\n\021com.gg.game.proto\210\001\001b" +
-      "\006proto3"
+      "\n\005token\030\002 \001(\t\022\r\n\005extra\030\003 \001(\t\"9\n\017ConnectR" +
+      "esponse\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\013\n\003si" +
+      "d\030\003 \001(\t2c\n\017ISessionManager\022P\n\007connect\022!." +
+      "com.gg.game.proto.ConnectRequest\032\".com.g" +
+      "g.game.proto.ConnectResponseB\026\n\021com.gg.g" +
+      "ame.proto\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1640,7 +1777,7 @@ public final class PSessionManager {
     internal_static_com_gg_game_proto_ConnectResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_ConnectResponse_descriptor,
-        new java.lang.String[] { "Code", "Msg", });
+        new java.lang.String[] { "Code", "Msg", "Sid", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

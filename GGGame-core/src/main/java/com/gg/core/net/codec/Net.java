@@ -173,9 +173,14 @@ public final class Net {
         getMethodBytes();
 
     /**
-     * <code>optional bytes payload = 3;</code>
+     * <code>optional string payload = 3;</code>
      */
-    com.google.protobuf.ByteString getPayload();
+    java.lang.String getPayload();
+    /**
+     * <code>optional string payload = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPayloadBytes();
   }
   /**
    * Protobuf type {@code com.gg.core.net.codec.Request}
@@ -191,7 +196,7 @@ public final class Net {
     private Request() {
       instance_ = "";
       method_ = "";
-      payload_ = com.google.protobuf.ByteString.EMPTY;
+      payload_ = "";
     }
 
     @java.lang.Override
@@ -232,8 +237,9 @@ public final class Net {
               break;
             }
             case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              payload_ = input.readBytes();
+              payload_ = s;
               break;
             }
           }
@@ -328,12 +334,37 @@ public final class Net {
     }
 
     public static final int PAYLOAD_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString payload_;
+    private volatile java.lang.Object payload_;
     /**
-     * <code>optional bytes payload = 3;</code>
+     * <code>optional string payload = 3;</code>
      */
-    public com.google.protobuf.ByteString getPayload() {
-      return payload_;
+    public java.lang.String getPayload() {
+      java.lang.Object ref = payload_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        payload_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string payload = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPayloadBytes() {
+      java.lang.Object ref = payload_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        payload_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -354,8 +385,8 @@ public final class Net {
       if (!getMethodBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, method_);
       }
-      if (!payload_.isEmpty()) {
-        output.writeBytes(3, payload_);
+      if (!getPayloadBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, payload_);
       }
     }
 
@@ -370,9 +401,8 @@ public final class Net {
       if (!getMethodBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, method_);
       }
-      if (!payload_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, payload_);
+      if (!getPayloadBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, payload_);
       }
       memoizedSize = size;
       return size;
@@ -534,7 +564,7 @@ public final class Net {
 
         method_ = "";
 
-        payload_ = com.google.protobuf.ByteString.EMPTY;
+        payload_ = "";
 
         return this;
       }
@@ -610,8 +640,9 @@ public final class Net {
           method_ = other.method_;
           onChanged();
         }
-        if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
-          setPayload(other.getPayload());
+        if (!other.getPayload().isEmpty()) {
+          payload_ = other.payload_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -777,17 +808,43 @@ public final class Net {
         return this;
       }
 
-      private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object payload_ = "";
       /**
-       * <code>optional bytes payload = 3;</code>
+       * <code>optional string payload = 3;</code>
        */
-      public com.google.protobuf.ByteString getPayload() {
-        return payload_;
+      public java.lang.String getPayload() {
+        java.lang.Object ref = payload_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          payload_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes payload = 3;</code>
+       * <code>optional string payload = 3;</code>
        */
-      public Builder setPayload(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getPayloadBytes() {
+        java.lang.Object ref = payload_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          payload_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string payload = 3;</code>
+       */
+      public Builder setPayload(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -797,11 +854,25 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes payload = 3;</code>
+       * <code>optional string payload = 3;</code>
        */
       public Builder clearPayload() {
         
         payload_ = getDefaultInstance().getPayload();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string payload = 3;</code>
+       */
+      public Builder setPayloadBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        payload_ = value;
         onChanged();
         return this;
       }
@@ -869,14 +940,24 @@ public final class Net {
         getNameBytes();
 
     /**
-     * <code>optional bytes result = 2;</code>
+     * <code>optional string result = 2;</code>
      */
-    com.google.protobuf.ByteString getResult();
+    java.lang.String getResult();
+    /**
+     * <code>optional string result = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getResultBytes();
 
     /**
-     * <code>optional bytes error = 3;</code>
+     * <code>optional string error = 3;</code>
      */
-    com.google.protobuf.ByteString getError();
+    java.lang.String getError();
+    /**
+     * <code>optional string error = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getErrorBytes();
   }
   /**
    * Protobuf type {@code com.gg.core.net.codec.Response}
@@ -891,8 +972,8 @@ public final class Net {
     }
     private Response() {
       name_ = "";
-      result_ = com.google.protobuf.ByteString.EMPTY;
-      error_ = com.google.protobuf.ByteString.EMPTY;
+      result_ = "";
+      error_ = "";
     }
 
     @java.lang.Override
@@ -927,13 +1008,15 @@ public final class Net {
               break;
             }
             case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              result_ = input.readBytes();
+              result_ = s;
               break;
             }
             case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              error_ = input.readBytes();
+              error_ = s;
               break;
             }
           }
@@ -994,21 +1077,71 @@ public final class Net {
     }
 
     public static final int RESULT_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString result_;
+    private volatile java.lang.Object result_;
     /**
-     * <code>optional bytes result = 2;</code>
+     * <code>optional string result = 2;</code>
      */
-    public com.google.protobuf.ByteString getResult() {
-      return result_;
+    public java.lang.String getResult() {
+      java.lang.Object ref = result_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        result_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string result = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getResultBytes() {
+      java.lang.Object ref = result_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        result_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int ERROR_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString error_;
+    private volatile java.lang.Object error_;
     /**
-     * <code>optional bytes error = 3;</code>
+     * <code>optional string error = 3;</code>
      */
-    public com.google.protobuf.ByteString getError() {
-      return error_;
+    public java.lang.String getError() {
+      java.lang.Object ref = error_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        error_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string error = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getErrorBytes() {
+      java.lang.Object ref = error_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        error_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1026,11 +1159,11 @@ public final class Net {
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
-      if (!result_.isEmpty()) {
-        output.writeBytes(2, result_);
+      if (!getResultBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, result_);
       }
-      if (!error_.isEmpty()) {
-        output.writeBytes(3, error_);
+      if (!getErrorBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, error_);
       }
     }
 
@@ -1042,13 +1175,11 @@ public final class Net {
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
-      if (!result_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, result_);
+      if (!getResultBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, result_);
       }
-      if (!error_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, error_);
+      if (!getErrorBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, error_);
       }
       memoizedSize = size;
       return size;
@@ -1208,9 +1339,9 @@ public final class Net {
         super.clear();
         name_ = "";
 
-        result_ = com.google.protobuf.ByteString.EMPTY;
+        result_ = "";
 
-        error_ = com.google.protobuf.ByteString.EMPTY;
+        error_ = "";
 
         return this;
       }
@@ -1282,11 +1413,13 @@ public final class Net {
           name_ = other.name_;
           onChanged();
         }
-        if (other.getResult() != com.google.protobuf.ByteString.EMPTY) {
-          setResult(other.getResult());
+        if (!other.getResult().isEmpty()) {
+          result_ = other.result_;
+          onChanged();
         }
-        if (other.getError() != com.google.protobuf.ByteString.EMPTY) {
-          setError(other.getError());
+        if (!other.getError().isEmpty()) {
+          error_ = other.error_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -1383,17 +1516,43 @@ public final class Net {
         return this;
       }
 
-      private com.google.protobuf.ByteString result_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object result_ = "";
       /**
-       * <code>optional bytes result = 2;</code>
+       * <code>optional string result = 2;</code>
        */
-      public com.google.protobuf.ByteString getResult() {
-        return result_;
+      public java.lang.String getResult() {
+        java.lang.Object ref = result_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          result_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes result = 2;</code>
+       * <code>optional string result = 2;</code>
        */
-      public Builder setResult(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getResultBytes() {
+        java.lang.Object ref = result_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          result_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string result = 2;</code>
+       */
+      public Builder setResult(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1403,7 +1562,7 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes result = 2;</code>
+       * <code>optional string result = 2;</code>
        */
       public Builder clearResult() {
         
@@ -1411,18 +1570,58 @@ public final class Net {
         onChanged();
         return this;
       }
-
-      private com.google.protobuf.ByteString error_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bytes error = 3;</code>
+       * <code>optional string result = 2;</code>
        */
-      public com.google.protobuf.ByteString getError() {
-        return error_;
+      public Builder setResultBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object error_ = "";
+      /**
+       * <code>optional string error = 3;</code>
+       */
+      public java.lang.String getError() {
+        java.lang.Object ref = error_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          error_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes error = 3;</code>
+       * <code>optional string error = 3;</code>
        */
-      public Builder setError(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getErrorBytes() {
+        java.lang.Object ref = error_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          error_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string error = 3;</code>
+       */
+      public Builder setError(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1432,11 +1631,25 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes error = 3;</code>
+       * <code>optional string error = 3;</code>
        */
       public Builder clearError() {
         
         error_ = getDefaultInstance().getError();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string error = 3;</code>
+       */
+      public Builder setErrorBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        error_ = value;
         onChanged();
         return this;
       }
@@ -1509,9 +1722,14 @@ public final class Net {
         getMessageBytes();
 
     /**
-     * <code>optional bytes data = 3;</code>
+     * <code>optional string data = 3;</code>
      */
-    com.google.protobuf.ByteString getData();
+    java.lang.String getData();
+    /**
+     * <code>optional string data = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getDataBytes();
   }
   /**
    * Protobuf type {@code com.gg.core.net.codec.ErrorMessage}
@@ -1527,7 +1745,7 @@ public final class Net {
     private ErrorMessage() {
       code_ = 0;
       message_ = "";
-      data_ = com.google.protobuf.ByteString.EMPTY;
+      data_ = "";
     }
 
     @java.lang.Override
@@ -1567,8 +1785,9 @@ public final class Net {
               break;
             }
             case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              data_ = input.readBytes();
+              data_ = s;
               break;
             }
           }
@@ -1638,12 +1857,37 @@ public final class Net {
     }
 
     public static final int DATA_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString data_;
+    private volatile java.lang.Object data_;
     /**
-     * <code>optional bytes data = 3;</code>
+     * <code>optional string data = 3;</code>
      */
-    public com.google.protobuf.ByteString getData() {
-      return data_;
+    public java.lang.String getData() {
+      java.lang.Object ref = data_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        data_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string data = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDataBytes() {
+      java.lang.Object ref = data_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        data_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1664,8 +1908,8 @@ public final class Net {
       if (!getMessageBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
       }
-      if (!data_.isEmpty()) {
-        output.writeBytes(3, data_);
+      if (!getDataBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, data_);
       }
     }
 
@@ -1681,9 +1925,8 @@ public final class Net {
       if (!getMessageBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
       }
-      if (!data_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, data_);
+      if (!getDataBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, data_);
       }
       memoizedSize = size;
       return size;
@@ -1845,7 +2088,7 @@ public final class Net {
 
         message_ = "";
 
-        data_ = com.google.protobuf.ByteString.EMPTY;
+        data_ = "";
 
         return this;
       }
@@ -1920,8 +2163,9 @@ public final class Net {
           message_ = other.message_;
           onChanged();
         }
-        if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
-          setData(other.getData());
+        if (!other.getData().isEmpty()) {
+          data_ = other.data_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -2044,17 +2288,43 @@ public final class Net {
         return this;
       }
 
-      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object data_ = "";
       /**
-       * <code>optional bytes data = 3;</code>
+       * <code>optional string data = 3;</code>
        */
-      public com.google.protobuf.ByteString getData() {
-        return data_;
+      public java.lang.String getData() {
+        java.lang.Object ref = data_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          data_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes data = 3;</code>
+       * <code>optional string data = 3;</code>
        */
-      public Builder setData(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getDataBytes() {
+        java.lang.Object ref = data_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          data_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string data = 3;</code>
+       */
+      public Builder setData(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2064,11 +2334,25 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes data = 3;</code>
+       * <code>optional string data = 3;</code>
        */
       public Builder clearData() {
         
         data_ = getDefaultInstance().getData();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string data = 3;</code>
+       */
+      public Builder setDataBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        data_ = value;
         onChanged();
         return this;
       }
@@ -2140,9 +2424,14 @@ public final class Net {
     int getIndex();
 
     /**
-     * <code>optional bytes payload = 3;</code>
+     * <code>optional string payload = 3;</code>
      */
-    com.google.protobuf.ByteString getPayload();
+    java.lang.String getPayload();
+    /**
+     * <code>optional string payload = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPayloadBytes();
   }
   /**
    * Protobuf type {@code com.gg.core.net.codec.NetMessage}
@@ -2158,7 +2447,7 @@ public final class Net {
     private NetMessage() {
       type_ = 0;
       index_ = 0;
-      payload_ = com.google.protobuf.ByteString.EMPTY;
+      payload_ = "";
     }
 
     @java.lang.Override
@@ -2198,8 +2487,9 @@ public final class Net {
               break;
             }
             case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              payload_ = input.readBytes();
+              payload_ = s;
               break;
             }
           }
@@ -2251,12 +2541,37 @@ public final class Net {
     }
 
     public static final int PAYLOAD_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString payload_;
+    private volatile java.lang.Object payload_;
     /**
-     * <code>optional bytes payload = 3;</code>
+     * <code>optional string payload = 3;</code>
      */
-    public com.google.protobuf.ByteString getPayload() {
-      return payload_;
+    public java.lang.String getPayload() {
+      java.lang.Object ref = payload_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        payload_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string payload = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPayloadBytes() {
+      java.lang.Object ref = payload_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        payload_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2277,8 +2592,8 @@ public final class Net {
       if (index_ != 0) {
         output.writeInt32(2, index_);
       }
-      if (!payload_.isEmpty()) {
-        output.writeBytes(3, payload_);
+      if (!getPayloadBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, payload_);
       }
     }
 
@@ -2295,9 +2610,8 @@ public final class Net {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, index_);
       }
-      if (!payload_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, payload_);
+      if (!getPayloadBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, payload_);
       }
       memoizedSize = size;
       return size;
@@ -2458,7 +2772,7 @@ public final class Net {
 
         index_ = 0;
 
-        payload_ = com.google.protobuf.ByteString.EMPTY;
+        payload_ = "";
 
         return this;
       }
@@ -2532,8 +2846,9 @@ public final class Net {
         if (other.getIndex() != 0) {
           setIndex(other.getIndex());
         }
-        if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
-          setPayload(other.getPayload());
+        if (!other.getPayload().isEmpty()) {
+          payload_ = other.payload_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -2631,17 +2946,43 @@ public final class Net {
         return this;
       }
 
-      private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object payload_ = "";
       /**
-       * <code>optional bytes payload = 3;</code>
+       * <code>optional string payload = 3;</code>
        */
-      public com.google.protobuf.ByteString getPayload() {
-        return payload_;
+      public java.lang.String getPayload() {
+        java.lang.Object ref = payload_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          payload_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes payload = 3;</code>
+       * <code>optional string payload = 3;</code>
        */
-      public Builder setPayload(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getPayloadBytes() {
+        java.lang.Object ref = payload_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          payload_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string payload = 3;</code>
+       */
+      public Builder setPayload(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2651,11 +2992,25 @@ public final class Net {
         return this;
       }
       /**
-       * <code>optional bytes payload = 3;</code>
+       * <code>optional string payload = 3;</code>
        */
       public Builder clearPayload() {
         
         payload_ = getDefaultInstance().getPayload();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string payload = 3;</code>
+       */
+      public Builder setPayloadBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        payload_ = value;
         onChanged();
         return this;
       }
@@ -2739,12 +3094,12 @@ public final class Net {
     java.lang.String[] descriptorData = {
       "\n\tNet.proto\022\025com.gg.core.net.codec\"<\n\007Re" +
       "quest\022\020\n\010instance\030\001 \001(\t\022\016\n\006method\030\002 \001(\t\022" +
-      "\017\n\007payload\030\003 \001(\014\"7\n\010Response\022\014\n\004name\030\001 \001" +
-      "(\t\022\016\n\006result\030\002 \001(\014\022\r\n\005error\030\003 \001(\014\";\n\014Err" +
+      "\017\n\007payload\030\003 \001(\t\"7\n\010Response\022\014\n\004name\030\001 \001" +
+      "(\t\022\016\n\006result\030\002 \001(\t\022\r\n\005error\030\003 \001(\t\";\n\014Err" +
       "orMessage\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t" +
-      "\022\014\n\004data\030\003 \001(\014\"^\n\nNetMessage\0220\n\004type\030\001 \001" +
+      "\022\014\n\004data\030\003 \001(\t\"^\n\nNetMessage\0220\n\004type\030\001 \001" +
       "(\0162\".com.gg.core.net.codec.MessageType\022\r" +
-      "\n\005index\030\002 \001(\005\022\017\n\007payload\030\003 \001(\014*]\n\013Messag" +
+      "\n\005index\030\002 \001(\005\022\017\n\007payload\030\003 \001(\t*]\n\013Messag" +
       "eType\022\013\n\007CONNECT\020\000\022\013\n\007REQUEST\020\001\022\014\n\010RESPO" +
       "NSE\020\002\022\016\n\nDISCONNECT\020\003\022\013\n\007DESTROY\020\004\022\t\n\005ER",
       "ROR\020\005B\034\n\025com.gg.core.net.codecB\003Netb\006pro" +

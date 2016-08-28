@@ -67,7 +67,7 @@ public class GGGameApp {
 
         GameNetServer server = new GameNetServer(netConfig, sessionMsgDispatch);
 
-        ChannelFuture channelFuture = server.bind("0.0.0.0", 19999);
+        ChannelFuture channelFuture = server.bind("0.0.0.0", 29999);
 
         Channel channel = channelFuture.sync().channel();
 

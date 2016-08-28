@@ -8,19 +8,19 @@ option java_outer_classname = "Net";
 message Request {
     string instance = 1;
     string method = 2;
-    bytes payload = 3;
+    string payload = 3;
 };
 
 message Response {
     string name = 1;
-    bytes result = 2;
-    bytes error = 3;
+    string result = 2;
+    string error = 3;
 };
 
 message ErrorMessage {
     int32 code = 1;
     string message = 2;
-    bytes data = 3;
+    string data = 3;
 };
 
 enum MessageType {
@@ -35,5 +35,5 @@ enum MessageType {
 message NetMessage {
     MessageType type = 1;
     int32 index = 2;
-    bytes payload = 3;
+    string payload = 3;
 };

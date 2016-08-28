@@ -3,7 +3,6 @@ package com.gg.core.net;
 import com.gg.common.Constants;
 import com.gg.common.GGLogger;
 import com.gg.core.net.codec.Net;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.util.JsonFormat;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -37,20 +36,21 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.NetMessag
                 NetPBCallback callback = new NetPBCallback(ctx.channel(), index);
                 Net.Request.Builder reqBuilder = Net.Request.newBuilder();
                 JsonFormat.Parser jsonParser = JsonFormat.parser();
-                jsonParser.merge(msg.getPayload().toStringUtf8(), reqBuilder);
+                logger.info("payload: {}.", msg.getPayload());
+                jsonParser.merge(msg.getPayload(), reqBuilder);
                 Net.Request request = reqBuilder.build();
                 try {
                     dispatch.process(ctx, request, callback);
                 } catch (Throwable throwable) {
                     logger.error("Error: ", throwable);
                     if (callback.doResponse()) {
-                        Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.ERROR).setPayload(ByteString.copyFromUtf8(throwable.getMessage())).build();
+                        Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.ERROR).setPayload(throwable.getMessage()).build();
                         ctx.writeAndFlush(netMessage);
                     }
                 }
                 break;
             default:
-                Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.UNRECOGNIZED).setPayload(ByteString.EMPTY).build();
+                Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.UNRECOGNIZED).build();
                 ctx.writeAndFlush(netMessage);
                 break;
         }
