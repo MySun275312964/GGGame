@@ -43,6 +43,10 @@ public final class Net {
      * <code>ERROR = 5;</code>
      */
     ERROR(5),
+    /**
+     * <code>POST = 6;</code>
+     */
+    POST(6),
     UNRECOGNIZED(-1),
     ;
 
@@ -70,6 +74,10 @@ public final class Net {
      * <code>ERROR = 5;</code>
      */
     public static final int ERROR_VALUE = 5;
+    /**
+     * <code>POST = 6;</code>
+     */
+    public static final int POST_VALUE = 6;
 
 
     public final int getNumber() {
@@ -96,6 +104,7 @@ public final class Net {
         case 3: return DISCONNECT;
         case 4: return DESTROY;
         case 5: return ERROR;
+        case 6: return POST;
         default: return null;
       }
     }
@@ -3099,11 +3108,11 @@ public final class Net {
       "orMessage\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t" +
       "\022\014\n\004data\030\003 \001(\t\"^\n\nNetMessage\0220\n\004type\030\001 \001" +
       "(\0162\".com.gg.core.net.codec.MessageType\022\r" +
-      "\n\005index\030\002 \001(\005\022\017\n\007payload\030\003 \001(\t*]\n\013Messag" +
+      "\n\005index\030\002 \001(\005\022\017\n\007payload\030\003 \001(\t*g\n\013Messag" +
       "eType\022\013\n\007CONNECT\020\000\022\013\n\007REQUEST\020\001\022\014\n\010RESPO" +
       "NSE\020\002\022\016\n\nDISCONNECT\020\003\022\013\n\007DESTROY\020\004\022\t\n\005ER",
-      "ROR\020\005B\034\n\025com.gg.core.net.codecB\003Netb\006pro" +
-      "to3"
+      "ROR\020\005\022\010\n\004POST\020\006B\034\n\025com.gg.core.net.codec" +
+      "B\003Netb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

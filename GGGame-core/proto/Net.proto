@@ -30,6 +30,7 @@ enum MessageType {
     DISCONNECT = 3;
     DESTROY = 4;
     ERROR = 5;
+    POST = 6;
 };
 
 message NetMessage {

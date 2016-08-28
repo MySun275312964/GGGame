@@ -86,6 +86,10 @@ public class ActorSystem {
         return ref;
     }
 
+    public boolean exist(String name) {
+        return actorNameReverseMap.containsKey(name);
+    }
+
     public ActorRef actor(String name) {
         // FIXME ... 需不需要加缓存
         Integer atrId = actorNameReverseMap.get(name);

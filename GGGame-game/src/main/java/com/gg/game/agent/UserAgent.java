@@ -30,9 +30,16 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
 
     private Map<String, FuncEntry> funcEntryCache = new HashMap<>();
 
-    public UserAgent(ActorSystem system) {
+    private String sid;
+
+    public UserAgent(String sid, ActorSystem system) {
         super(system);
+        this.sid = sid;
         init();
+    }
+
+    public String getSid() {
+        return sid;
     }
 
     private void init() {

@@ -13,10 +13,17 @@ import com.gg.core.net.NetPBHelper;
 import com.gg.core.net.codec.Net;
 import com.gg.game.agent.UserAgent;
 import com.gg.game.proto.PSessionManager;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.RpcCallback;
 import com.google.protobuf.RpcController;
+import com.google.protobuf.util.JsonFormat;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.Attribute;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by hunter on 8/20/16.
@@ -28,6 +35,10 @@ public class SessionManager extends ActorBase implements IMsgDispatch {
     private static final String MethodName = "connect";
 
     private InnerSessionManager sessionManager;
+
+    private Map<String, Session> sessionMap = new HashMap<>();
+
+    private int ID = 0;
 
     public SessionManager(ActorSystem system) {
         super(system);
@@ -50,24 +61,68 @@ public class SessionManager extends ActorBase implements IMsgDispatch {
 
         // TODO ... auth
 
+        String sid = "SESSION:" + (++ID);
+
         // add useragent dispatch
-        UserAgent userAgent = new UserAgent(system);
-        ActorRef userAgentRef =  system.actor("useragent:" + connectRequest.getUsername(), userAgent);
+        String key = "useragent:" + connectRequest.getUsername();
+        ActorRef userAgentRef = null;
+        if (system.exist(key)) {
+            userAgentRef = system.actor(key);
+        } else {
+            UserAgent userAgent = new UserAgent(key, system);
+            userAgentRef = system.actor(key, userAgent);
+        }
         Attribute<IMsgDispatch> attr = ctx.channel().attr(Constants.Net.DispatchKey);
         IMsgDispatch userDispatch = ActorAgent.getAgent(IMsgDispatch.class, this, userAgentRef);
         attr.set(userDispatch);
 
-        sessionManager.connect(null, connectRequest, callback);
+        // sessionManager.connect(null, connectRequest, callback);
+
+        Session session = new Session(sid, key, ctx.channel());
+        sessionMap.put(sid, session);
+
+        PSessionManager.ConnectResponse resp =
+                PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid(sid).build();
+        callback.run(resp);
+    }
+
+    /**
+     * 向客戶端推送消息
+     * */
+    public void push(String key, MessageOrBuilder obj) {
+        for (Session s:sessionMap.values()) {
+            if (s.key.equals(key)) {
+                try {
+                    String json = JsonFormat.printer().print(obj);
+                    Net.NetMessage msg = Net.NetMessage.newBuilder().setIndex(0).setType(Net.MessageType.POST).setPayload(json).build();
+                    s.channel.writeAndFlush(msg);
+                } catch (InvalidProtocolBufferException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
     }
 
     private static final class InnerSessionManager extends PSessionManager.ISessionManager {
         @Override
         public void connect(RpcController controller, PSessionManager.ConnectRequest request,
-                RpcCallback<PSessionManager.ConnectResponse> done) {
+                            RpcCallback<PSessionManager.ConnectResponse> done) {
+            // PSessionManager.ConnectResponse resp =
+            //         PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid("testsid").build();
+            // done.run(resp);
+        }
+    }
 
-            PSessionManager.ConnectResponse resp =
-                    PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid("testsid").build();
-            done.run(resp);
+    public static final class Session {
+        private String id;
+        private String key;
+        private Channel channel;
+
+        public Session(String id, String key, Channel channel) {
+            this.id = id;
+            this.key = key;
+            this.channel = channel;
         }
     }
 }
