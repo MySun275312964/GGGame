@@ -11,6 +11,7 @@ import com.gg.core.net.IMsgDispatch;
 import com.gg.core.net.NetPBCallback;
 import com.gg.core.net.NetPBHelper;
 import com.gg.core.net.codec.Net;
+import com.gg.game.GGGameApp;
 import com.gg.game.agent.UserAgent;
 import com.gg.game.proto.PSessionManager;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -28,8 +29,23 @@ import java.util.Map;
 /**
  * Created by hunter on 8/20/16.
  */
-public class SessionManager extends ActorBase implements IMsgDispatch {
+public class SessionManager extends ActorBase implements ISessionManager {
     private static final GGLogger logger = GGLogger.getLogger(SessionManager.class);
+
+    private static final class Holder {
+        private static final ISessionManager Instance;
+
+        static {
+            ActorSystem system = GGGameApp.getActorSystem();
+            SessionManager sessionManager = new SessionManager(system);
+            ActorRef sessionManagerRef = system.actor("SessionManager", sessionManager);
+            Instance = ActorAgent.getAgent(ISessionManager.class, system.getSystemActor(), sessionManagerRef);
+        }
+    }
+
+    public static final ISessionManager getInstance() {
+        return Holder.Instance;
+    }
 
     private static final String InstanceName = "ISessionManager";
     private static final String MethodName = "connect";
@@ -40,7 +56,7 @@ public class SessionManager extends ActorBase implements IMsgDispatch {
 
     private int ID = 0;
 
-    public SessionManager(ActorSystem system) {
+    private SessionManager(ActorSystem system) {
         super(system);
         sessionManager = new InnerSessionManager();
     }
@@ -88,13 +104,13 @@ public class SessionManager extends ActorBase implements IMsgDispatch {
 
     /**
      * 向客戶端推送消息
-     * */
+     */
+    @Override
     public void push(String key, MessageOrBuilder obj) {
-        for (Session s:sessionMap.values()) {
+        for (Session s : sessionMap.values()) {
             if (s.key.equals(key)) {
                 try {
-                    String json = JsonFormat.printer().print(obj);
-                    Net.NetMessage msg = Net.NetMessage.newBuilder().setIndex(0).setType(Net.MessageType.POST).setPayload(json).build();
+                    Net.NetMessage msg = buildNetMessage(0, Net.MessageType.POST, obj);
                     s.channel.writeAndFlush(msg);
                 } catch (InvalidProtocolBufferException e) {
                     e.printStackTrace();
@@ -104,12 +120,39 @@ public class SessionManager extends ActorBase implements IMsgDispatch {
         }
     }
 
+    private Net.Response buildResponse(MessageOrBuilder obj) throws InvalidProtocolBufferException {
+        String json = JsonFormat.printer().print(obj);
+        Net.Response.Builder builder = Net.Response.newBuilder();
+        builder.setName(obj.getClass().getSimpleName());
+        builder.setResult(json);
+        return builder.build();
+    }
+
+    private Net.NetMessage buildNetMessage(int index, Net.MessageType type, MessageOrBuilder obj)
+            throws InvalidProtocolBufferException {
+        Net.Response resp = buildResponse(obj);
+        String json = JsonFormat.printer().print(resp);
+        Net.NetMessage msg = Net.NetMessage.newBuilder().setIndex(index).setType(type).setPayload(json).build();
+        return msg;
+    }
+
+    public void pushAll(MessageOrBuilder obj) {
+        try {
+            Net.NetMessage msg = buildNetMessage(0, Net.MessageType.POST, obj);
+            for (Session s : sessionMap.values()) {
+                s.channel.writeAndFlush(msg);
+            }
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static final class InnerSessionManager extends PSessionManager.ISessionManager {
         @Override
         public void connect(RpcController controller, PSessionManager.ConnectRequest request,
-                            RpcCallback<PSessionManager.ConnectResponse> done) {
+                RpcCallback<PSessionManager.ConnectResponse> done) {
             // PSessionManager.ConnectResponse resp =
-            //         PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid("testsid").build();
+            // PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid("testsid").build();
             // done.run(resp);
         }
     }

@@ -7,6 +7,7 @@ import com.gg.core.actor.ActorSystem;
 import com.gg.core.net.IMsgDispatch;
 import com.gg.core.net.codec.Net;
 import com.google.protobuf.Message;
+import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.RpcCallback;
 import com.google.protobuf.util.JsonFormat;
 import io.netty.channel.ChannelHandlerContext;
@@ -21,7 +22,7 @@ import java.util.function.Consumer;
 /**
  * Created by hunter on 2016/8/21.
  */
-public class UserAgent extends ActorBase implements IMsgDispatch {
+public class UserAgent extends ActorBase implements IMsgDispatch, IUserAgent {
     private static final GGLogger logger = GGLogger.getLogger(UserAgent.class);
 
     private static List<Consumer<UserAgent>> registryRunners = new ArrayList<>();
@@ -31,10 +32,12 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
     private Map<String, FuncEntry> funcEntryCache = new HashMap<>();
 
     private String sid;
+    private String roleId;
 
     public UserAgent(String sid, ActorSystem system) {
         super(system);
         this.sid = sid;
+        this.roleId = sid;
         init();
     }
 
@@ -119,6 +122,16 @@ public class UserAgent extends ActorBase implements IMsgDispatch {
             logger.error("Method Invoke Error", e);
             throw new RuntimeException(StringUtils.join(":", "Method Invoke Error", e.getMessage()));
         }
+    }
+
+    @Override
+    public String getRoleId() {
+        return roleId;
+    }
+
+    @Override
+    public void push(MessageOrBuilder msg) {
+
     }
 
     private static final class FuncEntry {

@@ -3,6 +3,7 @@ package com.gg.core.net;
 import com.gg.common.Constants;
 import com.gg.common.GGLogger;
 import com.gg.core.net.codec.Net;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -37,6 +38,9 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.NetMessag
                 Net.Request.Builder reqBuilder = Net.Request.newBuilder();
                 JsonFormat.Parser jsonParser = JsonFormat.parser();
                 logger.info("payload: {}.", msg.getPayload());
+                String str = "{\"instance\":\"ISessionManager\",\"method\":\"connect\",\"payload\":\"{\\\"username\\\":\\\"testusername\\\",\\\"token\\\":\\\"testtoken\\\",\\\"extra\\\":null}\"}";
+                logger.info("Payload equal: {}", (str.equals(msg.getPayload())));
+                // jsonParser.merge(str, reqBuilder);
                 jsonParser.merge(msg.getPayload(), reqBuilder);
                 Net.Request request = reqBuilder.build();
                 try {
@@ -54,5 +58,15 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.NetMessag
                 ctx.writeAndFlush(netMessage);
                 break;
         }
+    }
+    
+    public static void main(String[] args) throws InvalidProtocolBufferException {
+        String str = "{\"instance\":\"ISessionManager\",\"method\":\"connect\",\"payload\":\"{\\\"username\\\":\\\"testusername\\\",\\\"token\\\":\\\"testtoken\\\",\\\"extra\\\":null}\"}";
+        Net.Request.Builder reqBuilder = Net.Request.newBuilder();
+        JsonFormat.Parser jsonParser = JsonFormat.parser();
+        logger.info("payload: {}.", str);
+        jsonParser.merge(str, reqBuilder);
+        Net.Request request = reqBuilder.build();
+        System.out.println(request.getPayload());
     }
 }

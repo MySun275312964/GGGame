@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package com.gg.game.proto;
+
+option java_package = "com.gg.game.proto";
+option java_generic_services = true;
+
+message CreateRoomRequest {
+    int32 memberCount = 1; // 人数限制
+};
+
+enum RoomStatus {
+    CREATED = 0;
+    GAMING = 1;
+    DESTORY = 2;
+};
+
+// 推送房间信息
+message RoomInfo {
+    int32 id = 1;
+    int32 status = 2; // 0, 等待加入; 1, 游戏开始; 2, 房间销毁
+    int32 memberCount = 3; // 人数限制
+};
+
+message CreateRoomResponse {
+    int32 code = 1;
+    RoomInfo roomInfo = 2;
+};
+
+message JoinRoomRequest {
+    int32 roomId = 1;
+};
+
+message JoinRoomResponse {
+    int32 code = 1; // 0 失败, 1 成功
+    string msg = 2; // 原因
+};
+
+message GetRoomListRequest {
+
+};
+
+message GetRoomListResponse {
+    repeated RoomInfo roomList = 1;
+};
+
+service IRoom {
+    // 创建房间
+    rpc create (CreateRoomRequest) returns (CreateRoomResponse);
+    // 加入房间
+    rpc join (JoinRoomRequest) returns (JoinRoomResponse);
+    // 获取房间列表
+    rpc getRoomList (GetRoomListRequest) returns (GetRoomListResponse);
+}
