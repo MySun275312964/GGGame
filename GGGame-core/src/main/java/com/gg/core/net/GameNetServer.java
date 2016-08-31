@@ -42,7 +42,7 @@ public class GameNetServer {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast(new IdleStateHandler(RPC_TIMEOUT, 0, 0));
-                        ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
+                        ByteOrder byteOrder = ByteOrder.LITTLE_ENDIAN;
                         pipeline.addLast(new LengthFieldBasedFrameDecoder(byteOrder, Integer.MAX_VALUE, 0, DefaultHeadLength, 0,
                                 DefaultHeadLength, true));
                         pipeline.addLast(new NetMessageDecoder(byteOrder));
