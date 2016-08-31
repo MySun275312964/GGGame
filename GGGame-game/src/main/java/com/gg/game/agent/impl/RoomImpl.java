@@ -80,4 +80,13 @@ public class RoomImpl extends Room.IRoom {
             done.run(builder.build());
         });
     }
+
+    @Override
+    public void input(RpcController controller, Room.InputRequest request, RpcCallback<Room.InputResponse> done) {
+        if (currentRoom != null) {
+            currentRoom.input(roleId, request.getKeyCode());
+        }
+        Room.InputResponse resp = Room.InputResponse.newBuilder().build();
+        done.run(resp);
+    }
 }

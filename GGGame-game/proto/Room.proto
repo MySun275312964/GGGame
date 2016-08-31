@@ -43,6 +43,13 @@ message GetRoomListRequest {
 message GetRoomListResponse {
     repeated RoomInfo roomList = 1;
 };
+message InputRequest {
+    int32 keyCode = 1;
+};
+
+message InputResponse {
+
+};
 
 service IRoom {
     // 创建房间
@@ -51,4 +58,6 @@ service IRoom {
     rpc join (JoinRoomRequest) returns (JoinRoomResponse);
     // 获取房间列表
     rpc getRoomList (GetRoomListRequest) returns (GetRoomListResponse);
+    // 控制輸入
+    rpc input(InputRequest) returns (InputResponse);
 }

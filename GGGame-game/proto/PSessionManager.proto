@@ -16,6 +16,7 @@ message ConnectResponse {
     int32 code = 1;
     string msg = 2;
     string sid = 3;
+    string roleId = 4;
 };
 
 service ISessionManager {

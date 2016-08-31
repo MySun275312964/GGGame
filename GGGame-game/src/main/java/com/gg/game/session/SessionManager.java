@@ -98,7 +98,7 @@ public class SessionManager extends ActorBase implements ISessionManager {
         sessionMap.put(sid, session);
 
         PSessionManager.ConnectResponse resp =
-                PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid(sid).build();
+                PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid(sid).setRoleId(sid).build();
         callback.run(resp);
     }
 

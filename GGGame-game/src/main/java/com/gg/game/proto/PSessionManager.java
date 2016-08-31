@@ -819,6 +819,16 @@ public final class PSessionManager {
      */
     com.google.protobuf.ByteString
         getSidBytes();
+
+    /**
+     * <code>optional string roleId = 4;</code>
+     */
+    java.lang.String getRoleId();
+    /**
+     * <code>optional string roleId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getRoleIdBytes();
   }
   /**
    * Protobuf type {@code com.gg.game.proto.ConnectResponse}
@@ -835,6 +845,7 @@ public final class PSessionManager {
       code_ = 0;
       msg_ = "";
       sid_ = "";
+      roleId_ = "";
     }
 
     @java.lang.Override
@@ -877,6 +888,12 @@ public final class PSessionManager {
               java.lang.String s = input.readStringRequireUtf8();
 
               sid_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              roleId_ = s;
               break;
             }
           }
@@ -979,6 +996,40 @@ public final class PSessionManager {
       }
     }
 
+    public static final int ROLEID_FIELD_NUMBER = 4;
+    private volatile java.lang.Object roleId_;
+    /**
+     * <code>optional string roleId = 4;</code>
+     */
+    public java.lang.String getRoleId() {
+      java.lang.Object ref = roleId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        roleId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string roleId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRoleIdBytes() {
+      java.lang.Object ref = roleId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        roleId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1000,6 +1051,9 @@ public final class PSessionManager {
       if (!getSidBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, sid_);
       }
+      if (!getRoleIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, roleId_);
+      }
     }
 
     public int getSerializedSize() {
@@ -1016,6 +1070,9 @@ public final class PSessionManager {
       }
       if (!getSidBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, sid_);
+      }
+      if (!getRoleIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, roleId_);
       }
       memoizedSize = size;
       return size;
@@ -1039,6 +1096,8 @@ public final class PSessionManager {
           .equals(other.getMsg());
       result = result && getSid()
           .equals(other.getSid());
+      result = result && getRoleId()
+          .equals(other.getRoleId());
       return result;
     }
 
@@ -1055,6 +1114,8 @@ public final class PSessionManager {
       hash = (53 * hash) + getMsg().hashCode();
       hash = (37 * hash) + SID_FIELD_NUMBER;
       hash = (53 * hash) + getSid().hashCode();
+      hash = (37 * hash) + ROLEID_FIELD_NUMBER;
+      hash = (53 * hash) + getRoleId().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1179,6 +1240,8 @@ public final class PSessionManager {
 
         sid_ = "";
 
+        roleId_ = "";
+
         return this;
       }
 
@@ -1204,6 +1267,7 @@ public final class PSessionManager {
         result.code_ = code_;
         result.msg_ = msg_;
         result.sid_ = sid_;
+        result.roleId_ = roleId_;
         onBuilt();
         return result;
       }
@@ -1254,6 +1318,10 @@ public final class PSessionManager {
         }
         if (!other.getSid().isEmpty()) {
           sid_ = other.sid_;
+          onChanged();
+        }
+        if (!other.getRoleId().isEmpty()) {
+          roleId_ = other.roleId_;
           onChanged();
         }
         onChanged();
@@ -1442,6 +1510,75 @@ public final class PSessionManager {
   checkByteStringIsUtf8(value);
         
         sid_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object roleId_ = "";
+      /**
+       * <code>optional string roleId = 4;</code>
+       */
+      public java.lang.String getRoleId() {
+        java.lang.Object ref = roleId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          roleId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string roleId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRoleIdBytes() {
+        java.lang.Object ref = roleId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          roleId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string roleId = 4;</code>
+       */
+      public Builder setRoleId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        roleId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string roleId = 4;</code>
+       */
+      public Builder clearRoleId() {
+        
+        roleId_ = getDefaultInstance().getRoleId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string roleId = 4;</code>
+       */
+      public Builder setRoleIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        roleId_ = value;
         onChanged();
         return this;
       }
@@ -1747,12 +1884,12 @@ public final class PSessionManager {
     java.lang.String[] descriptorData = {
       "\n\025PSessionManager.proto\022\021com.gg.game.pro" +
       "to\"@\n\016ConnectRequest\022\020\n\010username\030\001 \001(\t\022\r" +
-      "\n\005token\030\002 \001(\t\022\r\n\005extra\030\003 \001(\t\"9\n\017ConnectR" +
+      "\n\005token\030\002 \001(\t\022\r\n\005extra\030\003 \001(\t\"I\n\017ConnectR" +
       "esponse\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\022\013\n\003si" +
-      "d\030\003 \001(\t2c\n\017ISessionManager\022P\n\007connect\022!." +
-      "com.gg.game.proto.ConnectRequest\032\".com.g" +
-      "g.game.proto.ConnectResponseB\026\n\021com.gg.g" +
-      "ame.proto\210\001\001b\006proto3"
+      "d\030\003 \001(\t\022\016\n\006roleId\030\004 \001(\t2c\n\017ISessionManag" +
+      "er\022P\n\007connect\022!.com.gg.game.proto.Connec" +
+      "tRequest\032\".com.gg.game.proto.ConnectResp" +
+      "onseB\026\n\021com.gg.game.proto\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1777,7 +1914,7 @@ public final class PSessionManager {
     internal_static_com_gg_game_proto_ConnectResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_ConnectResponse_descriptor,
-        new java.lang.String[] { "Code", "Msg", "Sid", });
+        new java.lang.String[] { "Code", "Msg", "Sid", "RoleId", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

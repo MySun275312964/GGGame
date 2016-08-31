@@ -59,7 +59,7 @@ public class RoomManager extends ActorBase implements IRoomManager {
         GameRoom gameRoom = new GameRoom(system);
         ActorRef roomRef = system.actor("room-" + roomIndex, gameRoom);
         IGameRoom roomAgent = ActorAgent.getAgent(IGameRoom.class, this, roomRef);
-        RoomEntry roomEntry = new RoomEntry(roomIndex, member, Room.RoomStatus.CREATED_VALUE, roomAgent);
+        RoomEntry roomEntry = new RoomEntry(roomIndex, member, Room.RoomStatus.CREATED_VALUE, roomAgent, roleId);
         readyRoomMap.put(roomIndex, roomEntry);
         Room.RoomInfo roomInfo = Room.RoomInfo.newBuilder().setId(roomIndex).setMemberCount(member)
                 .setStatus(Room.RoomStatus.CREATED_VALUE).build();
@@ -79,17 +79,18 @@ public class RoomManager extends ActorBase implements IRoomManager {
         RoomEntry roomEntry = readyRoomMap.get(roomId);
         if (roomEntry != null && roomEntry.status == Room.RoomStatus.CREATED_VALUE
                 && roomEntry.memberCount > roomEntry.memberList.size()) {
-            for (String memberId : roomEntry.memberList) {
-                if (memberId.equals(roleId)) {
-                    return CompletableFuture.completedFuture(null);
-                }
-            }
+            // for (String memberId : roomEntry.memberList) {
+            //     if (memberId.equals(roleId)) {
+            //         return CompletableFuture.completedFuture(null);
+            //     }
+            // }
             // 加入房间
             roomEntry.memberList.add(roleId);
             if (roomEntry.memberList.size() >= roomEntry.memberCount) {
                 readyRoomMap.remove(roomId);
                 roomEntry.status = Room.RoomStatus.GAMING_VALUE;
                 gamingRoomMap.put(roomId, roomEntry);
+                roomEntry.gameRoom.setRoomEntry(roomEntry);
             }
             return CompletableFuture.completedFuture(roomEntry.gameRoom);
         }
@@ -114,11 +115,12 @@ public class RoomManager extends ActorBase implements IRoomManager {
         private IGameRoom gameRoom;
         public List<String> memberList = new ArrayList<>();
 
-        public RoomEntry(int id, int memberCount, int status, IGameRoom gameRoom) {
+        public RoomEntry(int id, int memberCount, int status, IGameRoom gameRoom, String roleId) {
             this.id = id;
             this.memberCount = memberCount;
             this.status = status;
             this.gameRoom = gameRoom;
+            this.memberList.add(roleId);
         }
     }
 }

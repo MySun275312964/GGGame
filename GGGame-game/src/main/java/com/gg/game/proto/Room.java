@@ -3947,6 +3947,800 @@ public final class Room {
 
   }
 
+  public interface InputRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.gg.game.proto.InputRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 keyCode = 1;</code>
+     */
+    int getKeyCode();
+  }
+  /**
+   * Protobuf type {@code com.gg.game.proto.InputRequest}
+   */
+  public  static final class InputRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.gg.game.proto.InputRequest)
+      InputRequestOrBuilder {
+    // Use InputRequest.newBuilder() to construct.
+    private InputRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private InputRequest() {
+      keyCode_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private InputRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              keyCode_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.gg.game.proto.Room.InputRequest.class, com.gg.game.proto.Room.InputRequest.Builder.class);
+    }
+
+    public static final int KEYCODE_FIELD_NUMBER = 1;
+    private int keyCode_;
+    /**
+     * <code>optional int32 keyCode = 1;</code>
+     */
+    public int getKeyCode() {
+      return keyCode_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (keyCode_ != 0) {
+        output.writeInt32(1, keyCode_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (keyCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, keyCode_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.game.proto.Room.InputRequest)) {
+        return super.equals(obj);
+      }
+      com.gg.game.proto.Room.InputRequest other = (com.gg.game.proto.Room.InputRequest) obj;
+
+      boolean result = true;
+      result = result && (getKeyCode()
+          == other.getKeyCode());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + KEYCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getKeyCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.gg.game.proto.Room.InputRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.gg.game.proto.Room.InputRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.gg.game.proto.InputRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.gg.game.proto.InputRequest)
+        com.gg.game.proto.Room.InputRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.gg.game.proto.Room.InputRequest.class, com.gg.game.proto.Room.InputRequest.Builder.class);
+      }
+
+      // Construct using com.gg.game.proto.Room.InputRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        keyCode_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputRequest_descriptor;
+      }
+
+      public com.gg.game.proto.Room.InputRequest getDefaultInstanceForType() {
+        return com.gg.game.proto.Room.InputRequest.getDefaultInstance();
+      }
+
+      public com.gg.game.proto.Room.InputRequest build() {
+        com.gg.game.proto.Room.InputRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.gg.game.proto.Room.InputRequest buildPartial() {
+        com.gg.game.proto.Room.InputRequest result = new com.gg.game.proto.Room.InputRequest(this);
+        result.keyCode_ = keyCode_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.gg.game.proto.Room.InputRequest) {
+          return mergeFrom((com.gg.game.proto.Room.InputRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.gg.game.proto.Room.InputRequest other) {
+        if (other == com.gg.game.proto.Room.InputRequest.getDefaultInstance()) return this;
+        if (other.getKeyCode() != 0) {
+          setKeyCode(other.getKeyCode());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.gg.game.proto.Room.InputRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.gg.game.proto.Room.InputRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int keyCode_ ;
+      /**
+       * <code>optional int32 keyCode = 1;</code>
+       */
+      public int getKeyCode() {
+        return keyCode_;
+      }
+      /**
+       * <code>optional int32 keyCode = 1;</code>
+       */
+      public Builder setKeyCode(int value) {
+        
+        keyCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 keyCode = 1;</code>
+       */
+      public Builder clearKeyCode() {
+        
+        keyCode_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.gg.game.proto.InputRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.gg.game.proto.InputRequest)
+    private static final com.gg.game.proto.Room.InputRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.gg.game.proto.Room.InputRequest();
+    }
+
+    public static com.gg.game.proto.Room.InputRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<InputRequest>
+        PARSER = new com.google.protobuf.AbstractParser<InputRequest>() {
+      public InputRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new InputRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<InputRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<InputRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.gg.game.proto.Room.InputRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface InputResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.gg.game.proto.InputResponse)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code com.gg.game.proto.InputResponse}
+   */
+  public  static final class InputResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.gg.game.proto.InputResponse)
+      InputResponseOrBuilder {
+    // Use InputResponse.newBuilder() to construct.
+    private InputResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private InputResponse() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private InputResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.gg.game.proto.Room.InputResponse.class, com.gg.game.proto.Room.InputResponse.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.game.proto.Room.InputResponse)) {
+        return super.equals(obj);
+      }
+      com.gg.game.proto.Room.InputResponse other = (com.gg.game.proto.Room.InputResponse) obj;
+
+      boolean result = true;
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.gg.game.proto.Room.InputResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.gg.game.proto.Room.InputResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.gg.game.proto.InputResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.gg.game.proto.InputResponse)
+        com.gg.game.proto.Room.InputResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.gg.game.proto.Room.InputResponse.class, com.gg.game.proto.Room.InputResponse.Builder.class);
+      }
+
+      // Construct using com.gg.game.proto.Room.InputResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputResponse_descriptor;
+      }
+
+      public com.gg.game.proto.Room.InputResponse getDefaultInstanceForType() {
+        return com.gg.game.proto.Room.InputResponse.getDefaultInstance();
+      }
+
+      public com.gg.game.proto.Room.InputResponse build() {
+        com.gg.game.proto.Room.InputResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.gg.game.proto.Room.InputResponse buildPartial() {
+        com.gg.game.proto.Room.InputResponse result = new com.gg.game.proto.Room.InputResponse(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.gg.game.proto.Room.InputResponse) {
+          return mergeFrom((com.gg.game.proto.Room.InputResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.gg.game.proto.Room.InputResponse other) {
+        if (other == com.gg.game.proto.Room.InputResponse.getDefaultInstance()) return this;
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.gg.game.proto.Room.InputResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.gg.game.proto.Room.InputResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.gg.game.proto.InputResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.gg.game.proto.InputResponse)
+    private static final com.gg.game.proto.Room.InputResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.gg.game.proto.Room.InputResponse();
+    }
+
+    public static com.gg.game.proto.Room.InputResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<InputResponse>
+        PARSER = new com.google.protobuf.AbstractParser<InputResponse>() {
+      public InputResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new InputResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<InputResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<InputResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.gg.game.proto.Room.InputResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   /**
    * Protobuf service {@code com.gg.game.proto.IRoom}
    */
@@ -3991,6 +4785,18 @@ public final class Room {
           com.gg.game.proto.Room.GetRoomListRequest request,
           com.google.protobuf.RpcCallback<com.gg.game.proto.Room.GetRoomListResponse> done);
 
+      /**
+       * <pre>
+       * 控制輸入
+       * </pre>
+       *
+       * <code>rpc input(.com.gg.game.proto.InputRequest) returns (.com.gg.game.proto.InputResponse);</code>
+       */
+      public abstract void input(
+          com.google.protobuf.RpcController controller,
+          com.gg.game.proto.Room.InputRequest request,
+          com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done);
+
     }
 
     public static com.google.protobuf.Service newReflectiveService(
@@ -4018,6 +4824,14 @@ public final class Room {
             com.gg.game.proto.Room.GetRoomListRequest request,
             com.google.protobuf.RpcCallback<com.gg.game.proto.Room.GetRoomListResponse> done) {
           impl.getRoomList(controller, request, done);
+        }
+
+        @java.lang.Override
+        public  void input(
+            com.google.protobuf.RpcController controller,
+            com.gg.game.proto.Room.InputRequest request,
+            com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done) {
+          impl.input(controller, request, done);
         }
 
       };
@@ -4048,6 +4862,8 @@ public final class Room {
               return impl.join(controller, (com.gg.game.proto.Room.JoinRoomRequest)request);
             case 2:
               return impl.getRoomList(controller, (com.gg.game.proto.Room.GetRoomListRequest)request);
+            case 3:
+              return impl.input(controller, (com.gg.game.proto.Room.InputRequest)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4068,6 +4884,8 @@ public final class Room {
               return com.gg.game.proto.Room.JoinRoomRequest.getDefaultInstance();
             case 2:
               return com.gg.game.proto.Room.GetRoomListRequest.getDefaultInstance();
+            case 3:
+              return com.gg.game.proto.Room.InputRequest.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4088,6 +4906,8 @@ public final class Room {
               return com.gg.game.proto.Room.JoinRoomResponse.getDefaultInstance();
             case 2:
               return com.gg.game.proto.Room.GetRoomListResponse.getDefaultInstance();
+            case 3:
+              return com.gg.game.proto.Room.InputResponse.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4132,6 +4952,18 @@ public final class Room {
         com.gg.game.proto.Room.GetRoomListRequest request,
         com.google.protobuf.RpcCallback<com.gg.game.proto.Room.GetRoomListResponse> done);
 
+    /**
+     * <pre>
+     * 控制輸入
+     * </pre>
+     *
+     * <code>rpc input(.com.gg.game.proto.InputRequest) returns (.com.gg.game.proto.InputResponse);</code>
+     */
+    public abstract void input(
+        com.google.protobuf.RpcController controller,
+        com.gg.game.proto.Room.InputRequest request,
+        com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done);
+
     public static final
         com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptor() {
@@ -4169,6 +5001,11 @@ public final class Room {
             com.google.protobuf.RpcUtil.<com.gg.game.proto.Room.GetRoomListResponse>specializeCallback(
               done));
           return;
+        case 3:
+          this.input(controller, (com.gg.game.proto.Room.InputRequest)request,
+            com.google.protobuf.RpcUtil.<com.gg.game.proto.Room.InputResponse>specializeCallback(
+              done));
+          return;
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4189,6 +5026,8 @@ public final class Room {
           return com.gg.game.proto.Room.JoinRoomRequest.getDefaultInstance();
         case 2:
           return com.gg.game.proto.Room.GetRoomListRequest.getDefaultInstance();
+        case 3:
+          return com.gg.game.proto.Room.InputRequest.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4209,6 +5048,8 @@ public final class Room {
           return com.gg.game.proto.Room.JoinRoomResponse.getDefaultInstance();
         case 2:
           return com.gg.game.proto.Room.GetRoomListResponse.getDefaultInstance();
+        case 3:
+          return com.gg.game.proto.Room.InputResponse.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4274,6 +5115,21 @@ public final class Room {
             com.gg.game.proto.Room.GetRoomListResponse.class,
             com.gg.game.proto.Room.GetRoomListResponse.getDefaultInstance()));
       }
+
+      public  void input(
+          com.google.protobuf.RpcController controller,
+          com.gg.game.proto.Room.InputRequest request,
+          com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(3),
+          controller,
+          request,
+          com.gg.game.proto.Room.InputResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            com.gg.game.proto.Room.InputResponse.class,
+            com.gg.game.proto.Room.InputResponse.getDefaultInstance()));
+      }
     }
 
     public static BlockingInterface newBlockingStub(
@@ -4295,6 +5151,11 @@ public final class Room {
       public com.gg.game.proto.Room.GetRoomListResponse getRoomList(
           com.google.protobuf.RpcController controller,
           com.gg.game.proto.Room.GetRoomListRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public com.gg.game.proto.Room.InputResponse input(
+          com.google.protobuf.RpcController controller,
+          com.gg.game.proto.Room.InputRequest request)
           throws com.google.protobuf.ServiceException;
     }
 
@@ -4340,6 +5201,18 @@ public final class Room {
           com.gg.game.proto.Room.GetRoomListResponse.getDefaultInstance());
       }
 
+
+      public com.gg.game.proto.Room.InputResponse input(
+          com.google.protobuf.RpcController controller,
+          com.gg.game.proto.Room.InputRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (com.gg.game.proto.Room.InputResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(3),
+          controller,
+          request,
+          com.gg.game.proto.Room.InputResponse.getDefaultInstance());
+      }
+
     }
 
     // @@protoc_insertion_point(class_scope:com.gg.game.proto.IRoom)
@@ -4380,6 +5253,16 @@ public final class Room {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_gg_game_proto_GetRoomListResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_gg_game_proto_InputRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_gg_game_proto_InputRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_gg_game_proto_InputResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_gg_game_proto_InputResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4398,16 +5281,19 @@ public final class Room {
       "roomId\030\001 \001(\005\"-\n\020JoinRoomResponse\022\014\n\004code" +
       "\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"\024\n\022GetRoomListReques" +
       "t\"D\n\023GetRoomListResponse\022-\n\010roomList\030\001 \003" +
-      "(\0132\033.com.gg.game.proto.RoomInfo*2\n\nRoomS",
-      "tatus\022\013\n\007CREATED\020\000\022\n\n\006GAMING\020\001\022\013\n\007DESTOR" +
-      "Y\020\0022\215\002\n\005IRoom\022U\n\006create\022$.com.gg.game.pr" +
-      "oto.CreateRoomRequest\032%.com.gg.game.prot" +
-      "o.CreateRoomResponse\022O\n\004join\022\".com.gg.ga" +
-      "me.proto.JoinRoomRequest\032#.com.gg.game.p" +
-      "roto.JoinRoomResponse\022\\\n\013getRoomList\022%.c" +
-      "om.gg.game.proto.GetRoomListRequest\032&.co" +
-      "m.gg.game.proto.GetRoomListResponseB\026\n\021c" +
-      "om.gg.game.proto\210\001\001b\006proto3"
+      "(\0132\033.com.gg.game.proto.RoomInfo\"\037\n\014Input",
+      "Request\022\017\n\007keyCode\030\001 \001(\005\"\017\n\rInputRespons" +
+      "e*2\n\nRoomStatus\022\013\n\007CREATED\020\000\022\n\n\006GAMING\020\001" +
+      "\022\013\n\007DESTORY\020\0022\331\002\n\005IRoom\022U\n\006create\022$.com." +
+      "gg.game.proto.CreateRoomRequest\032%.com.gg" +
+      ".game.proto.CreateRoomResponse\022O\n\004join\022\"" +
+      ".com.gg.game.proto.JoinRoomRequest\032#.com" +
+      ".gg.game.proto.JoinRoomResponse\022\\\n\013getRo" +
+      "omList\022%.com.gg.game.proto.GetRoomListRe" +
+      "quest\032&.com.gg.game.proto.GetRoomListRes" +
+      "ponse\022J\n\005input\022\037.com.gg.game.proto.Input",
+      "Request\032 .com.gg.game.proto.InputRespons" +
+      "eB\026\n\021com.gg.game.proto\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4463,6 +5349,18 @@ public final class Room {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_GetRoomListResponse_descriptor,
         new java.lang.String[] { "RoomList", });
+    internal_static_com_gg_game_proto_InputRequest_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_com_gg_game_proto_InputRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_gg_game_proto_InputRequest_descriptor,
+        new java.lang.String[] { "KeyCode", });
+    internal_static_com_gg_game_proto_InputResponse_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_com_gg_game_proto_InputResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_gg_game_proto_InputResponse_descriptor,
+        new java.lang.String[] { });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

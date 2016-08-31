@@ -9,4 +9,6 @@ public interface IGameRoom {
     void start();
 
     void setRoomEntry(RoomManager.RoomEntry roomEntry);
+
+    void input(String roleId, int keyCode);
 }
