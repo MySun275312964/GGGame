@@ -83,15 +83,15 @@ public class RoomManager extends ActorBase implements IRoomManager {
                 if (memberId.equals(roleId)) {
                     return CompletableFuture.completedFuture(null);
                 }
-                // 加入房间
-                roomEntry.memberList.add(roleId);
-                if (roomEntry.memberList.size() >= roomEntry.memberCount) {
-                    readyRoomMap.remove(roomId);
-                    roomEntry.status = Room.RoomStatus.GAMING_VALUE;
-                    gamingRoomMap.put(roomId, roomEntry);
-                    return CompletableFuture.completedFuture(roomEntry.gameRoom);
-                }
             }
+            // 加入房间
+            roomEntry.memberList.add(roleId);
+            if (roomEntry.memberList.size() >= roomEntry.memberCount) {
+                readyRoomMap.remove(roomId);
+                roomEntry.status = Room.RoomStatus.GAMING_VALUE;
+                gamingRoomMap.put(roomId, roomEntry);
+            }
+            return CompletableFuture.completedFuture(roomEntry.gameRoom);
         }
         return CompletableFuture.completedFuture(null);
     }
@@ -107,12 +107,12 @@ public class RoomManager extends ActorBase implements IRoomManager {
         return CompletableFuture.completedFuture(list);
     }
 
-    private static class RoomEntry {
+    public static class RoomEntry {
         private int id;
         private int status;
         private int memberCount;
         private IGameRoom gameRoom;
-        private List<String> memberList = new ArrayList<>();
+        public List<String> memberList = new ArrayList<>();
 
         public RoomEntry(int id, int memberCount, int status, IGameRoom gameRoom) {
             this.id = id;

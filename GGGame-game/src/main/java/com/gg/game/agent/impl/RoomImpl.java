@@ -49,6 +49,7 @@ public class RoomImpl extends Room.IRoom {
 
     @Override
     public void join(RpcController controller, Room.JoinRoomRequest request, RpcCallback<Room.JoinRoomResponse> done) {
+        logger.info("join room...");
         CompletableFuture<IGameRoom> joinFuture = roomManager.joinRoom(roleId, request.getRoomId());
         joinFuture.whenComplete((result, err) -> {
             Room.JoinRoomResponse.Builder builder = Room.JoinRoomResponse.newBuilder();
@@ -58,6 +59,8 @@ public class RoomImpl extends Room.IRoom {
                 builder.setCode(0);
                 if (err != null) {
                     builder.setMsg(err.getMessage());
+                } else {
+                    builder.setMsg("加入失败");
                 }
             }
             done.run(builder.build());

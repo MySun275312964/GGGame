@@ -132,6 +132,7 @@ public class SessionManager extends ActorBase implements ISessionManager {
             throws InvalidProtocolBufferException {
         Net.Response resp = buildResponse(obj);
         String json = JsonFormat.printer().print(resp);
+        logger.info("Post: {}", json);
         Net.NetMessage msg = Net.NetMessage.newBuilder().setIndex(index).setType(type).setPayload(json).build();
         return msg;
     }

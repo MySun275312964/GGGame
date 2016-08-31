@@ -1,5 +1,6 @@
 package com.gg.core.net;
 
+import com.gg.common.GGLogger;
 import com.gg.common.StringUtils;
 import com.gg.core.net.codec.Net;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -14,6 +15,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Created by hunter on 8/21/16.
  */
 public class NetPBCallback<T> implements RpcCallback<T> {
+    private static final GGLogger logger = GGLogger.getLogger(NetPBCallback.class);
 
     private Channel channel;
     private int index;
@@ -41,11 +43,13 @@ public class NetPBCallback<T> implements RpcCallback<T> {
                 String name = parameter.getClass().getSimpleName();
                 String jstr = printer.print((MessageOrBuilder) parameter);
                 respBuilder.setName(name).setResult(jstr);
+                logger.info("Resp: {}:{}.", name, jstr);
             } catch (InvalidProtocolBufferException e) {
                 e.printStackTrace();
                 String name = "SystemError";
                 String msg = StringUtils.join("", "SystemError", e.getMessage());
                 respBuilder.setName(name).setError(msg);
+                logger.info("Error Resp: {}:{}.", name, msg);
             }
             Net.Response resp = respBuilder.build();
             Net.NetMessage.Builder netMessageBuilder = Net.NetMessage.newBuilder();
