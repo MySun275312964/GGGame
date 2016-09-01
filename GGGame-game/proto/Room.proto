@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package com.gg.game.proto;
 
+import "Battle.proto";
+
 option java_package = "com.gg.game.proto";
 option java_generic_services = true;
 
@@ -51,6 +53,15 @@ message InputResponse {
 
 };
 
+message PositionRequest {
+    Vector3 position = 1;
+    Quaternion rotation = 2;
+};
+
+message PositionResponse {
+
+};
+
 service IRoom {
     // 创建房间
     rpc create (CreateRoomRequest) returns (CreateRoomResponse);
@@ -60,4 +71,6 @@ service IRoom {
     rpc getRoomList (GetRoomListRequest) returns (GetRoomListResponse);
     // 控制輸入
     rpc input(InputRequest) returns (InputResponse);
+    // 位置同步
+    rpc position(PositionRequest) returns (PositionResponse);
 }

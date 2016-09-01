@@ -1,5 +1,6 @@
 package com.gg.game.room;
 
+import com.gg.game.proto.Room;
 import com.gg.game.room.impl.RoomManager;
 
 /**
@@ -11,4 +12,6 @@ public interface IGameRoom {
     void setRoomEntry(RoomManager.RoomEntry roomEntry);
 
     void input(String roleId, int keyCode);
+
+    void position(String roleId, Room.PositionRequest posReq);
 }

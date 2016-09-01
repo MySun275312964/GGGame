@@ -79,11 +79,11 @@ public class RoomManager extends ActorBase implements IRoomManager {
         RoomEntry roomEntry = readyRoomMap.get(roomId);
         if (roomEntry != null && roomEntry.status == Room.RoomStatus.CREATED_VALUE
                 && roomEntry.memberCount > roomEntry.memberList.size()) {
-            // for (String memberId : roomEntry.memberList) {
-            //     if (memberId.equals(roleId)) {
-            //         return CompletableFuture.completedFuture(null);
-            //     }
-            // }
+            for (String memberId : roomEntry.memberList) {
+                if (memberId.equals(roleId)) {
+                    return CompletableFuture.completedFuture(null);
+                }
+            }
             // 加入房间
             roomEntry.memberList.add(roleId);
             if (roomEntry.memberList.size() >= roomEntry.memberCount) {

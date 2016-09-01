@@ -4,6 +4,7 @@ import com.gg.common.GGLogger;
 import com.gg.core.actor.ActorBase;
 import com.gg.core.actor.ActorSystem;
 import com.gg.game.proto.Battle;
+import com.gg.game.proto.Room;
 import com.gg.game.room.IGameRoom;
 import com.gg.game.session.ISessionManager;
 import com.gg.game.session.SessionManager;
@@ -45,8 +46,15 @@ public class GameRoom extends ActorBase implements IGameRoom {
         broadcast(controlInfo);
     }
 
+    @Override
+    public void position(String roleId, Room.PositionRequest posReq) {
+        Battle.PositionInfo posInfo = Battle.PositionInfo.newBuilder().setPosition(posReq.getPosition())
+                .setRotation(posReq.getRotation()).setRid(roleId).build();
+        broadcast(posInfo);
+    }
+
     private void broadcast(MessageOrBuilder msg) {
-        for (String role:roleList) {
+        for (String role : roleList) {
             sessionManager.push(role, msg);
         }
     }

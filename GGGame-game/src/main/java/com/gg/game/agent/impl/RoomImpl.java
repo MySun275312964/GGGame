@@ -31,7 +31,7 @@ public class RoomImpl extends Room.IRoom {
     @Override
     public void create(RpcController controller, Room.CreateRoomRequest request,
             RpcCallback<Room.CreateRoomResponse> done) {
-        logger.info("create room");
+        logger.info("create room {}", roleId);
         CompletableFuture<CreateRoomResult> resultFuture = roomManager.createRoom(roleId, request.getMemberCount());
         resultFuture.whenComplete((result, err) -> {
             Room.CreateRoomResponse.Builder builder = Room.CreateRoomResponse.newBuilder();
@@ -49,11 +49,12 @@ public class RoomImpl extends Room.IRoom {
 
     @Override
     public void join(RpcController controller, Room.JoinRoomRequest request, RpcCallback<Room.JoinRoomResponse> done) {
-        logger.info("join room...");
+        logger.info("join room...{}", roleId);
         CompletableFuture<IGameRoom> joinFuture = roomManager.joinRoom(roleId, request.getRoomId());
         joinFuture.whenComplete((result, err) -> {
             Room.JoinRoomResponse.Builder builder = Room.JoinRoomResponse.newBuilder();
             if (err == null && result != null) {
+                currentRoom = result;
                 builder.setCode(1);
             } else {
                 builder.setCode(0);
@@ -88,5 +89,17 @@ public class RoomImpl extends Room.IRoom {
         }
         Room.InputResponse resp = Room.InputResponse.newBuilder().build();
         done.run(resp);
+    }
+
+    @Override
+    public void position(RpcController controller, Room.PositionRequest request,
+            RpcCallback<Room.PositionResponse> done) {
+        logger.info("position... {}", roleId);
+        if (currentRoom != null) {
+            currentRoom.position(roleId, request);
+        }
+
+        Room.PositionResponse positionResponse = Room.PositionResponse.newBuilder().build();
+        done.run(positionResponse);
     }
 }

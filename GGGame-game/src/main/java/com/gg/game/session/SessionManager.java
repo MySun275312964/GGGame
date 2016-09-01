@@ -80,6 +80,7 @@ public class SessionManager extends ActorBase implements ISessionManager {
         String sid = "SESSION:" + (++ID);
 
         // add useragent dispatch
+        // roleid
         String key = "useragent:" + connectRequest.getUsername();
         ActorRef userAgentRef = null;
         if (system.exist(key)) {
@@ -98,7 +99,7 @@ public class SessionManager extends ActorBase implements ISessionManager {
         sessionMap.put(sid, session);
 
         PSessionManager.ConnectResponse resp =
-                PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid(sid).setRoleId(sid).build();
+                PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid(sid).setRoleId(key).build();
         callback.run(resp);
     }
 

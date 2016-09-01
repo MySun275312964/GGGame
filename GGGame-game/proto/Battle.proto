@@ -11,8 +11,23 @@ enum InputKeyCode {
     Reset = 2;
 };
 
+message Vector3 {
+    string x = 1;
+    string y = 2;
+    string z = 3;
+};
+
+message Quaternion {
+    string x = 1;
+    string y = 2;
+    string z = 3;
+    string w = 4;
+};
+
 message PositionInfo {
     string rid = 1;
+    Vector3 position = 2;
+    Quaternion rotation = 3;
 };
 
 message ControlInfo {

@@ -121,6 +121,1697 @@ public final class Battle {
     // @@protoc_insertion_point(enum_scope:com.gg.game.proto.InputKeyCode)
   }
 
+  public interface Vector3OrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.gg.game.proto.Vector3)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    java.lang.String getX();
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getXBytes();
+
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    java.lang.String getY();
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getYBytes();
+
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    java.lang.String getZ();
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getZBytes();
+  }
+  /**
+   * Protobuf type {@code com.gg.game.proto.Vector3}
+   */
+  public  static final class Vector3 extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.gg.game.proto.Vector3)
+      Vector3OrBuilder {
+    // Use Vector3.newBuilder() to construct.
+    private Vector3(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Vector3() {
+      x_ = "";
+      y_ = "";
+      z_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Vector3(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              x_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              y_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              z_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Vector3_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Vector3_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.gg.game.proto.Battle.Vector3.class, com.gg.game.proto.Battle.Vector3.Builder.class);
+    }
+
+    public static final int X_FIELD_NUMBER = 1;
+    private volatile java.lang.Object x_;
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    public java.lang.String getX() {
+      java.lang.Object ref = x_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        x_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getXBytes() {
+      java.lang.Object ref = x_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        x_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private volatile java.lang.Object y_;
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    public java.lang.String getY() {
+      java.lang.Object ref = y_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        y_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getYBytes() {
+      java.lang.Object ref = y_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        y_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int Z_FIELD_NUMBER = 3;
+    private volatile java.lang.Object z_;
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    public java.lang.String getZ() {
+      java.lang.Object ref = z_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        z_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getZBytes() {
+      java.lang.Object ref = z_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        z_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getXBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, x_);
+      }
+      if (!getYBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, y_);
+      }
+      if (!getZBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, z_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getXBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, x_);
+      }
+      if (!getYBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, y_);
+      }
+      if (!getZBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, z_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.game.proto.Battle.Vector3)) {
+        return super.equals(obj);
+      }
+      com.gg.game.proto.Battle.Vector3 other = (com.gg.game.proto.Battle.Vector3) obj;
+
+      boolean result = true;
+      result = result && getX()
+          .equals(other.getX());
+      result = result && getY()
+          .equals(other.getY());
+      result = result && getZ()
+          .equals(other.getZ());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + getX().hashCode();
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + getY().hashCode();
+      hash = (37 * hash) + Z_FIELD_NUMBER;
+      hash = (53 * hash) + getZ().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Battle.Vector3 parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.gg.game.proto.Battle.Vector3 prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.gg.game.proto.Vector3}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.gg.game.proto.Vector3)
+        com.gg.game.proto.Battle.Vector3OrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Vector3_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Vector3_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.gg.game.proto.Battle.Vector3.class, com.gg.game.proto.Battle.Vector3.Builder.class);
+      }
+
+      // Construct using com.gg.game.proto.Battle.Vector3.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        x_ = "";
+
+        y_ = "";
+
+        z_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Vector3_descriptor;
+      }
+
+      public com.gg.game.proto.Battle.Vector3 getDefaultInstanceForType() {
+        return com.gg.game.proto.Battle.Vector3.getDefaultInstance();
+      }
+
+      public com.gg.game.proto.Battle.Vector3 build() {
+        com.gg.game.proto.Battle.Vector3 result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.gg.game.proto.Battle.Vector3 buildPartial() {
+        com.gg.game.proto.Battle.Vector3 result = new com.gg.game.proto.Battle.Vector3(this);
+        result.x_ = x_;
+        result.y_ = y_;
+        result.z_ = z_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.gg.game.proto.Battle.Vector3) {
+          return mergeFrom((com.gg.game.proto.Battle.Vector3)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.gg.game.proto.Battle.Vector3 other) {
+        if (other == com.gg.game.proto.Battle.Vector3.getDefaultInstance()) return this;
+        if (!other.getX().isEmpty()) {
+          x_ = other.x_;
+          onChanged();
+        }
+        if (!other.getY().isEmpty()) {
+          y_ = other.y_;
+          onChanged();
+        }
+        if (!other.getZ().isEmpty()) {
+          z_ = other.z_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.gg.game.proto.Battle.Vector3 parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.gg.game.proto.Battle.Vector3) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object x_ = "";
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public java.lang.String getX() {
+        java.lang.Object ref = x_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          x_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getXBytes() {
+        java.lang.Object ref = x_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          x_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public Builder setX(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public Builder clearX() {
+        
+        x_ = getDefaultInstance().getX();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public Builder setXBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        x_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object y_ = "";
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public java.lang.String getY() {
+        java.lang.Object ref = y_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          y_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getYBytes() {
+        java.lang.Object ref = y_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          y_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public Builder setY(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public Builder clearY() {
+        
+        y_ = getDefaultInstance().getY();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public Builder setYBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        y_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object z_ = "";
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public java.lang.String getZ() {
+        java.lang.Object ref = z_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          z_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getZBytes() {
+        java.lang.Object ref = z_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          z_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public Builder setZ(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        z_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public Builder clearZ() {
+        
+        z_ = getDefaultInstance().getZ();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public Builder setZBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        z_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.gg.game.proto.Vector3)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.gg.game.proto.Vector3)
+    private static final com.gg.game.proto.Battle.Vector3 DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.gg.game.proto.Battle.Vector3();
+    }
+
+    public static com.gg.game.proto.Battle.Vector3 getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Vector3>
+        PARSER = new com.google.protobuf.AbstractParser<Vector3>() {
+      public Vector3 parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Vector3(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Vector3> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Vector3> getParserForType() {
+      return PARSER;
+    }
+
+    public com.gg.game.proto.Battle.Vector3 getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface QuaternionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.gg.game.proto.Quaternion)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    java.lang.String getX();
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getXBytes();
+
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    java.lang.String getY();
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getYBytes();
+
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    java.lang.String getZ();
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getZBytes();
+
+    /**
+     * <code>optional string w = 4;</code>
+     */
+    java.lang.String getW();
+    /**
+     * <code>optional string w = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getWBytes();
+  }
+  /**
+   * Protobuf type {@code com.gg.game.proto.Quaternion}
+   */
+  public  static final class Quaternion extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.gg.game.proto.Quaternion)
+      QuaternionOrBuilder {
+    // Use Quaternion.newBuilder() to construct.
+    private Quaternion(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Quaternion() {
+      x_ = "";
+      y_ = "";
+      z_ = "";
+      w_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Quaternion(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              x_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              y_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              z_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              w_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Quaternion_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Quaternion_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.gg.game.proto.Battle.Quaternion.class, com.gg.game.proto.Battle.Quaternion.Builder.class);
+    }
+
+    public static final int X_FIELD_NUMBER = 1;
+    private volatile java.lang.Object x_;
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    public java.lang.String getX() {
+      java.lang.Object ref = x_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        x_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string x = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getXBytes() {
+      java.lang.Object ref = x_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        x_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private volatile java.lang.Object y_;
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    public java.lang.String getY() {
+      java.lang.Object ref = y_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        y_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string y = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getYBytes() {
+      java.lang.Object ref = y_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        y_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int Z_FIELD_NUMBER = 3;
+    private volatile java.lang.Object z_;
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    public java.lang.String getZ() {
+      java.lang.Object ref = z_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        z_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string z = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getZBytes() {
+      java.lang.Object ref = z_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        z_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int W_FIELD_NUMBER = 4;
+    private volatile java.lang.Object w_;
+    /**
+     * <code>optional string w = 4;</code>
+     */
+    public java.lang.String getW() {
+      java.lang.Object ref = w_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        w_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string w = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWBytes() {
+      java.lang.Object ref = w_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        w_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getXBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, x_);
+      }
+      if (!getYBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, y_);
+      }
+      if (!getZBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, z_);
+      }
+      if (!getWBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, w_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getXBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, x_);
+      }
+      if (!getYBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, y_);
+      }
+      if (!getZBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, z_);
+      }
+      if (!getWBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, w_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.game.proto.Battle.Quaternion)) {
+        return super.equals(obj);
+      }
+      com.gg.game.proto.Battle.Quaternion other = (com.gg.game.proto.Battle.Quaternion) obj;
+
+      boolean result = true;
+      result = result && getX()
+          .equals(other.getX());
+      result = result && getY()
+          .equals(other.getY());
+      result = result && getZ()
+          .equals(other.getZ());
+      result = result && getW()
+          .equals(other.getW());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + getX().hashCode();
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + getY().hashCode();
+      hash = (37 * hash) + Z_FIELD_NUMBER;
+      hash = (53 * hash) + getZ().hashCode();
+      hash = (37 * hash) + W_FIELD_NUMBER;
+      hash = (53 * hash) + getW().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Battle.Quaternion parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.gg.game.proto.Battle.Quaternion prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.gg.game.proto.Quaternion}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.gg.game.proto.Quaternion)
+        com.gg.game.proto.Battle.QuaternionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Quaternion_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Quaternion_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.gg.game.proto.Battle.Quaternion.class, com.gg.game.proto.Battle.Quaternion.Builder.class);
+      }
+
+      // Construct using com.gg.game.proto.Battle.Quaternion.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        x_ = "";
+
+        y_ = "";
+
+        z_ = "";
+
+        w_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.gg.game.proto.Battle.internal_static_com_gg_game_proto_Quaternion_descriptor;
+      }
+
+      public com.gg.game.proto.Battle.Quaternion getDefaultInstanceForType() {
+        return com.gg.game.proto.Battle.Quaternion.getDefaultInstance();
+      }
+
+      public com.gg.game.proto.Battle.Quaternion build() {
+        com.gg.game.proto.Battle.Quaternion result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.gg.game.proto.Battle.Quaternion buildPartial() {
+        com.gg.game.proto.Battle.Quaternion result = new com.gg.game.proto.Battle.Quaternion(this);
+        result.x_ = x_;
+        result.y_ = y_;
+        result.z_ = z_;
+        result.w_ = w_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.gg.game.proto.Battle.Quaternion) {
+          return mergeFrom((com.gg.game.proto.Battle.Quaternion)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.gg.game.proto.Battle.Quaternion other) {
+        if (other == com.gg.game.proto.Battle.Quaternion.getDefaultInstance()) return this;
+        if (!other.getX().isEmpty()) {
+          x_ = other.x_;
+          onChanged();
+        }
+        if (!other.getY().isEmpty()) {
+          y_ = other.y_;
+          onChanged();
+        }
+        if (!other.getZ().isEmpty()) {
+          z_ = other.z_;
+          onChanged();
+        }
+        if (!other.getW().isEmpty()) {
+          w_ = other.w_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.gg.game.proto.Battle.Quaternion parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.gg.game.proto.Battle.Quaternion) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object x_ = "";
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public java.lang.String getX() {
+        java.lang.Object ref = x_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          x_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getXBytes() {
+        java.lang.Object ref = x_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          x_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public Builder setX(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public Builder clearX() {
+        
+        x_ = getDefaultInstance().getX();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string x = 1;</code>
+       */
+      public Builder setXBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        x_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object y_ = "";
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public java.lang.String getY() {
+        java.lang.Object ref = y_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          y_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getYBytes() {
+        java.lang.Object ref = y_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          y_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public Builder setY(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public Builder clearY() {
+        
+        y_ = getDefaultInstance().getY();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string y = 2;</code>
+       */
+      public Builder setYBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        y_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object z_ = "";
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public java.lang.String getZ() {
+        java.lang.Object ref = z_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          z_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getZBytes() {
+        java.lang.Object ref = z_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          z_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public Builder setZ(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        z_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public Builder clearZ() {
+        
+        z_ = getDefaultInstance().getZ();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string z = 3;</code>
+       */
+      public Builder setZBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        z_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object w_ = "";
+      /**
+       * <code>optional string w = 4;</code>
+       */
+      public java.lang.String getW() {
+        java.lang.Object ref = w_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          w_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string w = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWBytes() {
+        java.lang.Object ref = w_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          w_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string w = 4;</code>
+       */
+      public Builder setW(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        w_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string w = 4;</code>
+       */
+      public Builder clearW() {
+        
+        w_ = getDefaultInstance().getW();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string w = 4;</code>
+       */
+      public Builder setWBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        w_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.gg.game.proto.Quaternion)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.gg.game.proto.Quaternion)
+    private static final com.gg.game.proto.Battle.Quaternion DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.gg.game.proto.Battle.Quaternion();
+    }
+
+    public static com.gg.game.proto.Battle.Quaternion getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Quaternion>
+        PARSER = new com.google.protobuf.AbstractParser<Quaternion>() {
+      public Quaternion parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Quaternion(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Quaternion> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Quaternion> getParserForType() {
+      return PARSER;
+    }
+
+    public com.gg.game.proto.Battle.Quaternion getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface PositionInfoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:com.gg.game.proto.PositionInfo)
       com.google.protobuf.MessageOrBuilder {
@@ -134,6 +1825,32 @@ public final class Battle {
      */
     com.google.protobuf.ByteString
         getRidBytes();
+
+    /**
+     * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+     */
+    boolean hasPosition();
+    /**
+     * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+     */
+    com.gg.game.proto.Battle.Vector3 getPosition();
+    /**
+     * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+     */
+    com.gg.game.proto.Battle.Vector3OrBuilder getPositionOrBuilder();
+
+    /**
+     * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+     */
+    boolean hasRotation();
+    /**
+     * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+     */
+    com.gg.game.proto.Battle.Quaternion getRotation();
+    /**
+     * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+     */
+    com.gg.game.proto.Battle.QuaternionOrBuilder getRotationOrBuilder();
   }
   /**
    * Protobuf type {@code com.gg.game.proto.PositionInfo}
@@ -179,6 +1896,32 @@ public final class Battle {
               java.lang.String s = input.readStringRequireUtf8();
 
               rid_ = s;
+              break;
+            }
+            case 18: {
+              com.gg.game.proto.Battle.Vector3.Builder subBuilder = null;
+              if (position_ != null) {
+                subBuilder = position_.toBuilder();
+              }
+              position_ = input.readMessage(com.gg.game.proto.Battle.Vector3.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(position_);
+                position_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 26: {
+              com.gg.game.proto.Battle.Quaternion.Builder subBuilder = null;
+              if (rotation_ != null) {
+                subBuilder = rotation_.toBuilder();
+              }
+              rotation_ = input.readMessage(com.gg.game.proto.Battle.Quaternion.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(rotation_);
+                rotation_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           }
@@ -238,6 +1981,48 @@ public final class Battle {
       }
     }
 
+    public static final int POSITION_FIELD_NUMBER = 2;
+    private com.gg.game.proto.Battle.Vector3 position_;
+    /**
+     * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+     */
+    public boolean hasPosition() {
+      return position_ != null;
+    }
+    /**
+     * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+     */
+    public com.gg.game.proto.Battle.Vector3 getPosition() {
+      return position_ == null ? com.gg.game.proto.Battle.Vector3.getDefaultInstance() : position_;
+    }
+    /**
+     * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+     */
+    public com.gg.game.proto.Battle.Vector3OrBuilder getPositionOrBuilder() {
+      return getPosition();
+    }
+
+    public static final int ROTATION_FIELD_NUMBER = 3;
+    private com.gg.game.proto.Battle.Quaternion rotation_;
+    /**
+     * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+     */
+    public boolean hasRotation() {
+      return rotation_ != null;
+    }
+    /**
+     * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+     */
+    public com.gg.game.proto.Battle.Quaternion getRotation() {
+      return rotation_ == null ? com.gg.game.proto.Battle.Quaternion.getDefaultInstance() : rotation_;
+    }
+    /**
+     * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+     */
+    public com.gg.game.proto.Battle.QuaternionOrBuilder getRotationOrBuilder() {
+      return getRotation();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -253,6 +2038,12 @@ public final class Battle {
       if (!getRidBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, rid_);
       }
+      if (position_ != null) {
+        output.writeMessage(2, getPosition());
+      }
+      if (rotation_ != null) {
+        output.writeMessage(3, getRotation());
+      }
     }
 
     public int getSerializedSize() {
@@ -262,6 +2053,14 @@ public final class Battle {
       size = 0;
       if (!getRidBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, rid_);
+      }
+      if (position_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getPosition());
+      }
+      if (rotation_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getRotation());
       }
       memoizedSize = size;
       return size;
@@ -281,6 +2080,16 @@ public final class Battle {
       boolean result = true;
       result = result && getRid()
           .equals(other.getRid());
+      result = result && (hasPosition() == other.hasPosition());
+      if (hasPosition()) {
+        result = result && getPosition()
+            .equals(other.getPosition());
+      }
+      result = result && (hasRotation() == other.hasRotation());
+      if (hasRotation()) {
+        result = result && getRotation()
+            .equals(other.getRotation());
+      }
       return result;
     }
 
@@ -293,6 +2102,14 @@ public final class Battle {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + RID_FIELD_NUMBER;
       hash = (53 * hash) + getRid().hashCode();
+      if (hasPosition()) {
+        hash = (37 * hash) + POSITION_FIELD_NUMBER;
+        hash = (53 * hash) + getPosition().hashCode();
+      }
+      if (hasRotation()) {
+        hash = (37 * hash) + ROTATION_FIELD_NUMBER;
+        hash = (53 * hash) + getRotation().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -413,6 +2230,18 @@ public final class Battle {
         super.clear();
         rid_ = "";
 
+        if (positionBuilder_ == null) {
+          position_ = null;
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+        if (rotationBuilder_ == null) {
+          rotation_ = null;
+        } else {
+          rotation_ = null;
+          rotationBuilder_ = null;
+        }
         return this;
       }
 
@@ -436,6 +2265,16 @@ public final class Battle {
       public com.gg.game.proto.Battle.PositionInfo buildPartial() {
         com.gg.game.proto.Battle.PositionInfo result = new com.gg.game.proto.Battle.PositionInfo(this);
         result.rid_ = rid_;
+        if (positionBuilder_ == null) {
+          result.position_ = position_;
+        } else {
+          result.position_ = positionBuilder_.build();
+        }
+        if (rotationBuilder_ == null) {
+          result.rotation_ = rotation_;
+        } else {
+          result.rotation_ = rotationBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -480,6 +2319,12 @@ public final class Battle {
         if (!other.getRid().isEmpty()) {
           rid_ = other.rid_;
           onChanged();
+        }
+        if (other.hasPosition()) {
+          mergePosition(other.getPosition());
+        }
+        if (other.hasRotation()) {
+          mergeRotation(other.getRotation());
         }
         onChanged();
         return this;
@@ -574,6 +2419,240 @@ public final class Battle {
         rid_ = value;
         onChanged();
         return this;
+      }
+
+      private com.gg.game.proto.Battle.Vector3 position_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.gg.game.proto.Battle.Vector3, com.gg.game.proto.Battle.Vector3.Builder, com.gg.game.proto.Battle.Vector3OrBuilder> positionBuilder_;
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public boolean hasPosition() {
+        return positionBuilder_ != null || position_ != null;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public com.gg.game.proto.Battle.Vector3 getPosition() {
+        if (positionBuilder_ == null) {
+          return position_ == null ? com.gg.game.proto.Battle.Vector3.getDefaultInstance() : position_;
+        } else {
+          return positionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public Builder setPosition(com.gg.game.proto.Battle.Vector3 value) {
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          position_ = value;
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public Builder setPosition(
+          com.gg.game.proto.Battle.Vector3.Builder builderForValue) {
+        if (positionBuilder_ == null) {
+          position_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public Builder mergePosition(com.gg.game.proto.Battle.Vector3 value) {
+        if (positionBuilder_ == null) {
+          if (position_ != null) {
+            position_ =
+              com.gg.game.proto.Battle.Vector3.newBuilder(position_).mergeFrom(value).buildPartial();
+          } else {
+            position_ = value;
+          }
+          onChanged();
+        } else {
+          positionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public Builder clearPosition() {
+        if (positionBuilder_ == null) {
+          position_ = null;
+          onChanged();
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public com.gg.game.proto.Battle.Vector3.Builder getPositionBuilder() {
+        
+        onChanged();
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      public com.gg.game.proto.Battle.Vector3OrBuilder getPositionOrBuilder() {
+        if (positionBuilder_ != null) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          return position_ == null ?
+              com.gg.game.proto.Battle.Vector3.getDefaultInstance() : position_;
+        }
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Vector3 position = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.gg.game.proto.Battle.Vector3, com.gg.game.proto.Battle.Vector3.Builder, com.gg.game.proto.Battle.Vector3OrBuilder> 
+          getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.gg.game.proto.Battle.Vector3, com.gg.game.proto.Battle.Vector3.Builder, com.gg.game.proto.Battle.Vector3OrBuilder>(
+                  getPosition(),
+                  getParentForChildren(),
+                  isClean());
+          position_ = null;
+        }
+        return positionBuilder_;
+      }
+
+      private com.gg.game.proto.Battle.Quaternion rotation_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.gg.game.proto.Battle.Quaternion, com.gg.game.proto.Battle.Quaternion.Builder, com.gg.game.proto.Battle.QuaternionOrBuilder> rotationBuilder_;
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public boolean hasRotation() {
+        return rotationBuilder_ != null || rotation_ != null;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public com.gg.game.proto.Battle.Quaternion getRotation() {
+        if (rotationBuilder_ == null) {
+          return rotation_ == null ? com.gg.game.proto.Battle.Quaternion.getDefaultInstance() : rotation_;
+        } else {
+          return rotationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public Builder setRotation(com.gg.game.proto.Battle.Quaternion value) {
+        if (rotationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          rotation_ = value;
+          onChanged();
+        } else {
+          rotationBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public Builder setRotation(
+          com.gg.game.proto.Battle.Quaternion.Builder builderForValue) {
+        if (rotationBuilder_ == null) {
+          rotation_ = builderForValue.build();
+          onChanged();
+        } else {
+          rotationBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public Builder mergeRotation(com.gg.game.proto.Battle.Quaternion value) {
+        if (rotationBuilder_ == null) {
+          if (rotation_ != null) {
+            rotation_ =
+              com.gg.game.proto.Battle.Quaternion.newBuilder(rotation_).mergeFrom(value).buildPartial();
+          } else {
+            rotation_ = value;
+          }
+          onChanged();
+        } else {
+          rotationBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public Builder clearRotation() {
+        if (rotationBuilder_ == null) {
+          rotation_ = null;
+          onChanged();
+        } else {
+          rotation_ = null;
+          rotationBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public com.gg.game.proto.Battle.Quaternion.Builder getRotationBuilder() {
+        
+        onChanged();
+        return getRotationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      public com.gg.game.proto.Battle.QuaternionOrBuilder getRotationOrBuilder() {
+        if (rotationBuilder_ != null) {
+          return rotationBuilder_.getMessageOrBuilder();
+        } else {
+          return rotation_ == null ?
+              com.gg.game.proto.Battle.Quaternion.getDefaultInstance() : rotation_;
+        }
+      }
+      /**
+       * <code>optional .com.gg.game.proto.Quaternion rotation = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.gg.game.proto.Battle.Quaternion, com.gg.game.proto.Battle.Quaternion.Builder, com.gg.game.proto.Battle.QuaternionOrBuilder> 
+          getRotationFieldBuilder() {
+        if (rotationBuilder_ == null) {
+          rotationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.gg.game.proto.Battle.Quaternion, com.gg.game.proto.Battle.Quaternion.Builder, com.gg.game.proto.Battle.QuaternionOrBuilder>(
+                  getRotation(),
+                  getParentForChildren(),
+                  isClean());
+          rotation_ = null;
+        }
+        return rotationBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1748,6 +3827,16 @@ public final class Battle {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_gg_game_proto_Vector3_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_gg_game_proto_Vector3_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_gg_game_proto_Quaternion_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_gg_game_proto_Quaternion_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_gg_game_proto_PositionInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -1771,12 +3860,17 @@ public final class Battle {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014Battle.proto\022\021com.gg.game.proto\"\033\n\014Pos" +
-      "itionInfo\022\013\n\003rid\030\001 \001(\t\"+\n\013ControlInfo\022\013\n" +
-      "\003rid\030\001 \001(\t\022\017\n\007keyCode\030\002 \001(\005\"\035\n\013StartBatt" +
-      "le\022\016\n\006others\030\001 \003(\t*-\n\014InputKeyCode\022\010\n\004No" +
-      "ne\020\000\022\010\n\004Fire\020\001\022\t\n\005Reset\020\002B\026\n\021com.gg.game" +
-      ".proto\210\001\001b\006proto3"
+      "\n\014Battle.proto\022\021com.gg.game.proto\"*\n\007Vec" +
+      "tor3\022\t\n\001x\030\001 \001(\t\022\t\n\001y\030\002 \001(\t\022\t\n\001z\030\003 \001(\t\"8\n" +
+      "\nQuaternion\022\t\n\001x\030\001 \001(\t\022\t\n\001y\030\002 \001(\t\022\t\n\001z\030\003" +
+      " \001(\t\022\t\n\001w\030\004 \001(\t\"z\n\014PositionInfo\022\013\n\003rid\030\001" +
+      " \001(\t\022,\n\010position\030\002 \001(\0132\032.com.gg.game.pro" +
+      "to.Vector3\022/\n\010rotation\030\003 \001(\0132\035.com.gg.ga" +
+      "me.proto.Quaternion\"+\n\013ControlInfo\022\013\n\003ri" +
+      "d\030\001 \001(\t\022\017\n\007keyCode\030\002 \001(\005\"\035\n\013StartBattle\022" +
+      "\016\n\006others\030\001 \003(\t*-\n\014InputKeyCode\022\010\n\004None\020" +
+      "\000\022\010\n\004Fire\020\001\022\t\n\005Reset\020\002B\026\n\021com.gg.game.pr",
+      "oto\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1790,20 +3884,32 @@ public final class Battle {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_com_gg_game_proto_PositionInfo_descriptor =
+    internal_static_com_gg_game_proto_Vector3_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_com_gg_game_proto_Vector3_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_gg_game_proto_Vector3_descriptor,
+        new java.lang.String[] { "X", "Y", "Z", });
+    internal_static_com_gg_game_proto_Quaternion_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_com_gg_game_proto_Quaternion_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_gg_game_proto_Quaternion_descriptor,
+        new java.lang.String[] { "X", "Y", "Z", "W", });
+    internal_static_com_gg_game_proto_PositionInfo_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_com_gg_game_proto_PositionInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_PositionInfo_descriptor,
-        new java.lang.String[] { "Rid", });
+        new java.lang.String[] { "Rid", "Position", "Rotation", });
     internal_static_com_gg_game_proto_ControlInfo_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_com_gg_game_proto_ControlInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_ControlInfo_descriptor,
         new java.lang.String[] { "Rid", "KeyCode", });
     internal_static_com_gg_game_proto_StartBattle_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_com_gg_game_proto_StartBattle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_StartBattle_descriptor,
