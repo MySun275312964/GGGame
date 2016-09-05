@@ -53,6 +53,7 @@ public class SessionManager extends ActorBase implements ISessionManager {
     private InnerSessionManager sessionManager;
 
     private Map<String, Session> sessionMap = new HashMap<>();
+    private Map<String, String> nameSessionMap = new HashMap<>();
 
     private int ID = 0;
 
@@ -75,13 +76,18 @@ public class SessionManager extends ActorBase implements ISessionManager {
         NetPBHelper.parseJson(request.getPayload(), builder);
         PSessionManager.ConnectRequest connectRequest = builder.build();
 
-        // TODO ... auth
-
-        String sid = "SESSION:" + (++ID);
-
         // add useragent dispatch
         // roleid
         String key = "useragent:" + connectRequest.getUsername();
+        if (nameSessionMap.containsKey(key)) {
+            PSessionManager.ConnectResponse resp =
+                    PSessionManager.ConnectResponse.newBuilder().setCode(0).setMsg("用户名已存在").build();
+            callback.run(resp);
+            return;
+        }
+
+        String sid = "SESSION:" + (++ID);
+
         ActorRef userAgentRef = null;
         if (system.exist(key)) {
             userAgentRef = system.actor(key);
@@ -89,18 +95,43 @@ public class SessionManager extends ActorBase implements ISessionManager {
             UserAgent userAgent = new UserAgent(key, system);
             userAgentRef = system.actor(key, userAgent);
         }
+
+        Session session = new Session(sid, key, ctx.channel());
+        sessionMap.put(sid, session);
+        nameSessionMap.put(key, sid);
+
         Attribute<IMsgDispatch> attr = ctx.channel().attr(Constants.Net.DispatchKey);
         IMsgDispatch userDispatch = ActorAgent.getAgent(IMsgDispatch.class, this, userAgentRef);
         attr.set(userDispatch);
 
+        Attribute<String> sidKey = ctx.channel().attr(Constants.Session.SessionID);
+        sidKey.set(sid);
+        Attribute<String> ridKey = ctx.channel().attr(Constants.Session.RoleID);
+        ridKey.set(key);
+
         // sessionManager.connect(null, connectRequest, callback);
 
-        Session session = new Session(sid, key, ctx.channel());
-        sessionMap.put(sid, session);
-
-        PSessionManager.ConnectResponse resp =
-                PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success").setSid(sid).setRoleId(key).build();
+        PSessionManager.ConnectResponse resp = PSessionManager.ConnectResponse.newBuilder().setCode(1).setMsg("success")
+                .setSid(sid).setRoleId(key).build();
         callback.run(resp);
+    }
+
+    @Override
+    public void disconnect(ChannelHandlerContext ctx) {
+        Attribute<String> ridKey = ctx.channel().attr(Constants.Session.RoleID);
+        String rid = ridKey.getAndRemove();
+        if (rid != null) {
+            removeSessionByKey(rid);
+        }
+    }
+
+    public void removeSessionByKey(String key) {
+        if (nameSessionMap.containsKey(key)) {
+            String sid = nameSessionMap.remove(key);
+            if (sid != null) {
+                sessionMap.remove(sid);
+            }
+        }
     }
 
     /**
@@ -108,15 +139,15 @@ public class SessionManager extends ActorBase implements ISessionManager {
      */
     @Override
     public void push(String key, MessageOrBuilder obj) {
-        for (Session s : sessionMap.values()) {
-            if (s.key.equals(key)) {
+        if (nameSessionMap.containsKey(key)) {
+            Session s = sessionMap.get(nameSessionMap.get(key));
+            if (s != null) {
                 try {
                     Net.NetMessage msg = buildNetMessage(0, Net.MessageType.POST, obj);
                     s.channel.writeAndFlush(msg);
                 } catch (InvalidProtocolBufferException e) {
                     e.printStackTrace();
                 }
-                break;
             }
         }
     }
@@ -147,6 +178,11 @@ public class SessionManager extends ActorBase implements ISessionManager {
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void removeSession(String key) {
+        removeSessionByKey(key);
     }
 
     private static final class InnerSessionManager extends PSessionManager.ISessionManager {

@@ -1,16 +1,21 @@
 package com.gg.game.agent;
 
+import com.gg.common.Constants;
 import com.gg.common.GGLogger;
 import com.gg.common.StringUtils;
 import com.gg.core.actor.ActorBase;
 import com.gg.core.actor.ActorSystem;
 import com.gg.core.net.IMsgDispatch;
 import com.gg.core.net.codec.Net;
+import com.gg.game.session.ISessionManager;
+import com.gg.game.session.SessionManager;
 import com.google.protobuf.Message;
 import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.RpcCallback;
 import com.google.protobuf.util.JsonFormat;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.Attribute;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -30,6 +35,8 @@ public class UserAgent extends ActorBase implements IMsgDispatch, IUserAgent {
     private Map<String, Object> funcMap = new HashMap<>();
 
     private Map<String, FuncEntry> funcEntryCache = new HashMap<>();
+
+    private ISessionManager sessionManager = SessionManager.getInstance();
 
     private String sid;
     private String roleId;
@@ -121,6 +128,20 @@ public class UserAgent extends ActorBase implements IMsgDispatch, IUserAgent {
         } catch (Exception e) {
             logger.error("Method Invoke Error", e);
             throw new RuntimeException(StringUtils.join(":", "Method Invoke Error", e.getMessage()));
+        }
+    }
+
+    /**
+     * 客户端断开
+     */
+    @Override
+    public void disconnect(ChannelHandlerContext ctx) {
+        // TODO ... 清理 Actor
+        Channel channel = ctx.channel();
+        Attribute<String> ridKey = channel.attr(Constants.Session.RoleID);
+        String rid = ridKey.getAndRemove();
+        if (rid != null) {
+            sessionManager.removeSession(rid);
         }
     }
 

@@ -9,4 +9,5 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public interface IMsgDispatch {
     void process(ChannelHandlerContext ctx, Net.Request request, RpcCallback<?> callback);
+    void disconnect(ChannelHandlerContext ctx);
 }

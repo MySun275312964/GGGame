@@ -21,4 +21,9 @@ public class Constants {
 
         public static final AttributeKey<IMsgDispatch> DispatchKey = AttributeKey.valueOf("DispatchKey");
     }
+
+    public static final class Session {
+        public static final AttributeKey<String> SessionID = AttributeKey.valueOf("SessionID");
+        public static final AttributeKey<String> RoleID = AttributeKey.valueOf("RoleID");
+    }
 }

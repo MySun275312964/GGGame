@@ -22,14 +22,19 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.NetMessag
         this.defaultDispatch = dispatch;
     }
 
-    @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Net.NetMessage msg) throws Exception {
-        Channel channel = ctx.channel();
+    private IMsgDispatch getMsgDispatch(Channel channel) {
         Attribute<IMsgDispatch> attr = channel.attr(Constants.Net.DispatchKey);
         IMsgDispatch dispatch = attr.get();
         if (dispatch == null) {
             dispatch = defaultDispatch;
         }
+        return dispatch;
+    }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, Net.NetMessage msg) throws Exception {
+        Channel channel = ctx.channel();
+        IMsgDispatch dispatch = getMsgDispatch(channel);
         int index = msg.getIndex();
         switch (msg.getType()) {
             case CONNECT:
@@ -38,7 +43,8 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.NetMessag
                 Net.Request.Builder reqBuilder = Net.Request.newBuilder();
                 JsonFormat.Parser jsonParser = JsonFormat.parser();
                 logger.info("payload: {}.", msg.getPayload());
-                String str = "{\"instance\":\"ISessionManager\",\"method\":\"connect\",\"payload\":\"{\\\"username\\\":\\\"testusername\\\",\\\"token\\\":\\\"testtoken\\\",\\\"extra\\\":null}\"}";
+                String str =
+                        "{\"instance\":\"ISessionManager\",\"method\":\"connect\",\"payload\":\"{\\\"username\\\":\\\"testusername\\\",\\\"token\\\":\\\"testtoken\\\",\\\"extra\\\":null}\"}";
                 logger.info("Payload equal: {}", (str.equals(msg.getPayload())));
                 // jsonParser.merge(str, reqBuilder);
                 jsonParser.merge(msg.getPayload(), reqBuilder);
@@ -48,20 +54,30 @@ public class GameServerHandler extends SimpleChannelInboundHandler<Net.NetMessag
                 } catch (Throwable throwable) {
                     logger.error("Error: ", throwable);
                     if (callback.doResponse()) {
-                        Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.ERROR).setPayload(throwable.getMessage()).build();
+                        Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index)
+                                .setType(Net.MessageType.ERROR).setPayload(throwable.getMessage()).build();
                         ctx.writeAndFlush(netMessage);
                     }
                 }
                 break;
             default:
-                Net.NetMessage netMessage = Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.UNRECOGNIZED).build();
+                Net.NetMessage netMessage =
+                        Net.NetMessage.newBuilder().setIndex(index).setType(Net.MessageType.UNRECOGNIZED).build();
                 ctx.writeAndFlush(netMessage);
                 break;
         }
     }
-    
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        Channel channel = ctx.channel();
+        IMsgDispatch msgDispatch = getMsgDispatch(channel);
+        msgDispatch.disconnect(ctx);
+    }
+
     public static void main(String[] args) throws InvalidProtocolBufferException {
-        String str = "{\"instance\":\"ISessionManager\",\"method\":\"connect\",\"payload\":\"{\\\"username\\\":\\\"testusername\\\",\\\"token\\\":\\\"testtoken\\\",\\\"extra\\\":null}\"}";
+        String str =
+                "{\"instance\":\"ISessionManager\",\"method\":\"connect\",\"payload\":\"{\\\"username\\\":\\\"testusername\\\",\\\"token\\\":\\\"testtoken\\\",\\\"extra\\\":null}\"}";
         Net.Request.Builder reqBuilder = Net.Request.newBuilder();
         JsonFormat.Parser jsonParser = JsonFormat.parser();
         logger.info("payload: {}.", str);

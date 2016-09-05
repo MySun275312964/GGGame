@@ -10,4 +10,6 @@ public interface ISessionManager extends IMsgDispatch {
     void push(String key, MessageOrBuilder msg);
 
     void pushAll(MessageOrBuilder msg);
+
+    void removeSession(String key);
 }
