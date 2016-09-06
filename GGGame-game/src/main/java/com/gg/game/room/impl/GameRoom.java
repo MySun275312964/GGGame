@@ -10,7 +10,10 @@ import com.gg.game.session.ISessionManager;
 import com.gg.game.session.SessionManager;
 import com.google.protobuf.MessageOrBuilder;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 游戏房间
@@ -23,6 +26,10 @@ public class GameRoom extends ActorBase implements IGameRoom {
     private List<String> roleList;
 
     private ISessionManager sessionManager = SessionManager.getInstance();
+
+    private int frameIndex = 1;
+
+    private Map<Integer, Map<String, List<Room.InputFrame>>> frameMap = new HashMap<>();
 
     public GameRoom(ActorSystem system) {
         super(system);
@@ -41,9 +48,35 @@ public class GameRoom extends ActorBase implements IGameRoom {
     }
 
     @Override
-    public void input(String roleId, int keyCode) {
-        Battle.ControlInfo controlInfo = Battle.ControlInfo.newBuilder().setRid(roleId).setKeyCode(keyCode).build();
-        broadcast(controlInfo);
+    public void input(String roleId, Room.InputFrame inputFrame) {
+        logger.info("input {}:{}:{}", roleId, inputFrame.getFrameIndex(), inputFrame.getInput().getKeyCode());
+        int frame = inputFrame.getFrameIndex();
+        if (frame != frameIndex) {
+            logger.info("Frame Index Error. {}:{}.", frame, frameIndex);
+            return;
+        }
+        Map<String, List<Room.InputFrame>> inputMap = frameMap.get(frame);
+        if (inputMap == null) {
+            inputMap = new HashMap<>();
+            frameMap.put(frame, inputMap);
+        }
+        List<Room.InputFrame> inputList = inputMap.get(roleId);
+        if (inputList == null) {
+            inputList = new ArrayList<>();
+            inputMap.put(roleId, inputList);
+        }
+        inputList.add(inputFrame);
+
+        if (true || inputMap.size() >= roleList.size()) {
+            for (List<Room.InputFrame> list : inputMap.values()) {
+                for (Room.InputFrame input : list) {
+                    Battle.ControlInfo controlInfo = Battle.ControlInfo.newBuilder().setRid(roleId).setKeyCode(input.getInput().getKeyCode()).setFrameIndex(input.getFrameIndex()).build();
+                    broadcast(controlInfo);
+                }
+            }
+            frameMap.remove(frameIndex);
+            frameIndex ++;
+        }
     }
 
     @Override

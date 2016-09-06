@@ -33,6 +33,7 @@ message PositionInfo {
 message ControlInfo {
     string rid = 1;
     int32 keyCode = 2;
+    int32 frameIndex = 3;
 };
 
 message StartBattle {

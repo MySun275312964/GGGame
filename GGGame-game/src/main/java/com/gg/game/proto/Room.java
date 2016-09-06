@@ -5860,6 +5860,629 @@ public final class Room {
 
   }
 
+  public interface InputFrameOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.gg.game.proto.InputFrame)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 frameIndex = 1;</code>
+     */
+    int getFrameIndex();
+
+    /**
+     * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+     */
+    boolean hasInput();
+    /**
+     * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+     */
+    com.gg.game.proto.Room.InputRequest getInput();
+    /**
+     * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+     */
+    com.gg.game.proto.Room.InputRequestOrBuilder getInputOrBuilder();
+  }
+  /**
+   * Protobuf type {@code com.gg.game.proto.InputFrame}
+   */
+  public  static final class InputFrame extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.gg.game.proto.InputFrame)
+      InputFrameOrBuilder {
+    // Use InputFrame.newBuilder() to construct.
+    private InputFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private InputFrame() {
+      frameIndex_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private InputFrame(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              frameIndex_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              com.gg.game.proto.Room.InputRequest.Builder subBuilder = null;
+              if (input_ != null) {
+                subBuilder = input_.toBuilder();
+              }
+              input_ = input.readMessage(com.gg.game.proto.Room.InputRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(input_);
+                input_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputFrame_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputFrame_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.gg.game.proto.Room.InputFrame.class, com.gg.game.proto.Room.InputFrame.Builder.class);
+    }
+
+    public static final int FRAMEINDEX_FIELD_NUMBER = 1;
+    private int frameIndex_;
+    /**
+     * <code>optional int32 frameIndex = 1;</code>
+     */
+    public int getFrameIndex() {
+      return frameIndex_;
+    }
+
+    public static final int INPUT_FIELD_NUMBER = 2;
+    private com.gg.game.proto.Room.InputRequest input_;
+    /**
+     * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+     */
+    public boolean hasInput() {
+      return input_ != null;
+    }
+    /**
+     * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+     */
+    public com.gg.game.proto.Room.InputRequest getInput() {
+      return input_ == null ? com.gg.game.proto.Room.InputRequest.getDefaultInstance() : input_;
+    }
+    /**
+     * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+     */
+    public com.gg.game.proto.Room.InputRequestOrBuilder getInputOrBuilder() {
+      return getInput();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (frameIndex_ != 0) {
+        output.writeInt32(1, frameIndex_);
+      }
+      if (input_ != null) {
+        output.writeMessage(2, getInput());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (frameIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, frameIndex_);
+      }
+      if (input_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getInput());
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.gg.game.proto.Room.InputFrame)) {
+        return super.equals(obj);
+      }
+      com.gg.game.proto.Room.InputFrame other = (com.gg.game.proto.Room.InputFrame) obj;
+
+      boolean result = true;
+      result = result && (getFrameIndex()
+          == other.getFrameIndex());
+      result = result && (hasInput() == other.hasInput());
+      if (hasInput()) {
+        result = result && getInput()
+            .equals(other.getInput());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + FRAMEINDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getFrameIndex();
+      if (hasInput()) {
+        hash = (37 * hash) + INPUT_FIELD_NUMBER;
+        hash = (53 * hash) + getInput().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.gg.game.proto.Room.InputFrame parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.gg.game.proto.Room.InputFrame parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.gg.game.proto.Room.InputFrame prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.gg.game.proto.InputFrame}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.gg.game.proto.InputFrame)
+        com.gg.game.proto.Room.InputFrameOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputFrame_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputFrame_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.gg.game.proto.Room.InputFrame.class, com.gg.game.proto.Room.InputFrame.Builder.class);
+      }
+
+      // Construct using com.gg.game.proto.Room.InputFrame.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        frameIndex_ = 0;
+
+        if (inputBuilder_ == null) {
+          input_ = null;
+        } else {
+          input_ = null;
+          inputBuilder_ = null;
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.gg.game.proto.Room.internal_static_com_gg_game_proto_InputFrame_descriptor;
+      }
+
+      public com.gg.game.proto.Room.InputFrame getDefaultInstanceForType() {
+        return com.gg.game.proto.Room.InputFrame.getDefaultInstance();
+      }
+
+      public com.gg.game.proto.Room.InputFrame build() {
+        com.gg.game.proto.Room.InputFrame result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.gg.game.proto.Room.InputFrame buildPartial() {
+        com.gg.game.proto.Room.InputFrame result = new com.gg.game.proto.Room.InputFrame(this);
+        result.frameIndex_ = frameIndex_;
+        if (inputBuilder_ == null) {
+          result.input_ = input_;
+        } else {
+          result.input_ = inputBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.gg.game.proto.Room.InputFrame) {
+          return mergeFrom((com.gg.game.proto.Room.InputFrame)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.gg.game.proto.Room.InputFrame other) {
+        if (other == com.gg.game.proto.Room.InputFrame.getDefaultInstance()) return this;
+        if (other.getFrameIndex() != 0) {
+          setFrameIndex(other.getFrameIndex());
+        }
+        if (other.hasInput()) {
+          mergeInput(other.getInput());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.gg.game.proto.Room.InputFrame parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.gg.game.proto.Room.InputFrame) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int frameIndex_ ;
+      /**
+       * <code>optional int32 frameIndex = 1;</code>
+       */
+      public int getFrameIndex() {
+        return frameIndex_;
+      }
+      /**
+       * <code>optional int32 frameIndex = 1;</code>
+       */
+      public Builder setFrameIndex(int value) {
+        
+        frameIndex_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 frameIndex = 1;</code>
+       */
+      public Builder clearFrameIndex() {
+        
+        frameIndex_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.gg.game.proto.Room.InputRequest input_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.gg.game.proto.Room.InputRequest, com.gg.game.proto.Room.InputRequest.Builder, com.gg.game.proto.Room.InputRequestOrBuilder> inputBuilder_;
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public boolean hasInput() {
+        return inputBuilder_ != null || input_ != null;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public com.gg.game.proto.Room.InputRequest getInput() {
+        if (inputBuilder_ == null) {
+          return input_ == null ? com.gg.game.proto.Room.InputRequest.getDefaultInstance() : input_;
+        } else {
+          return inputBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public Builder setInput(com.gg.game.proto.Room.InputRequest value) {
+        if (inputBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          input_ = value;
+          onChanged();
+        } else {
+          inputBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public Builder setInput(
+          com.gg.game.proto.Room.InputRequest.Builder builderForValue) {
+        if (inputBuilder_ == null) {
+          input_ = builderForValue.build();
+          onChanged();
+        } else {
+          inputBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public Builder mergeInput(com.gg.game.proto.Room.InputRequest value) {
+        if (inputBuilder_ == null) {
+          if (input_ != null) {
+            input_ =
+              com.gg.game.proto.Room.InputRequest.newBuilder(input_).mergeFrom(value).buildPartial();
+          } else {
+            input_ = value;
+          }
+          onChanged();
+        } else {
+          inputBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public Builder clearInput() {
+        if (inputBuilder_ == null) {
+          input_ = null;
+          onChanged();
+        } else {
+          input_ = null;
+          inputBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public com.gg.game.proto.Room.InputRequest.Builder getInputBuilder() {
+        
+        onChanged();
+        return getInputFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      public com.gg.game.proto.Room.InputRequestOrBuilder getInputOrBuilder() {
+        if (inputBuilder_ != null) {
+          return inputBuilder_.getMessageOrBuilder();
+        } else {
+          return input_ == null ?
+              com.gg.game.proto.Room.InputRequest.getDefaultInstance() : input_;
+        }
+      }
+      /**
+       * <code>optional .com.gg.game.proto.InputRequest input = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.gg.game.proto.Room.InputRequest, com.gg.game.proto.Room.InputRequest.Builder, com.gg.game.proto.Room.InputRequestOrBuilder> 
+          getInputFieldBuilder() {
+        if (inputBuilder_ == null) {
+          inputBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.gg.game.proto.Room.InputRequest, com.gg.game.proto.Room.InputRequest.Builder, com.gg.game.proto.Room.InputRequestOrBuilder>(
+                  getInput(),
+                  getParentForChildren(),
+                  isClean());
+          input_ = null;
+        }
+        return inputBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.gg.game.proto.InputFrame)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.gg.game.proto.InputFrame)
+    private static final com.gg.game.proto.Room.InputFrame DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.gg.game.proto.Room.InputFrame();
+    }
+
+    public static com.gg.game.proto.Room.InputFrame getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<InputFrame>
+        PARSER = new com.google.protobuf.AbstractParser<InputFrame>() {
+      public InputFrame parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new InputFrame(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<InputFrame> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<InputFrame> getParserForType() {
+      return PARSER;
+    }
+
+    public com.gg.game.proto.Room.InputFrame getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   /**
    * Protobuf service {@code com.gg.game.proto.IRoom}
    */
@@ -5909,11 +6532,11 @@ public final class Room {
        * 控制輸入
        * </pre>
        *
-       * <code>rpc input(.com.gg.game.proto.InputRequest) returns (.com.gg.game.proto.InputResponse);</code>
+       * <code>rpc input(.com.gg.game.proto.InputFrame) returns (.com.gg.game.proto.InputResponse);</code>
        */
       public abstract void input(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.Room.InputRequest request,
+          com.gg.game.proto.Room.InputFrame request,
           com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done);
 
       /**
@@ -5960,7 +6583,7 @@ public final class Room {
         @java.lang.Override
         public  void input(
             com.google.protobuf.RpcController controller,
-            com.gg.game.proto.Room.InputRequest request,
+            com.gg.game.proto.Room.InputFrame request,
             com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done) {
           impl.input(controller, request, done);
         }
@@ -6002,7 +6625,7 @@ public final class Room {
             case 2:
               return impl.getRoomList(controller, (com.gg.game.proto.Room.GetRoomListRequest)request);
             case 3:
-              return impl.input(controller, (com.gg.game.proto.Room.InputRequest)request);
+              return impl.input(controller, (com.gg.game.proto.Room.InputFrame)request);
             case 4:
               return impl.position(controller, (com.gg.game.proto.Room.PositionRequest)request);
             default:
@@ -6026,7 +6649,7 @@ public final class Room {
             case 2:
               return com.gg.game.proto.Room.GetRoomListRequest.getDefaultInstance();
             case 3:
-              return com.gg.game.proto.Room.InputRequest.getDefaultInstance();
+              return com.gg.game.proto.Room.InputFrame.getDefaultInstance();
             case 4:
               return com.gg.game.proto.Room.PositionRequest.getDefaultInstance();
             default:
@@ -6102,11 +6725,11 @@ public final class Room {
      * 控制輸入
      * </pre>
      *
-     * <code>rpc input(.com.gg.game.proto.InputRequest) returns (.com.gg.game.proto.InputResponse);</code>
+     * <code>rpc input(.com.gg.game.proto.InputFrame) returns (.com.gg.game.proto.InputResponse);</code>
      */
     public abstract void input(
         com.google.protobuf.RpcController controller,
-        com.gg.game.proto.Room.InputRequest request,
+        com.gg.game.proto.Room.InputFrame request,
         com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done);
 
     /**
@@ -6159,7 +6782,7 @@ public final class Room {
               done));
           return;
         case 3:
-          this.input(controller, (com.gg.game.proto.Room.InputRequest)request,
+          this.input(controller, (com.gg.game.proto.Room.InputFrame)request,
             com.google.protobuf.RpcUtil.<com.gg.game.proto.Room.InputResponse>specializeCallback(
               done));
           return;
@@ -6189,7 +6812,7 @@ public final class Room {
         case 2:
           return com.gg.game.proto.Room.GetRoomListRequest.getDefaultInstance();
         case 3:
-          return com.gg.game.proto.Room.InputRequest.getDefaultInstance();
+          return com.gg.game.proto.Room.InputFrame.getDefaultInstance();
         case 4:
           return com.gg.game.proto.Room.PositionRequest.getDefaultInstance();
         default:
@@ -6284,7 +6907,7 @@ public final class Room {
 
       public  void input(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.Room.InputRequest request,
+          com.gg.game.proto.Room.InputFrame request,
           com.google.protobuf.RpcCallback<com.gg.game.proto.Room.InputResponse> done) {
         channel.callMethod(
           getDescriptor().getMethods().get(3),
@@ -6336,7 +6959,7 @@ public final class Room {
 
       public com.gg.game.proto.Room.InputResponse input(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.Room.InputRequest request)
+          com.gg.game.proto.Room.InputFrame request)
           throws com.google.protobuf.ServiceException;
 
       public com.gg.game.proto.Room.PositionResponse position(
@@ -6390,7 +7013,7 @@ public final class Room {
 
       public com.gg.game.proto.Room.InputResponse input(
           com.google.protobuf.RpcController controller,
-          com.gg.game.proto.Room.InputRequest request)
+          com.gg.game.proto.Room.InputFrame request)
           throws com.google.protobuf.ServiceException {
         return (com.gg.game.proto.Room.InputResponse) channel.callBlockingMethod(
           getDescriptor().getMethods().get(3),
@@ -6471,6 +7094,11 @@ public final class Room {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_gg_game_proto_PositionResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_gg_game_proto_InputFrame_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_gg_game_proto_InputFrame_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -6494,16 +7122,18 @@ public final class Room {
       "\n\rInputResponse\"p\n\017PositionRequest\022,\n\010po" +
       "sition\030\001 \001(\0132\032.com.gg.game.proto.Vector3" +
       "\022/\n\010rotation\030\002 \001(\0132\035.com.gg.game.proto.Q" +
-      "uaternion\"\022\n\020PositionResponse*2\n\nRoomSta" +
-      "tus\022\013\n\007CREATED\020\000\022\n\n\006GAMING\020\001\022\013\n\007DESTORY\020" +
-      "\0022\256\003\n\005IRoom\022U\n\006create\022$.com.gg.game.prot" +
-      "o.CreateRoomRequest\032%.com.gg.game.proto." +
-      "CreateRoomResponse\022O\n\004join\022\".com.gg.game" +
-      ".proto.JoinRoomRequest\032#.com.gg.game.pro",
-      "to.JoinRoomResponse\022\\\n\013getRoomList\022%.com" +
-      ".gg.game.proto.GetRoomListRequest\032&.com." +
-      "gg.game.proto.GetRoomListResponse\022J\n\005inp" +
-      "ut\022\037.com.gg.game.proto.InputRequest\032 .co" +
+      "uaternion\"\022\n\020PositionResponse\"P\n\nInputFr" +
+      "ame\022\022\n\nframeIndex\030\001 \001(\005\022.\n\005input\030\002 \001(\0132\037" +
+      ".com.gg.game.proto.InputRequest*2\n\nRoomS" +
+      "tatus\022\013\n\007CREATED\020\000\022\n\n\006GAMING\020\001\022\013\n\007DESTOR" +
+      "Y\020\0022\254\003\n\005IRoom\022U\n\006create\022$.com.gg.game.pr" +
+      "oto.CreateRoomRequest\032%.com.gg.game.prot",
+      "o.CreateRoomResponse\022O\n\004join\022\".com.gg.ga" +
+      "me.proto.JoinRoomRequest\032#.com.gg.game.p" +
+      "roto.JoinRoomResponse\022\\\n\013getRoomList\022%.c" +
+      "om.gg.game.proto.GetRoomListRequest\032&.co" +
+      "m.gg.game.proto.GetRoomListResponse\022H\n\005i" +
+      "nput\022\035.com.gg.game.proto.InputFrame\032 .co" +
       "m.gg.game.proto.InputResponse\022S\n\010positio" +
       "n\022\".com.gg.game.proto.PositionRequest\032#." +
       "com.gg.game.proto.PositionResponseB\026\n\021co" +
@@ -6588,6 +7218,12 @@ public final class Room {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_PositionResponse_descriptor,
         new java.lang.String[] { });
+    internal_static_com_gg_game_proto_InputFrame_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_com_gg_game_proto_InputFrame_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_gg_game_proto_InputFrame_descriptor,
+        new java.lang.String[] { "FrameIndex", "Input", });
     com.gg.game.proto.Battle.getDescriptor();
   }
 

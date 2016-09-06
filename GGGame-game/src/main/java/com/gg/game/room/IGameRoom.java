@@ -11,7 +11,7 @@ public interface IGameRoom {
 
     void setRoomEntry(RoomManager.RoomEntry roomEntry);
 
-    void input(String roleId, int keyCode);
+    void input(String roleId, Room.InputFrame inputFrame);
 
     void position(String roleId, Room.PositionRequest posReq);
 }

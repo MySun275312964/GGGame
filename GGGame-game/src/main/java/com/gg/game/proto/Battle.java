@@ -2721,6 +2721,11 @@ public final class Battle {
      * <code>optional int32 keyCode = 2;</code>
      */
     int getKeyCode();
+
+    /**
+     * <code>optional int32 frameIndex = 3;</code>
+     */
+    int getFrameIndex();
   }
   /**
    * Protobuf type {@code com.gg.game.proto.ControlInfo}
@@ -2736,6 +2741,7 @@ public final class Battle {
     private ControlInfo() {
       rid_ = "";
       keyCode_ = 0;
+      frameIndex_ = 0;
     }
 
     @java.lang.Override
@@ -2772,6 +2778,11 @@ public final class Battle {
             case 16: {
 
               keyCode_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              frameIndex_ = input.readInt32();
               break;
             }
           }
@@ -2840,6 +2851,15 @@ public final class Battle {
       return keyCode_;
     }
 
+    public static final int FRAMEINDEX_FIELD_NUMBER = 3;
+    private int frameIndex_;
+    /**
+     * <code>optional int32 frameIndex = 3;</code>
+     */
+    public int getFrameIndex() {
+      return frameIndex_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2858,6 +2878,9 @@ public final class Battle {
       if (keyCode_ != 0) {
         output.writeInt32(2, keyCode_);
       }
+      if (frameIndex_ != 0) {
+        output.writeInt32(3, frameIndex_);
+      }
     }
 
     public int getSerializedSize() {
@@ -2871,6 +2894,10 @@ public final class Battle {
       if (keyCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, keyCode_);
+      }
+      if (frameIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, frameIndex_);
       }
       memoizedSize = size;
       return size;
@@ -2892,6 +2919,8 @@ public final class Battle {
           .equals(other.getRid());
       result = result && (getKeyCode()
           == other.getKeyCode());
+      result = result && (getFrameIndex()
+          == other.getFrameIndex());
       return result;
     }
 
@@ -2906,6 +2935,8 @@ public final class Battle {
       hash = (53 * hash) + getRid().hashCode();
       hash = (37 * hash) + KEYCODE_FIELD_NUMBER;
       hash = (53 * hash) + getKeyCode();
+      hash = (37 * hash) + FRAMEINDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getFrameIndex();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3028,6 +3059,8 @@ public final class Battle {
 
         keyCode_ = 0;
 
+        frameIndex_ = 0;
+
         return this;
       }
 
@@ -3052,6 +3085,7 @@ public final class Battle {
         com.gg.game.proto.Battle.ControlInfo result = new com.gg.game.proto.Battle.ControlInfo(this);
         result.rid_ = rid_;
         result.keyCode_ = keyCode_;
+        result.frameIndex_ = frameIndex_;
         onBuilt();
         return result;
       }
@@ -3099,6 +3133,9 @@ public final class Battle {
         }
         if (other.getKeyCode() != 0) {
           setKeyCode(other.getKeyCode());
+        }
+        if (other.getFrameIndex() != 0) {
+          setFrameIndex(other.getFrameIndex());
         }
         onChanged();
         return this;
@@ -3217,6 +3254,32 @@ public final class Battle {
       public Builder clearKeyCode() {
         
         keyCode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int frameIndex_ ;
+      /**
+       * <code>optional int32 frameIndex = 3;</code>
+       */
+      public int getFrameIndex() {
+        return frameIndex_;
+      }
+      /**
+       * <code>optional int32 frameIndex = 3;</code>
+       */
+      public Builder setFrameIndex(int value) {
+        
+        frameIndex_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 frameIndex = 3;</code>
+       */
+      public Builder clearFrameIndex() {
+        
+        frameIndex_ = 0;
         onChanged();
         return this;
       }
@@ -3866,11 +3929,11 @@ public final class Battle {
       " \001(\t\022\t\n\001w\030\004 \001(\t\"z\n\014PositionInfo\022\013\n\003rid\030\001" +
       " \001(\t\022,\n\010position\030\002 \001(\0132\032.com.gg.game.pro" +
       "to.Vector3\022/\n\010rotation\030\003 \001(\0132\035.com.gg.ga" +
-      "me.proto.Quaternion\"+\n\013ControlInfo\022\013\n\003ri" +
-      "d\030\001 \001(\t\022\017\n\007keyCode\030\002 \001(\005\"\035\n\013StartBattle\022" +
-      "\016\n\006others\030\001 \003(\t*-\n\014InputKeyCode\022\010\n\004None\020" +
-      "\000\022\010\n\004Fire\020\001\022\t\n\005Reset\020\002B\026\n\021com.gg.game.pr",
-      "oto\210\001\001b\006proto3"
+      "me.proto.Quaternion\"?\n\013ControlInfo\022\013\n\003ri" +
+      "d\030\001 \001(\t\022\017\n\007keyCode\030\002 \001(\005\022\022\n\nframeIndex\030\003" +
+      " \001(\005\"\035\n\013StartBattle\022\016\n\006others\030\001 \003(\t*-\n\014I" +
+      "nputKeyCode\022\010\n\004None\020\000\022\010\n\004Fire\020\001\022\t\n\005Reset",
+      "\020\002B\026\n\021com.gg.game.proto\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3907,7 +3970,7 @@ public final class Battle {
     internal_static_com_gg_game_proto_ControlInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_ControlInfo_descriptor,
-        new java.lang.String[] { "Rid", "KeyCode", });
+        new java.lang.String[] { "Rid", "KeyCode", "FrameIndex", });
     internal_static_com_gg_game_proto_StartBattle_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_com_gg_game_proto_StartBattle_fieldAccessorTable = new

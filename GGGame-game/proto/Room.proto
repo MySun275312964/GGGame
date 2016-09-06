@@ -62,6 +62,11 @@ message PositionResponse {
 
 };
 
+message InputFrame {
+    int32 frameIndex = 1;
+    InputRequest input = 2;
+};
+
 service IRoom {
     // 创建房间
     rpc create (CreateRoomRequest) returns (CreateRoomResponse);
@@ -70,7 +75,7 @@ service IRoom {
     // 获取房间列表
     rpc getRoomList (GetRoomListRequest) returns (GetRoomListResponse);
     // 控制輸入
-    rpc input(InputRequest) returns (InputResponse);
+    rpc input (InputFrame) returns (InputResponse);
     // 位置同步
-    rpc position(PositionRequest) returns (PositionResponse);
+    rpc position (PositionRequest) returns (PositionResponse);
 }
