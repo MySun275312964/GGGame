@@ -3955,6 +3955,26 @@ public final class Room {
      * <code>optional int32 keyCode = 1;</code>
      */
     int getKeyCode();
+
+    /**
+     * <code>optional string moveHorizontal = 2;</code>
+     */
+    java.lang.String getMoveHorizontal();
+    /**
+     * <code>optional string moveHorizontal = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getMoveHorizontalBytes();
+
+    /**
+     * <code>optional string moveVertical = 3;</code>
+     */
+    java.lang.String getMoveVertical();
+    /**
+     * <code>optional string moveVertical = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getMoveVerticalBytes();
   }
   /**
    * Protobuf type {@code com.gg.game.proto.InputRequest}
@@ -3969,6 +3989,8 @@ public final class Room {
     }
     private InputRequest() {
       keyCode_ = 0;
+      moveHorizontal_ = "";
+      moveVertical_ = "";
     }
 
     @java.lang.Override
@@ -3999,6 +4021,18 @@ public final class Room {
             case 8: {
 
               keyCode_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              moveHorizontal_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              moveVertical_ = s;
               break;
             }
           }
@@ -4033,6 +4067,74 @@ public final class Room {
       return keyCode_;
     }
 
+    public static final int MOVEHORIZONTAL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object moveHorizontal_;
+    /**
+     * <code>optional string moveHorizontal = 2;</code>
+     */
+    public java.lang.String getMoveHorizontal() {
+      java.lang.Object ref = moveHorizontal_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        moveHorizontal_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string moveHorizontal = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMoveHorizontalBytes() {
+      java.lang.Object ref = moveHorizontal_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        moveHorizontal_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MOVEVERTICAL_FIELD_NUMBER = 3;
+    private volatile java.lang.Object moveVertical_;
+    /**
+     * <code>optional string moveVertical = 3;</code>
+     */
+    public java.lang.String getMoveVertical() {
+      java.lang.Object ref = moveVertical_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        moveVertical_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string moveVertical = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMoveVerticalBytes() {
+      java.lang.Object ref = moveVertical_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        moveVertical_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4048,6 +4150,12 @@ public final class Room {
       if (keyCode_ != 0) {
         output.writeInt32(1, keyCode_);
       }
+      if (!getMoveHorizontalBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, moveHorizontal_);
+      }
+      if (!getMoveVerticalBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, moveVertical_);
+      }
     }
 
     public int getSerializedSize() {
@@ -4058,6 +4166,12 @@ public final class Room {
       if (keyCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, keyCode_);
+      }
+      if (!getMoveHorizontalBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, moveHorizontal_);
+      }
+      if (!getMoveVerticalBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, moveVertical_);
       }
       memoizedSize = size;
       return size;
@@ -4077,6 +4191,10 @@ public final class Room {
       boolean result = true;
       result = result && (getKeyCode()
           == other.getKeyCode());
+      result = result && getMoveHorizontal()
+          .equals(other.getMoveHorizontal());
+      result = result && getMoveVertical()
+          .equals(other.getMoveVertical());
       return result;
     }
 
@@ -4089,6 +4207,10 @@ public final class Room {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + KEYCODE_FIELD_NUMBER;
       hash = (53 * hash) + getKeyCode();
+      hash = (37 * hash) + MOVEHORIZONTAL_FIELD_NUMBER;
+      hash = (53 * hash) + getMoveHorizontal().hashCode();
+      hash = (37 * hash) + MOVEVERTICAL_FIELD_NUMBER;
+      hash = (53 * hash) + getMoveVertical().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4209,6 +4331,10 @@ public final class Room {
         super.clear();
         keyCode_ = 0;
 
+        moveHorizontal_ = "";
+
+        moveVertical_ = "";
+
         return this;
       }
 
@@ -4232,6 +4358,8 @@ public final class Room {
       public com.gg.game.proto.Room.InputRequest buildPartial() {
         com.gg.game.proto.Room.InputRequest result = new com.gg.game.proto.Room.InputRequest(this);
         result.keyCode_ = keyCode_;
+        result.moveHorizontal_ = moveHorizontal_;
+        result.moveVertical_ = moveVertical_;
         onBuilt();
         return result;
       }
@@ -4275,6 +4403,14 @@ public final class Room {
         if (other == com.gg.game.proto.Room.InputRequest.getDefaultInstance()) return this;
         if (other.getKeyCode() != 0) {
           setKeyCode(other.getKeyCode());
+        }
+        if (!other.getMoveHorizontal().isEmpty()) {
+          moveHorizontal_ = other.moveHorizontal_;
+          onChanged();
+        }
+        if (!other.getMoveVertical().isEmpty()) {
+          moveVertical_ = other.moveVertical_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -4324,6 +4460,144 @@ public final class Room {
       public Builder clearKeyCode() {
         
         keyCode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object moveHorizontal_ = "";
+      /**
+       * <code>optional string moveHorizontal = 2;</code>
+       */
+      public java.lang.String getMoveHorizontal() {
+        java.lang.Object ref = moveHorizontal_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          moveHorizontal_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string moveHorizontal = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMoveHorizontalBytes() {
+        java.lang.Object ref = moveHorizontal_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          moveHorizontal_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string moveHorizontal = 2;</code>
+       */
+      public Builder setMoveHorizontal(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        moveHorizontal_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveHorizontal = 2;</code>
+       */
+      public Builder clearMoveHorizontal() {
+        
+        moveHorizontal_ = getDefaultInstance().getMoveHorizontal();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveHorizontal = 2;</code>
+       */
+      public Builder setMoveHorizontalBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        moveHorizontal_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object moveVertical_ = "";
+      /**
+       * <code>optional string moveVertical = 3;</code>
+       */
+      public java.lang.String getMoveVertical() {
+        java.lang.Object ref = moveVertical_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          moveVertical_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string moveVertical = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMoveVerticalBytes() {
+        java.lang.Object ref = moveVertical_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          moveVertical_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string moveVertical = 3;</code>
+       */
+      public Builder setMoveVertical(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        moveVertical_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveVertical = 3;</code>
+       */
+      public Builder clearMoveVertical() {
+        
+        moveVertical_ = getDefaultInstance().getMoveVertical();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveVertical = 3;</code>
+       */
+      public Builder setMoveVerticalBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        moveVertical_ = value;
         onChanged();
         return this;
       }
@@ -7118,26 +7392,27 @@ public final class Room {
       "sponse\022\014\n\004code\030\001 \001(\005\022\013\n\003msg\030\002 \001(\t\"\024\n\022Get" +
       "RoomListRequest\"D\n\023GetRoomListResponse\022-" +
       "\n\010roomList\030\001 \003(\0132\033.com.gg.game.proto.Roo",
-      "mInfo\"\037\n\014InputRequest\022\017\n\007keyCode\030\001 \001(\005\"\017" +
-      "\n\rInputResponse\"p\n\017PositionRequest\022,\n\010po" +
-      "sition\030\001 \001(\0132\032.com.gg.game.proto.Vector3" +
-      "\022/\n\010rotation\030\002 \001(\0132\035.com.gg.game.proto.Q" +
-      "uaternion\"\022\n\020PositionResponse\"P\n\nInputFr" +
-      "ame\022\022\n\nframeIndex\030\001 \001(\005\022.\n\005input\030\002 \001(\0132\037" +
-      ".com.gg.game.proto.InputRequest*2\n\nRoomS" +
-      "tatus\022\013\n\007CREATED\020\000\022\n\n\006GAMING\020\001\022\013\n\007DESTOR" +
-      "Y\020\0022\254\003\n\005IRoom\022U\n\006create\022$.com.gg.game.pr" +
-      "oto.CreateRoomRequest\032%.com.gg.game.prot",
-      "o.CreateRoomResponse\022O\n\004join\022\".com.gg.ga" +
-      "me.proto.JoinRoomRequest\032#.com.gg.game.p" +
-      "roto.JoinRoomResponse\022\\\n\013getRoomList\022%.c" +
-      "om.gg.game.proto.GetRoomListRequest\032&.co" +
-      "m.gg.game.proto.GetRoomListResponse\022H\n\005i" +
-      "nput\022\035.com.gg.game.proto.InputFrame\032 .co" +
-      "m.gg.game.proto.InputResponse\022S\n\010positio" +
-      "n\022\".com.gg.game.proto.PositionRequest\032#." +
-      "com.gg.game.proto.PositionResponseB\026\n\021co" +
-      "m.gg.game.proto\210\001\001b\006proto3"
+      "mInfo\"M\n\014InputRequest\022\017\n\007keyCode\030\001 \001(\005\022\026" +
+      "\n\016moveHorizontal\030\002 \001(\t\022\024\n\014moveVertical\030\003" +
+      " \001(\t\"\017\n\rInputResponse\"p\n\017PositionRequest" +
+      "\022,\n\010position\030\001 \001(\0132\032.com.gg.game.proto.V" +
+      "ector3\022/\n\010rotation\030\002 \001(\0132\035.com.gg.game.p" +
+      "roto.Quaternion\"\022\n\020PositionResponse\"P\n\nI" +
+      "nputFrame\022\022\n\nframeIndex\030\001 \001(\005\022.\n\005input\030\002" +
+      " \001(\0132\037.com.gg.game.proto.InputRequest*2\n" +
+      "\nRoomStatus\022\013\n\007CREATED\020\000\022\n\n\006GAMING\020\001\022\013\n\007" +
+      "DESTORY\020\0022\254\003\n\005IRoom\022U\n\006create\022$.com.gg.g",
+      "ame.proto.CreateRoomRequest\032%.com.gg.gam" +
+      "e.proto.CreateRoomResponse\022O\n\004join\022\".com" +
+      ".gg.game.proto.JoinRoomRequest\032#.com.gg." +
+      "game.proto.JoinRoomResponse\022\\\n\013getRoomLi" +
+      "st\022%.com.gg.game.proto.GetRoomListReques" +
+      "t\032&.com.gg.game.proto.GetRoomListRespons" +
+      "e\022H\n\005input\022\035.com.gg.game.proto.InputFram" +
+      "e\032 .com.gg.game.proto.InputResponse\022S\n\010p" +
+      "osition\022\".com.gg.game.proto.PositionRequ" +
+      "est\032#.com.gg.game.proto.PositionResponse",
+      "B\026\n\021com.gg.game.proto\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7199,7 +7474,7 @@ public final class Room {
     internal_static_com_gg_game_proto_InputRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_InputRequest_descriptor,
-        new java.lang.String[] { "KeyCode", });
+        new java.lang.String[] { "KeyCode", "MoveHorizontal", "MoveVertical", });
     internal_static_com_gg_game_proto_InputResponse_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_com_gg_game_proto_InputResponse_fieldAccessorTable = new

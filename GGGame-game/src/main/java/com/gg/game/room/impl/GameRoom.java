@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * 游戏房间
- * 
+ * <p>
  * Created by guofeng.qin on 2016/8/31.
  */
 public class GameRoom extends ActorBase implements IGameRoom {
@@ -70,12 +70,12 @@ public class GameRoom extends ActorBase implements IGameRoom {
         if (true || inputMap.size() >= roleList.size()) {
             for (List<Room.InputFrame> list : inputMap.values()) {
                 for (Room.InputFrame input : list) {
-                    Battle.ControlInfo controlInfo = Battle.ControlInfo.newBuilder().setRid(roleId).setKeyCode(input.getInput().getKeyCode()).setFrameIndex(input.getFrameIndex()).build();
+                    Battle.ControlInfo controlInfo = Battle.ControlInfo.newBuilder().setRid(roleId).setKeyCode(input.getInput().getKeyCode()).setMoveHorizontal(input.getInput().getMoveHorizontal()).setMoveVertical(input.getInput().getMoveVertical()).setFrameIndex(input.getFrameIndex()).build();
                     broadcast(controlInfo);
                 }
             }
             frameMap.remove(frameIndex);
-            frameIndex ++;
+            frameIndex++;
         }
     }
 

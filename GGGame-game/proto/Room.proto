@@ -47,6 +47,8 @@ message GetRoomListResponse {
 };
 message InputRequest {
     int32 keyCode = 1;
+    string moveHorizontal = 2;
+    string moveVertical = 3;
 };
 
 message InputResponse {

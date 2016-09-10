@@ -2726,6 +2726,26 @@ public final class Battle {
      * <code>optional int32 frameIndex = 3;</code>
      */
     int getFrameIndex();
+
+    /**
+     * <code>optional string moveHorizontal = 4;</code>
+     */
+    java.lang.String getMoveHorizontal();
+    /**
+     * <code>optional string moveHorizontal = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getMoveHorizontalBytes();
+
+    /**
+     * <code>optional string moveVertical = 5;</code>
+     */
+    java.lang.String getMoveVertical();
+    /**
+     * <code>optional string moveVertical = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMoveVerticalBytes();
   }
   /**
    * Protobuf type {@code com.gg.game.proto.ControlInfo}
@@ -2742,6 +2762,8 @@ public final class Battle {
       rid_ = "";
       keyCode_ = 0;
       frameIndex_ = 0;
+      moveHorizontal_ = "";
+      moveVertical_ = "";
     }
 
     @java.lang.Override
@@ -2783,6 +2805,18 @@ public final class Battle {
             case 24: {
 
               frameIndex_ = input.readInt32();
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              moveHorizontal_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              moveVertical_ = s;
               break;
             }
           }
@@ -2860,6 +2894,74 @@ public final class Battle {
       return frameIndex_;
     }
 
+    public static final int MOVEHORIZONTAL_FIELD_NUMBER = 4;
+    private volatile java.lang.Object moveHorizontal_;
+    /**
+     * <code>optional string moveHorizontal = 4;</code>
+     */
+    public java.lang.String getMoveHorizontal() {
+      java.lang.Object ref = moveHorizontal_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        moveHorizontal_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string moveHorizontal = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMoveHorizontalBytes() {
+      java.lang.Object ref = moveHorizontal_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        moveHorizontal_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MOVEVERTICAL_FIELD_NUMBER = 5;
+    private volatile java.lang.Object moveVertical_;
+    /**
+     * <code>optional string moveVertical = 5;</code>
+     */
+    public java.lang.String getMoveVertical() {
+      java.lang.Object ref = moveVertical_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        moveVertical_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string moveVertical = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMoveVerticalBytes() {
+      java.lang.Object ref = moveVertical_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        moveVertical_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2881,6 +2983,12 @@ public final class Battle {
       if (frameIndex_ != 0) {
         output.writeInt32(3, frameIndex_);
       }
+      if (!getMoveHorizontalBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, moveHorizontal_);
+      }
+      if (!getMoveVerticalBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, moveVertical_);
+      }
     }
 
     public int getSerializedSize() {
@@ -2898,6 +3006,12 @@ public final class Battle {
       if (frameIndex_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, frameIndex_);
+      }
+      if (!getMoveHorizontalBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, moveHorizontal_);
+      }
+      if (!getMoveVerticalBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, moveVertical_);
       }
       memoizedSize = size;
       return size;
@@ -2921,6 +3035,10 @@ public final class Battle {
           == other.getKeyCode());
       result = result && (getFrameIndex()
           == other.getFrameIndex());
+      result = result && getMoveHorizontal()
+          .equals(other.getMoveHorizontal());
+      result = result && getMoveVertical()
+          .equals(other.getMoveVertical());
       return result;
     }
 
@@ -2937,6 +3055,10 @@ public final class Battle {
       hash = (53 * hash) + getKeyCode();
       hash = (37 * hash) + FRAMEINDEX_FIELD_NUMBER;
       hash = (53 * hash) + getFrameIndex();
+      hash = (37 * hash) + MOVEHORIZONTAL_FIELD_NUMBER;
+      hash = (53 * hash) + getMoveHorizontal().hashCode();
+      hash = (37 * hash) + MOVEVERTICAL_FIELD_NUMBER;
+      hash = (53 * hash) + getMoveVertical().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3061,6 +3183,10 @@ public final class Battle {
 
         frameIndex_ = 0;
 
+        moveHorizontal_ = "";
+
+        moveVertical_ = "";
+
         return this;
       }
 
@@ -3086,6 +3212,8 @@ public final class Battle {
         result.rid_ = rid_;
         result.keyCode_ = keyCode_;
         result.frameIndex_ = frameIndex_;
+        result.moveHorizontal_ = moveHorizontal_;
+        result.moveVertical_ = moveVertical_;
         onBuilt();
         return result;
       }
@@ -3136,6 +3264,14 @@ public final class Battle {
         }
         if (other.getFrameIndex() != 0) {
           setFrameIndex(other.getFrameIndex());
+        }
+        if (!other.getMoveHorizontal().isEmpty()) {
+          moveHorizontal_ = other.moveHorizontal_;
+          onChanged();
+        }
+        if (!other.getMoveVertical().isEmpty()) {
+          moveVertical_ = other.moveVertical_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -3280,6 +3416,144 @@ public final class Battle {
       public Builder clearFrameIndex() {
         
         frameIndex_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object moveHorizontal_ = "";
+      /**
+       * <code>optional string moveHorizontal = 4;</code>
+       */
+      public java.lang.String getMoveHorizontal() {
+        java.lang.Object ref = moveHorizontal_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          moveHorizontal_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string moveHorizontal = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMoveHorizontalBytes() {
+        java.lang.Object ref = moveHorizontal_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          moveHorizontal_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string moveHorizontal = 4;</code>
+       */
+      public Builder setMoveHorizontal(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        moveHorizontal_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveHorizontal = 4;</code>
+       */
+      public Builder clearMoveHorizontal() {
+        
+        moveHorizontal_ = getDefaultInstance().getMoveHorizontal();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveHorizontal = 4;</code>
+       */
+      public Builder setMoveHorizontalBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        moveHorizontal_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object moveVertical_ = "";
+      /**
+       * <code>optional string moveVertical = 5;</code>
+       */
+      public java.lang.String getMoveVertical() {
+        java.lang.Object ref = moveVertical_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          moveVertical_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string moveVertical = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMoveVerticalBytes() {
+        java.lang.Object ref = moveVertical_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          moveVertical_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string moveVertical = 5;</code>
+       */
+      public Builder setMoveVertical(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        moveVertical_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveVertical = 5;</code>
+       */
+      public Builder clearMoveVertical() {
+        
+        moveVertical_ = getDefaultInstance().getMoveVertical();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string moveVertical = 5;</code>
+       */
+      public Builder setMoveVerticalBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        moveVertical_ = value;
         onChanged();
         return this;
       }
@@ -3929,11 +4203,12 @@ public final class Battle {
       " \001(\t\022\t\n\001w\030\004 \001(\t\"z\n\014PositionInfo\022\013\n\003rid\030\001" +
       " \001(\t\022,\n\010position\030\002 \001(\0132\032.com.gg.game.pro" +
       "to.Vector3\022/\n\010rotation\030\003 \001(\0132\035.com.gg.ga" +
-      "me.proto.Quaternion\"?\n\013ControlInfo\022\013\n\003ri" +
+      "me.proto.Quaternion\"m\n\013ControlInfo\022\013\n\003ri" +
       "d\030\001 \001(\t\022\017\n\007keyCode\030\002 \001(\005\022\022\n\nframeIndex\030\003" +
-      " \001(\005\"\035\n\013StartBattle\022\016\n\006others\030\001 \003(\t*-\n\014I" +
-      "nputKeyCode\022\010\n\004None\020\000\022\010\n\004Fire\020\001\022\t\n\005Reset",
-      "\020\002B\026\n\021com.gg.game.proto\210\001\001b\006proto3"
+      " \001(\005\022\026\n\016moveHorizontal\030\004 \001(\t\022\024\n\014moveVert" +
+      "ical\030\005 \001(\t\"\035\n\013StartBattle\022\016\n\006others\030\001 \003(",
+      "\t*-\n\014InputKeyCode\022\010\n\004None\020\000\022\010\n\004Fire\020\001\022\t\n" +
+      "\005Reset\020\002B\026\n\021com.gg.game.proto\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3970,7 +4245,7 @@ public final class Battle {
     internal_static_com_gg_game_proto_ControlInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_gg_game_proto_ControlInfo_descriptor,
-        new java.lang.String[] { "Rid", "KeyCode", "FrameIndex", });
+        new java.lang.String[] { "Rid", "KeyCode", "FrameIndex", "MoveHorizontal", "MoveVertical", });
     internal_static_com_gg_game_proto_StartBattle_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_com_gg_game_proto_StartBattle_fieldAccessorTable = new
