@@ -37,7 +37,14 @@ public class GameRoom extends ActorBase implements IGameRoom {
 
     @Override
     public void start() {
-        Battle.StartBattle startBattle = Battle.StartBattle.newBuilder().addAllOthers(roleList).build();
+        int seed = (int) (System.currentTimeMillis() / 1000);
+        List<Battle.PlayerInfo> list = new ArrayList<>();
+        int planeId = 0;
+        for (String role : roleList) {
+            Battle.PlayerInfo info = Battle.PlayerInfo.newBuilder().setPlaneId(planeId++).setRid(role).build();
+            list.add(info);
+        }
+        Battle.StartBattle startBattle = Battle.StartBattle.newBuilder().addAllOthers(list).setSeed(seed).build();
         broadcast(startBattle);
     }
 
@@ -52,7 +59,7 @@ public class GameRoom extends ActorBase implements IGameRoom {
         logger.info("input {}:{}:{}", roleId, inputFrame.getFrameIndex(), inputFrame.getInput().getKeyCode());
         int frame = inputFrame.getFrameIndex();
         if (frame != frameIndex) {
-            logger.info("Frame Index Error. {}:{}.", frame, frameIndex);
+            logger.info("Frame Index Error. {}:{}:{}.", roleId, frame, frameIndex);
             return;
         }
         Map<String, List<Room.InputFrame>> inputMap = frameMap.get(frame);
@@ -67,10 +74,14 @@ public class GameRoom extends ActorBase implements IGameRoom {
         }
         inputList.add(inputFrame);
 
-        if (true || inputMap.size() >= roleList.size()) {
-            for (List<Room.InputFrame> list : inputMap.values()) {
-                for (Room.InputFrame input : list) {
-                    Battle.ControlInfo controlInfo = Battle.ControlInfo.newBuilder().setRid(roleId).setKeyCode(input.getInput().getKeyCode()).setMoveHorizontal(input.getInput().getMoveHorizontal()).setMoveVertical(input.getInput().getMoveVertical()).setFrameIndex(input.getFrameIndex()).build();
+        if (inputMap.size() >= roleList.size()) {
+            for (Map.Entry<String, List<Room.InputFrame>> entry : inputMap.entrySet()) {
+                for (Room.InputFrame input : entry.getValue()) {
+                    Battle.ControlInfo controlInfo = Battle.ControlInfo.newBuilder().setRid(entry.getKey())
+                            .setKeyCode(input.getInput().getKeyCode())
+                            .setMoveHorizontal(input.getInput().getMoveHorizontal())
+                            .setMoveVertical(input.getInput().getMoveVertical()).setFrameIndex(input.getFrameIndex())
+                            .build();
                     broadcast(controlInfo);
                 }
             }

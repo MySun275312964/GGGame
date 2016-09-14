@@ -38,6 +38,12 @@ message ControlInfo {
     string moveVertical = 5;
 };
 
+message PlayerInfo {
+    string rid = 1;
+    int32 planeId = 2;
+};
+
 message StartBattle {
-    repeated string others = 1;
+    repeated PlayerInfo others = 1;
+    int32 seed = 2;
 };
